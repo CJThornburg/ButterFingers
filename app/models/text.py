@@ -9,16 +9,18 @@ class Text(db.Model):
 
     id = db.Column(db.Integer, primary_key=True)
     name = db.Column(db.String(30), nullable=False)
+    userId = db.Column(
+        db.Integer, db.ForeignKey(add_prefix_for_prod("users.id")), nullable=False
+    )
     typingText = db.Column(db.Text, nullable=False)
     wordCount = db.Column(db.Integer, nullable=False)
     characterCount = db.Column(db.Integer, nullable=False)
     noSpaceCharacterCount = db.Column(db.Integer, nullable=False)
-    hashed_password = db.Column(db.String(255), nullable=False)
-    public = db.column(db.Boolean, nullable=False)
+    public = db.Column(db.Boolean, nullable=False)
 
 
     # one user to many texts
-    user = db.relationship("User", back_populates="text")
+    user = db.relationship("User", back_populates="texts")
 
 
     # one text to many scores

@@ -3,6 +3,9 @@ from werkzeug.security import generate_password_hash, check_password_hash
 from flask_login import UserMixin
 
 
+
+
+
 class User(db.Model, UserMixin):
     __tablename__ = 'users'
 
@@ -15,7 +18,7 @@ class User(db.Model, UserMixin):
     hashed_password = db.Column(db.String(255), nullable=False)
 
     # one user to many text
-    text = db.relationship("Text", back_populates="user", cascade="all, delete-orphan")
+    texts = db.relationship('Text', back_populates='user', cascade="all, delete-orphan")
 
     @property
     def password(self):
