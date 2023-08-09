@@ -18,15 +18,18 @@ class User(db.Model, UserMixin):
     hashed_password = db.Column(db.String(255), nullable=False)
 
     # one user to many text
+    totalExp = db.Column(db.Integer, nullable=False)
     texts = db.relationship('Text', back_populates='user', cascade="all, delete-orphan")
-
 
 
     # one player(user) to many scores
     scores = db.relationship("Score", back_populates="player")
 
 
-    
+    fromUser = db.relationship("Friend", cascade="all, delete-orphan")
+    toUser = db.relationship("Friend", cascade="all, delete-orphan")
+
+
 
     @property
     def password(self):

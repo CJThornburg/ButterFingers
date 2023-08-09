@@ -17,6 +17,7 @@ class Score(db.Model):
     mistakes = db.Column(db.Integer, nullable=False)
     createdAt = db.Column(db.DateTime, default=db.func.now())
     kpm = db.Column(db.Integer, nullable=False)
+    runExp= db.Column(db.Integer, nullable=False)
 
 
 
