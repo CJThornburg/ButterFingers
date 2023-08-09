@@ -37,4 +37,5 @@ class Score(db.Model):
             "mistakes" : self.mistakes,
             "createdAt" : self.createdAt,
             "kpm" : self.kpm,
+            "runExp": self.runExp
                }
