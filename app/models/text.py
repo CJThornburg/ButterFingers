@@ -23,8 +23,8 @@ class Text(db.Model):
     user = db.relationship("User", back_populates="texts")
 
 
-    # one Text to many scores
-    run = db.relationship("Score", back_populates="text", cascade="all, delete-orphan" )
+    # # one Text to many scores
+    # run = db.relationship("Score", back_populates="text", cascade="all, delete-orphan" )
 
     def to_dict(self):
         return {

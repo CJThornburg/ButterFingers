@@ -26,7 +26,7 @@ class User(db.Model, UserMixin):
     scores = db.relationship("Score", back_populates="player")
 
 
-    # to itself
+    
 
     @property
     def password(self):

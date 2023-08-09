@@ -9,10 +9,9 @@ class Score(db.Model):
 
     id = db.Column(db.Integer, primary_key=True)
     textId = db.Column(
-        db.Integer, db.ForeignKey(add_prefix_for_prod("texts.id")), nullable=False
-    )
+        db.Integer, db.ForeignKey(add_prefix_for_prod("texts.id")))
     userId = db.Column(
-        db.Integer, db.ForeignKey(add_prefix_for_prod("users.id"), nullable=False)
+        db.Integer, db.ForeignKey(add_prefix_for_prod("users.id"))
     )
     time = db.Column(db.Integer, nullable=False)
     mistakes = db.Column(db.Integer, nullable=False)
@@ -26,15 +25,15 @@ class Score(db.Model):
 
 
     # one text to many SCORES
-    text = db.relationship("Score", back_populates="run" )
+    # text = db.relationship("Score", back_populates="run" )
 
-    def to_dict(self):
-        return {
-            'id': self.id,
-            "name" : self.name,
-            "typingText" : self.typingText,
-            "wordCount" : self.wordCount,
-            "characterCount" : self.characterCount,
-            "noSpaceCharacterCount" : self.characterCount,
-            "public" : self.public,
-               }
+    # def to_dict(self):
+    #     return {
+    #         'id': self.id,
+    #         "textId" : self.textId,
+    #         "userId" : self.userId,
+    #         "time" : self.time,
+    #         "mistakes" : self.mistakes,
+    #         "createdAt" : self.createdAt,
+    #         "kpm" : self.kpm,
+    #            }
