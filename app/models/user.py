@@ -13,12 +13,12 @@ class User(db.Model, UserMixin):
         __table_args__ = {'schema': SCHEMA}
 
     id = db.Column(db.Integer, primary_key=True)
-    username = db.Column(db.String(40), nullable=False, unique=True)
+    username = db.Column(db.String(20), nullable=False, unique=True)
     email = db.Column(db.String(255), nullable=False, unique=True)
     hashed_password = db.Column(db.String(255), nullable=False)
 
     # one user to many text
-    totalExp = db.Column(db.Integer, nullable=False)
+    totalExp = db.Column(db.Integer, default=0, nullable=False)
     texts = db.relationship('Text', back_populates='user', cascade="all, delete-orphan")
 
 
@@ -26,8 +26,8 @@ class User(db.Model, UserMixin):
     scores = db.relationship("Score", back_populates="player")
 
 
-    fromUser = db.relationship("Friend", cascade="all, delete-orphan")
-    toUser = db.relationship("Friend", cascade="all, delete-orphan")
+    # fromUser = db.relationship("Friend", cascade="all, delete-orphan")
+    # toUser = db.relationship("Friend", cascade="all, delete-orphan")
 
 
 

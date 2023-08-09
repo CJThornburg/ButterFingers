@@ -11,13 +11,10 @@ class Friend(db.Model):
         __table_args__ = {"schema": SCHEMA}
 
     id = db.Column(db.Integer, primary_key=True)
-    fromUser = db.Column(db.Integer, db.ForeignKey(add_prefix_for_prod("users.id")))
 
+    userName1 = db.Column(db.String(20))
+    userName2 = db.Column(db.db.String(20))
 
-    toUser = db.Column(db.Integer, db.ForeignKey(add_prefix_for_prod("users.id")))
-
-
-    friends = db.relationship("User")
 
 
     status = db.Column(db.String(10))
