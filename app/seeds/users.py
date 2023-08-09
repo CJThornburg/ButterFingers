@@ -6,14 +6,54 @@ from sqlalchemy.sql import text
 def seed_users():
     demo = User(
         username='Demo', email='demo@aa.io', password='password')
-    marnie = User(
+    faye = User(
         username='marnie', email='marnie@aa.io', password='password')
     bobbie = User(
         username='bobbie', email='bobbie@aa.io', password='password')
+    demo1 = User(
+        username='Demo1', email='demo1@aa.io', password='password')
+    demo2 = User(
+        username='Demo2', email='demo2@aa.io', password='password')
+    demo3 = User(
+        username='Demo3', email='demo3@aa.io', password='password')
+    demo4 = User(
+        username='Demo4', email='demo4@aa.io', password='password')
+    demo5 = User(
+        username='Demo5', email='demo5@aa.io', password='password')
+    demo6 = User(
+        username='Demo6', email='demo6@aa.io', password='password')
+    demo7 = User(
+        username='Demo7', email='demo7@aa.io', password='password')
+    demo8 = User(
+        username='Demo8', email='demo8@aa.io', password='password')
+    demo9 = User(
+        username='Demo9', email='demo9@aa.io', password='password')
+    demo10 = User(
+        username='Demo10', email='demo10@aa.io', password='password')
+    demo11 = User(
+        username='Demo11', email='demo11@aa.io', password='password')
+    demo12 = User(
+        username='Demo12', email='demo12@aa.io', password='password')
+    demo13 = User(
+        username='Demo13', email='demo13@aa.io', password='password')
+
 
     db.session.add(demo)
-    db.session.add(marnie)
+    db.session.add(faye)
     db.session.add(bobbie)
+    db.session.add(demo1)
+    db.session.add(demo2)
+    db.session.add(demo3)
+    db.session.add(demo4)
+    db.session.add(demo5)
+    db.session.add(demo6)
+    db.session.add(demo7)
+    db.session.add(demo8)
+    db.session.add(demo9)
+    db.session.add(demo10)
+    db.session.add(demo11)
+    db.session.add(demo12)
+    db.session.add(demo13)
     db.session.commit()
 
 
@@ -28,5 +68,5 @@ def undo_users():
         db.session.execute(f"TRUNCATE table {SCHEMA}.users RESTART IDENTITY CASCADE;")
     else:
         db.session.execute(text("DELETE FROM users"))
-        
+
     db.session.commit()
