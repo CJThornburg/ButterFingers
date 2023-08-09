@@ -16,8 +16,8 @@ class Text(db.Model):
     wordCount = db.Column(db.Integer, nullable=False)
     characterCount = db.Column(db.Integer, nullable=False)
     noSpaceCharacterCount = db.Column(db.Integer, nullable=False)
-    public = db.Column(db.Boolean, nullable=False)
-    textExp : db.Column(db.Integer, nullable=False)
+    public = db.Column(db.Boolean, nullable=False, default=True)
+    textExp= db.Column(db.Integer, nullable=False)
 
 
     # one user to many texts
