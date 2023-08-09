@@ -27,13 +27,13 @@ class Score(db.Model):
     # one text to many SCORES
     # text = db.relationship("Score", back_populates="run" )
 
-    # def to_dict(self):
-    #     return {
-    #         'id': self.id,
-    #         "textId" : self.textId,
-    #         "userId" : self.userId,
-    #         "time" : self.time,
-    #         "mistakes" : self.mistakes,
-    #         "createdAt" : self.createdAt,
-    #         "kpm" : self.kpm,
-    #            }
+    def to_dict(self):
+        return {
+            'id': self.id,
+            "textId" : self.textId,
+            "userId" : self.userId,
+            "time" : self.time,
+            "mistakes" : self.mistakes,
+            "createdAt" : self.createdAt,
+            "kpm" : self.kpm,
+               }
