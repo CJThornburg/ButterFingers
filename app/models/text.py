@@ -25,7 +25,7 @@ class Text(db.Model):
 
 
     # # one Text to many scores
-    # run = db.relationship("Score", back_populates="text", cascade="all, delete-orphan" )
+    run = db.relationship("Score", back_populates="text", cascade="all, delete-orphan" )
 
     def to_dict(self):
         return {
