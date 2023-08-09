@@ -20,6 +20,14 @@ class User(db.Model, UserMixin):
     # one user to many text
     texts = db.relationship('Text', back_populates='user', cascade="all, delete-orphan")
 
+
+
+    # one player(user) to many scores
+    scores = db.relationship("Score", back_populates="player")
+
+
+    # to itself
+
     @property
     def password(self):
         return self.hashed_password
