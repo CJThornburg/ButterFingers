@@ -123,8 +123,7 @@ def updateText(id):
 
     # textDic = text.to_dict()
     # print(textDic)
-    if not text:
-          return {"message": "Text couldn't be found"}
+    
 
     form = TextForm()
     textTy = form.data['typingText']

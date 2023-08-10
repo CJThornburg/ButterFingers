@@ -52,7 +52,7 @@ def getUserScores(userId):
 
 @score_routes.route('/<int:id>', methods=["DELETE"])
 @login_required
-def deleteText(id):
+def deleteScore(id):
     """
     Query for a text by id and deletes it and returns success or error obj
     """
@@ -86,7 +86,7 @@ def getScore(id):
 
 @score_routes.route('/new', methods=["POST"])
 @login_required
-def postText():
+def postScore():
     """
     Query to create a new text card, return updated object or error
     """
@@ -101,7 +101,7 @@ def postText():
         userId= userId,
         time= body["time"],
         mistakes= body["mistakes"],
-       
+
         kpm= body["kpm"],
         runExp= body["runExp"]
     )
@@ -112,34 +112,16 @@ def postText():
 
 
 
+@score_routes.route('/<int:textId>', methods=["Put"])
+@login_required
+def updateScore(textId):
+    score = Score.query.get(textId)
 
-
-    # )
-    return {"hi": "hi"}
-
-
-
-
-
-    #         newText = Text(
-    #             name=form.data['name'],
-    #             typingText=text,
-    #             wordCount=len(textList),
-    #             characterCount=len(text),
-    #             noSpaceCharacterCount=noSpaceCount,
-    #             public=True,
-    #             textExp=(len(textList) * 5),
-    #             userId=userId
-    #         )
-    #         db.session.add(newText)
-    #         db.session.commit()
-    #         return newText.to_dict()
-    #     else:
-    #         return {}
-    # except Exception as e:
-    #     error_message = str(e)
-    #     traceback_str = traceback.format_exc()
-    #     print("THIS IS THE FORM ERRORS", form.errors)
-    #     print("Error:", error_message)
-    #     print("Traceback:", traceback_str)
-    #     return jsonify(error=error_message, traceback=traceback_str), 500
+    if not score:
+          return {"message": "Score couldn't be found"}
+    body = request.json
+    score.time= body["time"]
+    score.mistakes = body["mistakes"]
+    score.kpm=body["kpm"]
+    db.session.commit()
+    return score.to_dict()
