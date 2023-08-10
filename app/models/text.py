@@ -34,6 +34,8 @@ class Text(db.Model):
             "typingText" : self.typingText,
             "wordCount" : self.wordCount,
             "characterCount" : self.characterCount,
-            "noSpaceCharacterCount" : self.characterCount,
+            "noSpaceCharacterCount" : self.noSpaceCharacterCount,
             "public" : self.public,
+            "textExp": self.textExp,
+            "userId": self.userId
                }
