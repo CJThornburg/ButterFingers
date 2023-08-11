@@ -123,8 +123,8 @@ export default function reducer(state = initialState, action) {
 
 
         case DELETE_TEXT:
-            console.log(newState)
-            // delete newState.texts[action.textId]
+         
+            delete newState[action.textId]
 
             return newState
 

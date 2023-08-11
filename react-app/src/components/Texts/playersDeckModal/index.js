@@ -11,8 +11,6 @@ function PlayersDeckModal() {
   const user = useSelector(state => state.session.user.id)
   const texts = useSelector(state => Object.values(state.texts).filter((text) => text.userId === user))
   const dispatch = useDispatch();
-  console.log(texts)
-  console.log(user)
 
 
 
@@ -30,9 +28,17 @@ function PlayersDeckModal() {
   // when text is clicked, want to open that text into a editTextForm
   const handleDelete = (e, textId) => {
 
-    dispatch(thunkDeleteText(textId))
+    async function deleteText() {
+      //     await dispatch(authenticate())
+      //     await dispatch(thunk())
+      //   }
 
-    dispatch(thunkGetAllTexts())
+      await dispatch(thunkDeleteText(textId))
+
+      await dispatch(thunkGetAllTexts())
+    }
+
+    deleteText()
 
 
   }
