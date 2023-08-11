@@ -7,7 +7,7 @@ from pprint import pprint
 score_routes = Blueprint('scores', __name__)
 
 
-@score_routes.route('')
+@score_routes.route('/')
 @login_required
 def getScores():
     """

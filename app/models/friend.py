@@ -18,3 +18,5 @@ class Friend(db.Model):
 
     status = db.Column(db.String(10))
     friendRequestTo = db.Column(db.String(20))
+
+
