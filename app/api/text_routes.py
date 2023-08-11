@@ -74,6 +74,7 @@ def postText():
     """
     try:
         cur_user = current_user.to_dict()
+        pprint(cur_user)
         userId = cur_user["id"]
         form = TextForm()
 
@@ -123,7 +124,7 @@ def updateText(id):
 
     # textDic = text.to_dict()
     # print(textDic)
-    
+
 
     form = TextForm()
     textTy = form.data['typingText']

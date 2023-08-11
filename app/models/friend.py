@@ -20,3 +20,12 @@ class Friend(db.Model):
     friendRequestTo = db.Column(db.String(20))
 
 
+
+    def to_dict(self):
+        return {
+            'id': self.id,
+            'fromUser': self.fromUser,
+            'toUser': self.toUser,
+            'status': self.status,
+            'friendRequestTo': self.friendRequestTo
+               }

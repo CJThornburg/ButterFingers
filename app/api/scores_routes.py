@@ -94,6 +94,7 @@ def postScore():
     body = request.json
     print("!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!")
     cur_user = current_user.to_dict()
+    pprint(cur_user)
     userId = cur_user["id"]
 
     newScore = Score(
