@@ -3,6 +3,7 @@ import { useModal } from "../../../context/Modal";
 import { useDispatch, useSelector } from "react-redux";
 import { thunkDeleteText } from "../../../store/texts";
 import { thunkGetAllTexts } from "../../../store/texts";
+import TextFormModal from "../TextFormModal"
 
 
 
@@ -11,6 +12,9 @@ function PlayersDeckModal() {
   const user = useSelector(state => state.session.user.id)
   const texts = useSelector(state => Object.values(state.texts).filter((text) => text.userId === user))
   const dispatch = useDispatch();
+  const [edit, setEdit] = useState(false)
+  const [textObj, setTextObj] = useState({})
+
 
 
 
@@ -45,16 +49,52 @@ function PlayersDeckModal() {
 
 
 
+  const loadText = (e, textObj) => {
+    setTextObj(textObj)
+    setEdit(true)
+    console.log(textObj)
+
+    // return <TextFormModal from="Edit" text={text}>
+
+    // // </TextFormModal>
+    //  <OpenModalButton
+    //     buttonText="Change"
+    //     onItemClick={closeMenu}
+    //     modalComponent={<TextFormModal />
+
+  }
+
+  let noSavedText = texts.length === 0
+
+  if (noSavedText) {
+    return (
+      <h1>No saved texts :(</h1>
+    )
+  }
+
+
+  if(edit) {
+
+
+   return <TextFormModal from="Edit" textObj={textObj} setEdit={setEdit}  />
+  }
+
+
+
+
 
 
   return (
     <>
+
+
+
       {/* if user owns no cards return "no cards make cards and save them" */}
-      <h1> hi :)</h1>
+      <h1> Saved texts</h1>
       {texts.map((text) => (
         <div>
-          <button> Name:{text.name},   Experience {text.textExp}</button>
-          <i onClick={(e) => handleDelete(e, text.id)} class="fa-solid fas fa-trash"></i>
+          <button onClick={(e) => loadText(e, text)}> Name:{text.name},   Experience {text.textExp}</button>
+          <i onClick={(e) => handleDelete(e, text.id)} className="fa-solid fas fa-trash"></i>
           {/* if time truncate the first few lines */}
         </div>
       ))}

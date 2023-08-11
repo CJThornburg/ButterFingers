@@ -65,20 +65,53 @@ export const thunkGetAllTexts = () => async (dispatch) => {
 
 
 
-const POST_Text = "TEXTS/PostText";
-const GET_Texts = "TEXTS/GET_ALL"
+export const thunkEditText = (name, typingText, textId) => async (dispatch) => {
+    const response = await fetch(`api/texts/${textId}`, {
+        method: "PUT",
+        headers: {
+            "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+            name,
+            typingText,
+        }),
+    });
+    if (response.ok) {
+        const data = await response.json();
+        dispatch(editText(data));
+        return data;
+    } else if (response.status < 500) {
+        const data = await response.json();
+        if (data.errors) {
+            return data.errors;
+        }
+    } else {
+        return ["An error occurred. Please try again."];
+    }
+};
+
+
+
+
+const POST_TEXT = "TEXTS/PostText";
+const GET_TEXT = "TEXTS/GET_ALL"
 const DELETE_TEXT = "TEXTS/delete";
+const EDIT_TEXT = "TEXTS/edit"
 
 
-
-
+const editText = (editText) => {
+    return {
+        type: EDIT_TEXT,
+        editText,
+    };
+};
 
 
 
 
 const postText = (newText) => {
     return {
-        type: POST_Text,
+        type: POST_TEXT,
         newText,
     };
 };
@@ -86,7 +119,7 @@ const postText = (newText) => {
 
 const getTexts = (TextsData) => {
     return {
-        type: GET_Texts,
+        type: GET_TEXT,
         TextsData
     }
 }
@@ -108,24 +141,22 @@ export default function reducer(state = initialState, action) {
     let newState = { ...state };
 
     switch (action.type) {
-        case GET_Texts:
-
+        case GET_TEXT:
             newState = { ...action.TextsData.texts }
-
             return newState
 
+        case POST_TEXT:
+            newState[action.newText.id] = action.newText
+            return newState;
 
 
-
-        // case POST_Text:
-        //         // !!! NEED TO FIX THIS
-        //     return { user: action.payload };
-
-
+        case EDIT_TEXT:
+            newState[action.editText.id] = action.editText
+            return newState
         case DELETE_TEXT:
-         
-            delete newState[action.textId]
 
+
+            delete newState[action.textId]
             return newState
 
         default:
