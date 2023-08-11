@@ -5,12 +5,17 @@ import SignupFormPage from "./components/SignupFormPage";
 import LoginFormPage from "./components/LoginFormPage";
 import { authenticate } from "./store/session";
 import Navigation from "./components/Navigation";
+import TextPage from './components/Texts/TextPage'
+import { thunkGetAllTexts } from "./store/texts";
 
 function App() {
   const dispatch = useDispatch();
   const [isLoaded, setIsLoaded] = useState(false);
   useEffect(() => {
-    dispatch(authenticate()).then(() => setIsLoaded(true));
+    dispatch(authenticate())
+      .then(() => setIsLoaded(true))
+      .then(() => dispatch(thunkGetAllTexts()))
+
   }, [dispatch]);
 
   return (
@@ -23,6 +28,9 @@ function App() {
           </Route>
           <Route path="/signup">
             <SignupFormPage />
+          </Route>
+          <Route path='/test'>
+            <TextPage></TextPage>
           </Route>
         </Switch>
       )}

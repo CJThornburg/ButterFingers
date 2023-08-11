@@ -116,7 +116,7 @@ def seed_texts():
     },
     {
     "name": "demoText8",
-    "userId": 1,
+    "userId": 2,
     "typingText": "Mountains stand tall, touching the sky with their majestic peaks, inspiring us to reach for our own summits of achievement.",
     "wordCount": 20,
     "noSpaceCharacterCount": 108,
@@ -126,7 +126,7 @@ def seed_texts():
 },
     {
     "name": "demoText9",
-    "userId": 1,
+    "userId": 4,
     "typingText": "A single candle's flame can pierce the darkest night, symbolizing hope that persists even in the face of adversity.",
     "wordCount": 20,
     "noSpaceCharacterCount": 96,
@@ -136,7 +136,7 @@ def seed_texts():
 },
     {
     "name": "demoText10",
-    "userId": 1,
+    "userId": 5,
     "typingText": "Across rolling meadows, wildflowers sway in the breeze, creating a vibrant mosaic that celebrates the beauty of diversity.",
     "wordCount": 20,
     "noSpaceCharacterCount": 102,
@@ -146,7 +146,7 @@ def seed_texts():
 },
 {
     "name": "demoText11",
-    "userId": 1,
+    "userId": 6,
     "typingText": "With a canvas and brush, artists capture fleeting moments, freezing time and emotion in strokes of creativity and passion.",
     "wordCount": 20,
     "noSpaceCharacterCount": 103,
@@ -156,7 +156,7 @@ def seed_texts():
 },
 {
     "name": "demoText12",
-    "userId": 1,
+    "userId": 7,
     "typingText": "Gentle waves kiss the shore, a rhythmic dance that speaks of endless journeys and the ebb and flow of life's experiences.",
     "wordCount": 20,
     "noSpaceCharacterCount": 102,
@@ -166,7 +166,7 @@ def seed_texts():
 },
 {
     "name": "demoText13",
-    "userId": 1,
+    "userId": 8,
     "typingText": "In the heart of the city, skyscrapers touch the clouds, a testament to human ambition and innovation that shapes our world.",
     "wordCount": 20,
     "noSpaceCharacterCount": 104,
@@ -176,7 +176,7 @@ def seed_texts():
 },
 {
     "name": "demoText14",
-    "userId": 1,
+    "userId": 9,
     "typingText": "Silent snowfall blankets the landscape, turning the world into a serene wonderland, where nature's beauty reigns supreme.",
     "wordCount": 20,
     "noSpaceCharacterCount": 103,
@@ -186,7 +186,7 @@ def seed_texts():
 },
 {
     "name": "demoText15",
-    "userId": 1,
+    "userId": 10,
     "typingText": "Through the pages of history, heroes rise and fall, leaving behind stories of courage, sacrifice, and the pursuit of justice.",
     "wordCount": 20,
     "noSpaceCharacterCount": 103,
@@ -196,7 +196,7 @@ def seed_texts():
 },
 {
     "name": "demoText16",
-    "userId": 1,
+    "userId": 2,
     "typingText": "Amidst ancient ruins, whispers of civilizations past echo, reminding us of the legacy that time bestows upon the world.",
     "wordCount": 20,
     "noSpaceCharacterCount": 101,
@@ -206,7 +206,7 @@ def seed_texts():
 },
 {
     "name": "demoText17",
-    "userId": 1,
+    "userId": 3,
     "typingText": "Stars above form constellations, connecting distant points with myths and stories that transcend the bounds of space and time.",
     "wordCount": 20,
     "noSpaceCharacterCount": 105,
@@ -216,7 +216,7 @@ def seed_texts():
 },
 {
         "name": "demoText18",
-        "userId": 1,
+        "userId": 4,
         "typingText": "Beneath the twinkling stars, the universe unfolds its secrets, revealing galaxies, nebulae, and the mysteries of dark matter, inviting us to contemplate the infinite expanse.",
         "wordCount": 50,
         "noSpaceCharacterCount": 221,
@@ -226,7 +226,7 @@ def seed_texts():
     },
     {
         "name": "demoText19",
-        "userId": 1,
+        "userId": 5,
         "typingText": "In the heart of the rainforest, life thrives in every shade of green, as vibrant flora and fauna coexist in a delicate equilibrium, forming an oasis of biodiversity.",
         "wordCount": 50,
         "noSpaceCharacterCount": 213,
@@ -236,7 +236,7 @@ def seed_texts():
     },
     {
         "name": "demoText20",
-        "userId": 1,
+        "userId": 6,
         "typingText": "Amidst towering mountains, glaciers carve their paths, sculpting valleys and fjords, reminding us of the Earth's ancient history and the forces that shape its grand landscapes.",
         "wordCount": 50,
         "noSpaceCharacterCount": 216,
@@ -246,7 +246,7 @@ def seed_texts():
     },
     {
         "name": "demoText21",
-        "userId": 1,
+        "userId": 7,
         "typingText": "From the bustling city streets to tranquil countryside lanes, humanity's diverse tapestry weaves tales of cultures, traditions, and aspirations, united under the sky's universal embrace.",
         "wordCount": 50,
         "noSpaceCharacterCount": 226,
@@ -256,7 +256,7 @@ def seed_texts():
     },
     {
         "name": "demoText22",
-        "userId": 1,
+        "userId": 8,
         "typingText": "Whispers of history echo within ancient architecture, telling stories of triumphs and struggles, preserving the essence of civilizations that have shaped our modern world with their legacies.",
         "wordCount": 50,
         "noSpaceCharacterCount": 223,
@@ -266,7 +266,7 @@ def seed_texts():
     },
       {
         "name": "demoText23",
-        "userId": 1,
+        "userId": 9,
         "typingText": "Beneath the endless night sky, stars twinkle like diamonds, connecting us to the universe's ageless beauty and the wonders that lie beyond our imagination. Every constellation tells a story, a celestial narrative etched across the cosmos, guiding sailors, dreamers, and scientists alike through the vastness of space. Amidst the galaxies, planets dance in their orbits, each one a unique world, a potential cradle for life or a realm of extremes. From the scorching heat of desert planets to the frozen landscapes of icy moons, the universe's diversity is both captivating and humbling. As we gaze into the night, we reflect on our place in this grand cosmic tapestry and the mysteries that continue to beckon us forward.",
         "wordCount": 100,
         "noSpaceCharacterCount": 456,
@@ -276,7 +276,7 @@ def seed_texts():
     },
     {
         "name": "demoText24",
-        "userId": 1,
+        "userId": 10,
         "typingText": "In the heart of bustling cities, the rhythm of life pulses with the energy of a million souls, each one weaving a unique thread into the vibrant tapestry of urban existence. Skyscrapers reach for the sky, their glass and steel facades reflecting the dreams and ambitions of humanity. Amidst the noise and movement, cultures collide and blend, creating a rich mosaic of languages, cuisines, and traditions. Sidewalks become runways of diversity, where people from all walks of life share moments and stories. Yet, even in the urban frenzy, pockets of serenity can be found – a park's green oasis, a quiet cafe on a corner, a hidden garden between buildings. As the city never sleeps, it also never stops evolving, an ever-changing canvas of innovation and history.",
         "wordCount": 100,
         "noSpaceCharacterCount": 460,
@@ -286,7 +286,7 @@ def seed_texts():
     },
     {
         "name": "demoText25",
-        "userId": 1,
+        "userId": 11,
         "typingText": "Within the pages of ancient texts, the wisdom of the ages resides, passed down through generations as a beacon of insight and understanding. These tomes, weathered by time, hold the thoughts and experiences of countless minds – philosophers, scholars, poets, and visionaries. Each word is a testament to the human pursuit of knowledge and the eternal quest for truth. From dusty libraries to quiet study corners, seekers of enlightenment immerse themselves in these sacred repositories of thought, finding solace and inspiration in the company of ideas that transcend the limitations of time and space. As we turn these pages, we connect with minds long gone, bridging the gap between the past and the present, and igniting the flame of curiosity that propels us forward.",
         "wordCount": 100,
         "noSpaceCharacterCount": 452,
@@ -296,7 +296,7 @@ def seed_texts():
     },
     {
         "name": "demoText26",
-        "userId": 1,
+        "userId": 2,
         "typingText": "Among the peaks of majestic mountains, nature's artistry is on full display, with snow-capped summits touching the sky and valleys cradling lush forests and crystal-clear streams. These geological giants stand as silent witnesses to the eons, their rocky faces carved by ancient forces – wind, water, and time itself. As we ascend their slopes, we experience a profound connection to the Earth's history and the forces that have shaped its landscapes. The summit offers a vantage point of awe, a place where one can touch the sky and witness the world from a perspective reserved for the intrepid and the curious. Here, we realize the fragility and resilience of our planet, a delicate balance that we are entrusted to protect and preserve.",
         "wordCount": 100,
         "noSpaceCharacterCount": 465,
@@ -306,7 +306,7 @@ def seed_texts():
     },
     {
         "name": "demoText27",
-        "userId": 1,
+        "userId": 3,
         "typingText": "In the realm of dreams, the imagination takes flight, unfettered by the constraints of reality. In this ethereal realm, the subconscious weaves stories that defy logic and physics, creating landscapes that morph and shift with every thought. As we slumber, we navigate through surreal dimensions, meeting characters that emerge from the depths of our minds – allies, adversaries, and enigmatic guides. Time becomes a malleable concept, and the laws of nature are mere suggestions. Whether we explore the depths of the ocean or soar through starlit skies, our dreamscapes are a testament to the limitless potential of human creativity. These ephemeral journeys remind us that reality is just one facet of existence and that within the world of dreams, the impossible becomes a canvas for exploration.",
         "wordCount": 100,
         "noSpaceCharacterCount": 465,
