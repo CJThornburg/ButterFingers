@@ -1,8 +1,8 @@
 """empty message
 
-Revision ID: cf87cb86872e
+Revision ID: 561ce3cb416f
 Revises:
-Create Date: 2023-08-09 18:16:06.330235
+Create Date: 2023-08-11 11:18:32.468983
 
 """
 from alembic import op
@@ -13,7 +13,7 @@ SCHEMA = os.environ.get("SCHEMA")
 
 
 # revision identifiers, used by Alembic.
-revision = 'cf87cb86872e'
+revision = '561ce3cb416f'
 down_revision = None
 branch_labels = None
 depends_on = None
@@ -31,7 +31,6 @@ def upgrade():
     )
     if environment == "production":
         op.execute(f"ALTER TABLE friends SET SCHEMA {SCHEMA};")
-
     op.create_table('users',
     sa.Column('id', sa.Integer(), nullable=False),
     sa.Column('username', sa.String(length=20), nullable=False),
@@ -41,7 +40,7 @@ def upgrade():
     sa.PrimaryKeyConstraint('id'),
     sa.UniqueConstraint('email'),
     sa.UniqueConstraint('username')
-    ),
+    )
     if environment == "production":
         op.execute(f"ALTER TABLE users SET SCHEMA {SCHEMA};")
     op.create_table('texts',
@@ -56,7 +55,7 @@ def upgrade():
     sa.Column('textExp', sa.Integer(), nullable=False),
     sa.ForeignKeyConstraint(['userId'], ['users.id'], ),
     sa.PrimaryKeyConstraint('id')
-    ),
+    )
     if environment == "production":
         op.execute(f"ALTER TABLE texts SET SCHEMA {SCHEMA};")
     op.create_table('scores',
