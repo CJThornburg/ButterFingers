@@ -113,18 +113,21 @@ def rejectReq(username):
 
     # query for toUser  is the current user,
 
-@friend_routes.route("/<username>/reject", methods=["PUT"])
-@login_required
-def acceptReq(username):
-    cur_user = current_user.to_dict()
-
-    # username is correct = fromUser
-    friend = Friend.query.filter(Friend.toUser == username).first()
-
-    if not friend:
-        return {"message": "error, friendship does not exist"}
 
 
-    friend.status="active"
-    db.session.commit()
-    return friend.to_dict()
+
+# @friend_routes.route("/<username>/reject", methods=["PUT"])
+# @login_required
+# def acceptReq(username):
+#     cur_user = current_user.to_dict()
+
+#     # username is correct = fromUser
+#     friend = Friend.query.filter(Friend.toUser == username).first()
+
+#     if not friend:
+#         return {"message": "error, friendship does not exist"}
+
+
+#     friend.status="active"
+#     db.session.commit()
+#     return friend.to_dict()
