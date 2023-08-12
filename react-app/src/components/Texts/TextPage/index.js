@@ -49,6 +49,8 @@ function TextPage() {
   const [textObj, setTextObj] = useState({})
   const [mistakes, setMistakes] = useState(0)
   const [start, setStart] = useState(0)
+  const [done, setDone] = useState(false)
+  // let done = false
   // const [end, setEnd] = useState(0)
 
   const sessionUser = useSelector((state) => state.session.user);
@@ -135,25 +137,43 @@ function TextPage() {
       setMistakes(mistakes + 1)
       setUserText(userText.substring(0, userText.length))
     }
-
+    // console.log(userText.length + 1)
+    // console.log(copyText.length)
     if (userText.length === copyText.length - 1) {
       let end = new Date().getTime()
 
 
       let timing = end - start
-      console.log(timing)
-      setTextObj({ ...textObj, time: timing })
-      console.log(textObj)
+
+      console.log(userText.length)
+      console.log(copyText.length)
+
       resultsObj.time = timing
       resultsObj.mistakes = mistakes
-      console.log(resultsObj)
+      let done = true
+      setDone(done)
+
+      console.log(done)
+      //
+
       // grab end time to find time it took
       // create the text object to pass to the the results return
       // render a results page and un-render
-      console.log("Done")
+
     }
   }
 
+
+  if (done) {
+    return (<>
+      <h3>KPS </h3>
+      <h3>ACC</h3>
+      <h4>{textObj.wordCount}</h4>
+      <h4>Mistakes: {mistakes}</h4>
+      <h4>Characters: {textObj.characterCount} </h4>
+      <h4>Characters (no space) {textObj.characterCount}</h4>
+    </>)
+  }
 
   return (
     <>
