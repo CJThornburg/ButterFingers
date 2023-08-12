@@ -16,7 +16,7 @@ def getScores():
     scores = Score.query.all()
 
 
-
+    pprint(scores)
     scores = [score.to_dict() for score in scores]
 
 # NORMALIZED DATA NORMALIZED DATA NORMALIZED DATA FLATTEN FLATTEN LIST FLATTEN ARRay
@@ -28,7 +28,7 @@ def getScores():
 
 # if you flatten everyone's data and then filter based off that should not need this
 @score_routes.route('/<int:userId>')
-@login_required
+# @login_required
 def getUserScores(userId):
     """
     Query for all users and returns them in a list of user dictionaries

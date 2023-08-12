@@ -32,7 +32,7 @@ export const thunkCreateText = (name, typingText) => async (dispatch) => {
     if (response.ok) {
         const data = await response.json();
         dispatch(postText(data))
-        return null
+        return data
     } else if (response.status < 500) {
         const data = await response.json();
         if (data.errors) {

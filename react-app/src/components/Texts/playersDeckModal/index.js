@@ -7,7 +7,7 @@ import TextFormModal from "../TextFormModal"
 
 
 
-function PlayersDeckModal() {
+function PlayersDeckModal({ setCopyText, setShowTextArea, setMistakes, setMs, setStart, setUserText, startTest, setTextObj2 }) {
   const { closeModal } = useModal();
   const user = useSelector(state => state.session.user.id)
   const texts = useSelector(state => Object.values(state.texts).filter((text) => text.userId === user))
@@ -73,10 +73,10 @@ function PlayersDeckModal() {
   }
 
 
-  if(edit) {
+  if (edit) {
 
 
-   return <TextFormModal from="Edit" textObj={textObj} setEdit={setEdit}  />
+    return <TextFormModal from="Edit" textObj={textObj} setEdit={setEdit} setCopyText={setCopyText} setShowTextArea={setShowTextArea} setMistakes={setMistakes} setMs={setMs} setStart={setStart} setUserText={setUserText} startTest={startTest} setTextObj={setTextObj2} />
   }
 
 
