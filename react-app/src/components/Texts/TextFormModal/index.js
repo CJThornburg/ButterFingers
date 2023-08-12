@@ -54,7 +54,7 @@ function TextFormModal({ from, textObj, setCopyText, setTextObj, setShowTextArea
       console.log("hi1")
       if (data?.errors) {
         setErrors(data);
-        console.log("BYEEEEEEEEEEEE")
+      
       } else {
         // need to query for the obj or return it from the fetch
         console.log("hi")
