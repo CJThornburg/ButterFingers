@@ -8,7 +8,7 @@ import OpenModalButton from "../../OpenModalButton";
 import PlayerDeckModal from "../playersDeckModal"
 
 
-function TextFormModal({ from, textObj, setCopyText, setTextObj, setShowTextArea, setMistakes, setMs, setStart, setUserText }) {
+function TextFormModal({ from, textObj, setCopyText, setTextObj, setShowTextArea, setMistakes, setMs, setStart, setUserText, startTest }) {
   const { closeModal, setModalContent } = useModal();
   const dispatch = useDispatch();
 
@@ -63,9 +63,10 @@ function TextFormModal({ from, textObj, setCopyText, setTextObj, setShowTextArea
         setCopyText(text)
         setMistakes(0)
         setShowTextArea(true)
-        setMs()
+        setMs(0)
         setStart(0)
         setUserText("")
+        startTest()
         closeModal()
       }
     }

@@ -52,6 +52,7 @@ function TextPage() {
   const [done, setDone] = useState(false)
   const dispatch = useDispatch();
   const [ms, setMs] = useState()
+  const [end, setEnd] = useState()
 
   const user = useSelector(state => state.session.user.id)
   const texts = useSelector(state => Object.values(state.texts))
@@ -146,6 +147,7 @@ function TextPage() {
   const startTest = () => {
     setShowTextArea(true)
     let startTime = new Date().getTime()
+    console.log("hi in start test")
     setStart(startTime)
 
   }
@@ -165,8 +167,11 @@ function TextPage() {
     }
 
     if (userText.length === copyText.length - 1) {
-      let end = new Date().getTime()
-      let timing = end - start
+      let endTime = new Date().getTime()
+      console.log(endTime)
+      console.log(start)
+      setEnd(endTime)
+      let timing = endTime - start
       resultsObj.time = timing
       resultsObj.mistakes = mistakes
       let done = true
@@ -193,6 +198,7 @@ function TextPage() {
     setMistakes(0)
     setMs()
     setDone(false)
+    startTest()
     handleLengthChange("e", option)
   }
 
@@ -211,7 +217,7 @@ function TextPage() {
 
     // TODO add data showing users overall stats for this text
     // TODO if characters less than ~20, for KPM just say "too short of text sample to calculate kpm"
-    console.log("character count",textObj.characterCount)
+    console.log("character count", textObj.characterCount)
     console.log("ms", ms)
     return (<>
       <h3>KPM {((textObj.characterCount / ms) * 60000).toFixed(2)}</h3>
@@ -253,7 +259,7 @@ function TextPage() {
         {change && <OpenModalButton
           buttonText="Change"
           onItemClick={closeMenu}
-          modalComponent={<TextFormModal from="Post" setTextObj={setTextObj} setCopyText={setCopyText} setShowTextArea={setShowTextArea} setMistakes={setMistakes} setMs={setMs} setStart={setStart} setUserText={setUserText}/>}
+          modalComponent={<TextFormModal from="Post" setTextObj={setTextObj} setCopyText={setCopyText} setShowTextArea={setShowTextArea} setMistakes={setMistakes} setMs={setMs} setStart={setStart} setUserText={setUserText} startTest={startTest} />}
 
 
         />}
