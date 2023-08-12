@@ -32,6 +32,7 @@ export const thunkCreateScore = (textId, time, mistakes, kpm, runExp, userId) =>
         }),
     });
 
+    
 
     if (response.ok) {
         const data = await response.json();

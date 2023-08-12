@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-// import {thunkSaveText} from "../../../store/text"
+import { thunkCreateScore } from "../../../store/scores"
 import { useDispatch, useSelector } from "react-redux";
 
 import OpenModalButton from "../../OpenModalButton";
@@ -50,13 +50,13 @@ function TextPage() {
   const [mistakes, setMistakes] = useState(0)
   const [start, setStart] = useState(0)
   const [done, setDone] = useState(false)
-  // let done = false
+  const dispatch = useDispatch();
   const [ms, setMs] = useState()
 
-  const sessionUser = useSelector((state) => state.session.user);
+  const user = useSelector(state => state.session.user.id)
   const texts = useSelector(state => Object.values(state.texts))
   const resultsObj = {}
-  // will need to have one where if user is using the preset length ones, change will be set back to false, onclick to any of those
+
 
   // have it staged, makes it way easier for me
   // only render buttons to choice type
@@ -78,29 +78,54 @@ function TextPage() {
     setChange(true)
   }
 
+
+
+
   const handleLengthChange = (e, num) => {
+    let matchingLengthTexts
+    let randomInt
+    if (num !== -1) {
+
+      matchingLengthTexts = texts.filter((text) => text.wordCount === num)
+      randomInt = getRandomInt(matchingLengthTexts.length - 1)
+    }
+
+
+
     switch (num) {
       case 20:
-        let twentyWords = texts.filter((text) => text.wordCount === 20)
-        let twentyRandomInt = getRandomInt(twentyWords.length - 1)
-        setTextObj(twentyWords[twentyRandomInt])
-        setCopyText(twentyWords[twentyRandomInt].typingText)
+        // let twentyWords = texts.filter((text) => text.wordCount === 20)
+        // let twentyRandomInt = getRandomInt(twentyWords.length - 1)
+        setTextObj(matchingLengthTexts[randomInt])
+        setCopyText(matchingLengthTexts[randomInt].typingText)
         setUserText("")
         setOption(num)
         break;
 
       case 50:
-
+        setTextObj(matchingLengthTexts[randomInt])
+        setCopyText(matchingLengthTexts[randomInt].typingText)
+        setUserText("")
+        setOption(num)
         break;
       case 100:
-
+        setTextObj(matchingLengthTexts[randomInt])
+        setCopyText(matchingLengthTexts[randomInt].typingText)
+        setUserText("")
+        setOption(num)
         break;
 
       case -1:
+        let textCount = texts.length
+        randomInt = getRandomInt(textCount-1)
+        setTextObj(texts[randomInt])
+        setCopyText(texts[randomInt].typingText)
+        setUserText("")
+        setOption(num)
+        break;
 
-        break;
-      default:
-        break;
+
+
     }
 
 
@@ -110,6 +135,11 @@ function TextPage() {
     // if num === -1, just grab any random public card
     // grab
   }
+
+
+
+
+
 
 
 
@@ -150,30 +180,53 @@ function TextPage() {
   }
 
 
-  const handleNext = () => {
+
+  // buttons on "stats" page
+  const handleNext = async () => {
+    let kpm = (textObj.characterCount / (ms / 1000))
+    let res = await dispatch(thunkCreateScore(textObj.id, ms, mistakes, kpm, textObj.textExp, user))
+    if (res) {
+      console.log("error", res)
+    }
     setUserText("")
     setMistakes(0)
     setMs()
     setDone(false)
-    //  post score to current user
     handleLengthChange("e", option)
   }
 
+  const handleDelete = async () => {
+
+    setUserText("")
+    setMistakes(0)
+    setMs()
+    setDone(false)
+    handleLengthChange("e", option)
+  }
+
+
+
   if (done) {
 
+// TODO add data showing users overall stats for this text
+
     return (<>
-      <h3>KPS {(textObj.characterCount / (ms / 1000)).toFixed(2)}</h3>
+      <h3>KPM {((textObj.characterCount / ms) * 60000).toFixed(2)}</h3>
+      <h3>Time: {(ms / 1000).toFixed(2)}</h3>
       <h3>ACC: {(((textObj.characterCount) / (textObj.characterCount + mistakes)) * 100).toFixed(2)}%</h3>
       <h4>Word Count: {textObj.wordCount}</h4>
       <h4>Mistakes: {mistakes}</h4>
       <h4>Characters: {textObj.characterCount} </h4>
       <h4>non space Characters: {textObj.noSpaceCharacterCount}</h4>
       <h4>exp: {textObj.textExp}</h4>
-
+{/*
       <h1>vs</h1>
 
-      <h2>Text card history</h2>
+      <h2>Text card history</h2> */}
       <button autoFocus onClick={handleNext}>Next!</button>
+      {/* if delete  just reset state don't commit  */}
+      <button onClick={handleDelete}>Delete :(</button>
+      {/* if redo, load current text object again */}
     </>)
   }
 
