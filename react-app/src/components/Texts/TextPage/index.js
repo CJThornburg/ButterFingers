@@ -155,6 +155,7 @@ function TextPage() {
     setMistakes(0)
     setMs()
     setDone(false)
+    //  post score to current user
     handleLengthChange("e", option)
   }
 
@@ -162,11 +163,16 @@ function TextPage() {
 
     return (<>
       <h3>KPS {(textObj.characterCount / (ms / 1000)).toFixed(2)}</h3>
-      <h3>ACC: {(((textObj.characterCount) / (textObj.characterCount + mistakes)) * 100).toFixed(2)} </h3>
+      <h3>ACC: {(((textObj.characterCount) / (textObj.characterCount + mistakes)) * 100).toFixed(2)}%</h3>
       <h4>Word Count: {textObj.wordCount}</h4>
       <h4>Mistakes: {mistakes}</h4>
       <h4>Characters: {textObj.characterCount} </h4>
       <h4>non space Characters: {textObj.noSpaceCharacterCount}</h4>
+      <h4>exp: {textObj.textExp}</h4>
+
+      <h1>vs</h1>
+
+      <h2>Text card history</h2>
       <button autoFocus onClick={handleNext}>Next!</button>
     </>)
   }

@@ -7,6 +7,7 @@ import { authenticate } from "./store/session";
 import Navigation from "./components/Navigation";
 import TextPage from './components/Texts/TextPage'
 import { thunkGetAllTexts } from "./store/texts";
+import {thunkGetAllScores} from './store/scores'
 
 function App() {
   const dispatch = useDispatch();
@@ -15,6 +16,7 @@ function App() {
     dispatch(authenticate())
       .then(() => setIsLoaded(true))
       .then(() => dispatch(thunkGetAllTexts()))
+      .then(() => dispatch(thunkGetAllScores()) )
 
   }, [dispatch]);
 
