@@ -8,7 +8,7 @@ import OpenModalButton from "../../OpenModalButton";
 import PlayerDeckModal from "../playersDeckModal"
 
 
-function TextFormModal({ from, textObj, setCopyText, setTextObj, setShowTextArea }) {
+function TextFormModal({ from, textObj, setCopyText, setTextObj, setShowTextArea, setMistakes, setMs, setStart, setUserText }) {
   const { closeModal, setModalContent } = useModal();
   const dispatch = useDispatch();
 
@@ -54,15 +54,18 @@ function TextFormModal({ from, textObj, setCopyText, setTextObj, setShowTextArea
       console.log("hi1")
       if (data?.errors) {
         setErrors(data);
-
+        console.log("BYEEEEEEEEEEEE")
       } else {
         // need to query for the obj or return it from the fetch
         console.log("hi")
         console.log(data)
         setTextObj(data)
         setCopyText(text)
-        
+        setMistakes(0)
         setShowTextArea(true)
+        setMs()
+        setStart(0)
+        setUserText("")
         closeModal()
       }
     }

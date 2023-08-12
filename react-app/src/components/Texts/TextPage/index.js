@@ -183,6 +183,7 @@ function TextPage() {
 
   // buttons on "stats" page
   const handleNext = async () => {
+
     let kpm = (textObj.characterCount / (ms / 1000))
     let res = await dispatch(thunkCreateScore(textObj.id, ms, mistakes, kpm, textObj.textExp, user))
     if (res) {
@@ -210,7 +211,8 @@ function TextPage() {
 
     // TODO add data showing users overall stats for this text
     // TODO if characters less than ~20, for KPM just say "too short of text sample to calculate kpm"
-
+    console.log("character count",textObj.characterCount)
+    console.log("ms", ms)
     return (<>
       <h3>KPM {((textObj.characterCount / ms) * 60000).toFixed(2)}</h3>
       <h3>Time: {(ms / 1000).toFixed(2)}</h3>
@@ -251,7 +253,7 @@ function TextPage() {
         {change && <OpenModalButton
           buttonText="Change"
           onItemClick={closeMenu}
-          modalComponent={<TextFormModal from="Post" setTextObj={setTextObj} setCopyText={setCopyText} setShowTextArea={setShowTextArea} />}
+          modalComponent={<TextFormModal from="Post" setTextObj={setTextObj} setCopyText={setCopyText} setShowTextArea={setShowTextArea} setMistakes={setMistakes} setMs={setMs} setStart={setStart} setUserText={setUserText}/>}
 
 
         />}
