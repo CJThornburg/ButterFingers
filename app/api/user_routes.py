@@ -1,6 +1,7 @@
 from flask import Blueprint, jsonify
 from flask_login import login_required
 from app.models import User
+from pprint import pprint
 
 user_routes = Blueprint('users', __name__)
 
@@ -30,3 +31,16 @@ def user(id):
 
 
 
+@user_routes.route('/users/<username>')
+@login_required
+def userByUsername(username):
+    """
+    Query for a user by id and returns that user in a dictionary
+    """
+    print(username)
+
+    user = User.query.filter(User.username == username).first()
+    pprint(user)
+    return {"msg" : "hi"}
+    # user = User.query.get(id)
+    # return user.to_dict()

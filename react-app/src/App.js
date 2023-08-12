@@ -9,6 +9,7 @@ import Navigation from "./components/Navigation";
 import TextPage from './components/Texts/TextPage'
 import { thunkGetAllTexts } from "./store/texts";
 import { thunkGetAllScores } from './store/scores'
+import { thunkGetAllProfiles } from './store/users'
 
 function App() {
   const dispatch = useDispatch();
@@ -18,6 +19,8 @@ function App() {
       .then(() => setIsLoaded(true))
       .then(() => dispatch(thunkGetAllTexts()))
       .then(() => dispatch(thunkGetAllScores()))
+      .then(() => dispatch(thunkGetAllProfiles()))
+
 
   }, [dispatch]);
 
