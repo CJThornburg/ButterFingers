@@ -51,7 +51,7 @@ function TextPage() {
   const [start, setStart] = useState(0)
   const [done, setDone] = useState(false)
   // let done = false
-  // const [end, setEnd] = useState(0)
+  const [ms, setMs] = useState()
 
   const sessionUser = useSelector((state) => state.session.user);
   const texts = useSelector(state => Object.values(state.texts))
@@ -86,6 +86,7 @@ function TextPage() {
         setTextObj(twentyWords[twentyRandomInt])
         setCopyText(twentyWords[twentyRandomInt].typingText)
         setUserText("")
+        setOption(num)
         break;
 
       case 50:
@@ -127,35 +128,20 @@ function TextPage() {
   let currentIndex
   const userInputChange = (e) => {
     setUserText(e.target.value)
-    // console.log(e.target.value)
     currentIndex = userText.length
-    // console.log("USER TEXT?", e.target.value[currentIndex])
-    // console.log(copyText[currentIndex])
-    // console.log(currentIndex)
-    // console.log(e.target.value[currentIndex] === copyText[currentIndex])
     if (e.target.value[currentIndex] !== copyText[currentIndex]) {
       setMistakes(mistakes + 1)
       setUserText(userText.substring(0, userText.length))
     }
-    // console.log(userText.length + 1)
-    // console.log(copyText.length)
+
     if (userText.length === copyText.length - 1) {
       let end = new Date().getTime()
-
-
       let timing = end - start
-
-      console.log(userText.length)
-      console.log(copyText.length)
-
       resultsObj.time = timing
       resultsObj.mistakes = mistakes
       let done = true
       setDone(done)
-
-      console.log(done)
-      //
-
+      setMs(timing)
       // grab end time to find time it took
       // create the text object to pass to the the results return
       // render a results page and un-render
@@ -164,14 +150,24 @@ function TextPage() {
   }
 
 
+  const handleNext = () => {
+    setUserText("")
+    setMistakes(0)
+    setMs()
+    setDone(false)
+    handleLengthChange("e", option)
+  }
+
   if (done) {
+
     return (<>
-      <h3>KPS </h3>
-      <h3>ACC</h3>
-      <h4>{textObj.wordCount}</h4>
+      <h3>KPS {(textObj.characterCount / (ms / 1000)).toFixed(2)}</h3>
+      <h3>ACC: {(((textObj.characterCount) / (textObj.characterCount + mistakes)) * 100).toFixed(2)} </h3>
+      <h4>Word Count: {textObj.wordCount}</h4>
       <h4>Mistakes: {mistakes}</h4>
       <h4>Characters: {textObj.characterCount} </h4>
-      <h4>Characters (no space) {textObj.characterCount}</h4>
+      <h4>non space Characters: {textObj.noSpaceCharacterCount}</h4>
+      <button autoFocus onClick={handleNext}>Next!</button>
     </>)
   }
 
