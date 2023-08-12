@@ -8,13 +8,13 @@ import OpenModalButton from "../../OpenModalButton";
 import PlayerDeckModal from "../playersDeckModal"
 
 
-function TextFormModal({ from, textObj }) {
+function TextFormModal({ from, textObj, setCopyText, setTextObj, setShowTextArea }) {
   const { closeModal, setModalContent } = useModal();
   const dispatch = useDispatch();
 
   let initialTextState = ""
   let initialNameState = ""
-
+  const [errors, setErrors] = useState({})
 
   if (from === "Edit") {
     initialTextState = textObj.typingText
@@ -35,7 +35,8 @@ function TextFormModal({ from, textObj }) {
       let textId = textObj.id
 
       const data = await dispatch(thunkEditText(name, text, textId))
-        closeModal()
+
+      closeModal()
 
     }
 
@@ -50,9 +51,18 @@ function TextFormModal({ from, textObj }) {
     // TODO check if user already has a card named this, if so don't submit, add error to error object to display "you must use a unique name  OR have a warning pop up to say "hey you about to save over it, you sure?
     if (from === "Post") {
       const data = await dispatch(thunkCreateText(name, text));
-      if (data) {
-        // setErrors(data);
+      console.log("hi1")
+      if (data?.errors) {
+        setErrors(data);
+
       } else {
+        // need to query for the obj or return it from the fetch
+        console.log("hi")
+        console.log(data)
+        setTextObj(data)
+        setCopyText(text)
+        
+        setShowTextArea(true)
         closeModal()
       }
     }

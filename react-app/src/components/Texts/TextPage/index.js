@@ -117,7 +117,7 @@ function TextPage() {
 
       case -1:
         let textCount = texts.length
-        randomInt = getRandomInt(textCount-1)
+        randomInt = getRandomInt(textCount - 1)
         setTextObj(texts[randomInt])
         setCopyText(texts[randomInt].typingText)
         setUserText("")
@@ -208,7 +208,8 @@ function TextPage() {
 
   if (done) {
 
-// TODO add data showing users overall stats for this text
+    // TODO add data showing users overall stats for this text
+    // TODO if characters less than ~20, for KPM just say "too short of text sample to calculate kpm"
 
     return (<>
       <h3>KPM {((textObj.characterCount / ms) * 60000).toFixed(2)}</h3>
@@ -219,17 +220,21 @@ function TextPage() {
       <h4>Characters: {textObj.characterCount} </h4>
       <h4>non space Characters: {textObj.noSpaceCharacterCount}</h4>
       <h4>exp: {textObj.textExp}</h4>
-{/*
+      {/*
       <h1>vs</h1>
 
       <h2>Text card history</h2> */}
       <button autoFocus onClick={handleNext}>Next!</button>
       {/* if delete  just reset state don't commit  */}
       <button onClick={handleDelete}>Delete :(</button>
+
       {/* if redo, load current text object again */}
     </>)
   }
 
+  // const [copyText, setCopyText] = useState("")
+  // const [option, setOption] = useState('')
+  // const [textObj, setTextObj] = useState({})
   return (
     <>
 
@@ -241,11 +246,14 @@ function TextPage() {
         <button onClick={(e) => { handleLengthChange(e, -1) }}>Random</button>
 
         {/* if clicked, render change button, and a default text and clicking that one that will open modal. The default is there to prevent errors if its a new user and they have no texts to render without having to give everyone a default card*/}
+        {/* const [showTextArea, setShowTextArea] = useState(false) */}
         <button onClick={showChange}>Custom</button>
         {change && <OpenModalButton
           buttonText="Change"
           onItemClick={closeMenu}
-          modalComponent={<TextFormModal from="Post" />}
+          modalComponent={<TextFormModal from="Post" setTextObj={setTextObj} setCopyText={setCopyText} setShowTextArea={setShowTextArea} />}
+
+
         />}
       </div>
 

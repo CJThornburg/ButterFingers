@@ -32,12 +32,12 @@ export const thunkCreateScore = (textId, time, mistakes, kpm, runExp, userId) =>
         }),
     });
 
-    
+
 
     if (response.ok) {
         const data = await response.json();
         dispatch(postScore(data))
-        return null
+        return data
     } else if (response.status < 500) {
         const data = await response.json();
         if (data.errors) {
