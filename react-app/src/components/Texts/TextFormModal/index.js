@@ -35,7 +35,15 @@ function TextFormModal({ from, textObj, setCopyText, setTextObj, setShowTextArea
       let textId = textObj.id
 
       const data = await dispatch(thunkEditText(name, text, textId))
-
+      console.log("data from edit", data)
+      setTextObj(data)
+      setCopyText(text)
+      setMistakes(0)
+      setShowTextArea(true)
+      setMs(0)
+      setStart(0)
+      setUserText("")
+      startTest()
       closeModal()
 
     }
@@ -54,7 +62,7 @@ function TextFormModal({ from, textObj, setCopyText, setTextObj, setShowTextArea
       console.log("hi1")
       if (data?.errors) {
         setErrors(data);
-      
+
       } else {
         // need to query for the obj or return it from the fetch
         console.log("hi")
@@ -92,7 +100,7 @@ function TextFormModal({ from, textObj, setCopyText, setTextObj, setShowTextArea
             buttonText="Saved Texts"
             // onItemClick={closeMenu}
 
-            modalComponent={<PlayerDeckModal />}
+            modalComponent={<PlayerDeckModal setCopyText={setCopyText}  setTextObj2={setTextObj} setShowTextArea={setShowTextArea} setMistakes={setMistakes} setMs={setMs} setStart={setStart} setUserText={setUserText} startTest={startTest} />}
           />}
 
         </div>
