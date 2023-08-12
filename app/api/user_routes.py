@@ -15,7 +15,7 @@ def users():
     users = User.query.all()
 
     users = [user.to_dict() for user in users]
-
+    # pprint(users)
     return {'Users': {user["id"]: user for user in users}}
 
 

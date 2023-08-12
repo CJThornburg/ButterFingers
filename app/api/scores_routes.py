@@ -31,7 +31,7 @@ def getScores():
 # @login_required
 def getUserScores(userId):
     """
-    Query for all users and returns them in a list of user dictionaries
+    Query for all scores and returns them in a list of user dictionaries
     """
 
     # cur_user = current_user.to_dict()
@@ -47,6 +47,10 @@ def getUserScores(userId):
             "Scores": {score["id"]: score for score in scores}
 
             }
+
+
+
+# TODO dont neeed this can just filter in the front end
 
 
 
