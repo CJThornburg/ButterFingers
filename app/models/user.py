@@ -17,6 +17,7 @@ class User(db.Model, UserMixin):
     email = db.Column(db.String(255), nullable=False, unique=True)
     hashed_password = db.Column(db.String(255), nullable=False)
     profile_imageURL = db.Column(db.Text, nullable=True, default="https://img.freepik.com/free-icon/user_318-826358.jpg")
+    createdAt = db.Column(db.DateTime, default=db.func.now())
 
     # one user to many text
     totalExp = db.Column(db.Integer, default=0, nullable=False)
@@ -54,5 +55,6 @@ class User(db.Model, UserMixin):
         return{
             'id': self.id,
             'username': self.username,
-            "profile_imageURL": self.profile_imageURL
+            "profile_imageURL": self.profile_imageURL,
+            "createdAt": self.createdAt
         }
