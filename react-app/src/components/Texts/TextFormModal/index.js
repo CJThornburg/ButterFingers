@@ -59,7 +59,7 @@ function TextFormModal({ from, textObj, setCopyText, setTextObj, setShowTextArea
     // TODO check if user already has a card named this, if so don't submit, add error to error object to display "you must use a unique name  OR have a warning pop up to say "hey you about to save over it, you sure?
     if (from === "Post") {
       const data = await dispatch(thunkCreateText(name, text));
-      console.log("hi1")
+
       if (data?.errors) {
         setErrors(data);
 

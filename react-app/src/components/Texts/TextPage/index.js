@@ -152,8 +152,7 @@ function TextPage() {
 
   }
 
-  const handelSubmit = () => {
-  }
+
 
   const closeMenu = () => setShowMenu(false);
 
@@ -240,9 +239,7 @@ function TextPage() {
     </>)
   }
 
-  // const [copyText, setCopyText] = useState("")
-  // const [option, setOption] = useState('')
-  // const [textObj, setTextObj] = useState({})
+
   return (
     <>
 
@@ -265,7 +262,7 @@ function TextPage() {
         />}
       </div>
 
-      {showTextArea && <form onSubmit={handelSubmit}>
+      {showTextArea && <form>
 
         <p>{copyText}</p>
 

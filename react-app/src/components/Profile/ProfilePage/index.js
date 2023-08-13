@@ -4,6 +4,8 @@ import { useDispatch, useSelector } from "react-redux";
 import { thunkGetAllTexts } from "../../../store/texts"
 import { useParams, useHistory } from "react-router-dom";
 import { getLevel } from "../../../utils";
+import PlayerText from "./PlayerText";
+
 
 
 function ProfilePage() {
@@ -37,14 +39,14 @@ function ProfilePage() {
   const averageKpm = totalKpm / userScores.length;
 
   // for each score, search text and grab   characterCount noSpaceCharacterCount wordCount
-  let totalChars
-  let totalCharsNospace
+  let totalChars = 0
+  let totalCharsNospace = 0
   let totalWords = 0
   for (const score of scores) {
     let currentTextId = score.textId
     console.log(currentTextId)
     totalChars += textObjs[currentTextId].characterCount
-    totalChars += textObjs[currentTextId].noSpaceCharacterCount
+    totalCharsNospace += textObjs[currentTextId].noSpaceCharacterCount
     totalWords += textObjs[currentTextId].wordCount
   }
   console.log("totalWords", totalWords)
@@ -76,6 +78,7 @@ function ProfilePage() {
   // if rejected, delete record    or turn to rejected
   // if does not exist
   // render send request button, current user = fromUser, toUser is to profile page on
+
 
 
 
@@ -119,7 +122,7 @@ function ProfilePage() {
 
         {/* if friends or current user */}
         <div className="PP-stats2 PP-totals">
-          <p className="PP-mistakes"> typed characters: {totalMistakes}</p>
+          <p className="PP-mistakes"> typed characters: {totalChars}</p>
           <p className="PP-mistakes">typed non-space characters: {totalCharsNospace}</p>
           <p className="PP-mistakes">totals mistakes: {totalMistakes}</p>
 
@@ -130,9 +133,17 @@ function ProfilePage() {
         <div>
           {userTexts.map((text) => (
             <>
-              <h4>{text.name}</h4>
+              <PlayerText key={text.id}
+              text={text}
+              username={username}
+              >
+
+              </PlayerText>
+
+              {/* <h4>{text.name}</h4> */}
               {/* TODO add onclick to redirect to testing with this card :') */}
-              <button>run it!</button>
+              {/* <button onClick={(e) => handleRunIt(e, text.id)}>run it!</button>
+              {renderTest && <h1></h1>} */}
             </>
           ))}
 
