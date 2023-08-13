@@ -72,7 +72,7 @@ function TextPage() {
 
   const getRandom = () => {
     let randomInt = getRandomInt(texts.length - 1)
-    console.log(randomInt)
+
   }
 
   const showChange = (e) => {
@@ -94,9 +94,9 @@ function TextPage() {
 
 
     switch (num) {
+      // TODO can be reduced down to simple if else, if num=== -1 random, else do the same in case or
+
       case 20:
-        // let twentyWords = texts.filter((text) => text.wordCount === 20)
-        // let twentyRandomInt = getRandomInt(twentyWords.length - 1)
         setTextObj(matchingLengthTexts[randomInt])
         setCopyText(matchingLengthTexts[randomInt].typingText)
         setUserText("")
@@ -128,13 +128,8 @@ function TextPage() {
 
 
     }
-
-
     setShowStartButton(true)
     setChange(false)
-    // grab num and grab random public card from that length
-    // if num === -1, just grab any random public card
-    // grab
   }
 
 
@@ -147,7 +142,7 @@ function TextPage() {
   const startTest = () => {
     setShowTextArea(true)
     let startTime = new Date().getTime()
-    console.log("hi in start test")
+
     setStart(startTime)
 
   }
@@ -167,8 +162,7 @@ function TextPage() {
 
     if (userText.length === copyText.length - 1) {
       let endTime = new Date().getTime()
-      console.log(endTime)
-      console.log(start)
+
       setEnd(endTime)
       let timing = endTime - start
       resultsObj.time = timing
@@ -176,10 +170,6 @@ function TextPage() {
       let done = true
       setDone(done)
       setMs(timing)
-      // grab end time to find time it took
-      // create the text object to pass to the the results return
-      // render a results page and un-render
-
     }
   }
 
@@ -216,8 +206,7 @@ function TextPage() {
 
     // TODO add data showing users overall stats for this text
     // TODO if characters less than ~20, for KPM just say "too short of text sample to calculate kpm"
-    console.log("character count", textObj.characterCount)
-    console.log("ms", ms)
+
     return (<>
       <h3>KPM {((textObj.characterCount / ms) * 60000).toFixed(2)}</h3>
       <h3>Time: {(ms / 1000).toFixed(2)}</h3>

@@ -23,19 +23,12 @@ function PlayersDeckModal({ setCopyText, setShowTextArea, setMistakes, setMs, se
 
 
 
-  // if ()
-  // use selector, grab all text made by current user
-  // use that to make text "buttons"
-  // when the button is clicked, opens up edit form
-  // think I will need ot pass do
 
-  // when text is clicked, want to open that text into a editTextForm
+
+
   const handleDelete = (e, textId) => {
 
     async function deleteText() {
-      //     await dispatch(authenticate())
-      //     await dispatch(thunk())
-      //   }
 
       await dispatch(thunkDeleteText(textId))
 
@@ -52,15 +45,6 @@ function PlayersDeckModal({ setCopyText, setShowTextArea, setMistakes, setMs, se
   const loadText = (e, textObj) => {
     setTextObj(textObj)
     setEdit(true)
-    console.log(textObj)
-
-    // return <TextFormModal from="Edit" text={text}>
-
-    // // </TextFormModal>
-    //  <OpenModalButton
-    //     buttonText="Change"
-    //     onItemClick={closeMenu}
-    //     modalComponent={<TextFormModal />
 
   }
 

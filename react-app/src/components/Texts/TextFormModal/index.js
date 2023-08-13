@@ -21,11 +21,9 @@ function TextFormModal({ from, textObj, setCopyText, setTextObj, setShowTextArea
     initialNameState = textObj.name
   }
 
-  // const [text, setText] = useState("")
-  // wil be below, so can be used for create and edit
+
+
   const [text, setText] = useState(initialTextState || '')
-  // TODO if time, make this its own pop up menu and submit, wtf-forms
-  // const [name, setName] = useState("")
   const [name, setName] = useState(initialNameState || '')
 
   const handleSubmit = async (e) => {
@@ -35,7 +33,7 @@ function TextFormModal({ from, textObj, setCopyText, setTextObj, setShowTextArea
       let textId = textObj.id
 
       const data = await dispatch(thunkEditText(name, text, textId))
-      console.log("data from edit", data)
+
       setTextObj(data)
       setCopyText(text)
       setMistakes(0)
@@ -64,9 +62,6 @@ function TextFormModal({ from, textObj, setCopyText, setTextObj, setShowTextArea
         setErrors(data);
 
       } else {
-        // need to query for the obj or return it from the fetch
-        console.log("hi")
-        console.log(data)
         setTextObj(data)
         setCopyText(text)
         setMistakes(0)
@@ -81,10 +76,6 @@ function TextFormModal({ from, textObj, setCopyText, setTextObj, setShowTextArea
 
   };
 
-  // const closeMenu = () => setShowMenu(false);
-
-
-
   return (
     <>
       <form onSubmit={handleSubmit}>
@@ -98,8 +89,6 @@ function TextFormModal({ from, textObj, setCopyText, setTextObj, setShowTextArea
 
           {from === "Post" && <OpenModalButton
             buttonText="Saved Texts"
-            // onItemClick={closeMenu}
-
             modalComponent={<PlayerDeckModal setCopyText={setCopyText}  setTextObj2={setTextObj} setShowTextArea={setShowTextArea} setMistakes={setMistakes} setMs={setMs} setStart={setStart} setUserText={setUserText} startTest={startTest} />}
           />}
 

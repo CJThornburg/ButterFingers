@@ -32,9 +32,7 @@ function PlayerText({ text, username }) {
             let done = true
             setDone(done)
             setMs(timing)
-            // grab end time to find time it took
-            // create the text object to pass to the the results return
-            // render a results page and un-render
+
 
         }
     }
@@ -44,7 +42,7 @@ function PlayerText({ text, username }) {
     const startTest = () => {
 
         let startTime = new Date().getTime()
-        console.log("hi in start test")
+
         setStart(startTime)
 
     }
@@ -80,7 +78,7 @@ function PlayerText({ text, username }) {
         setRenderTest(false)
     }
 
-    // TODO BACK FROM BREAK, add "again" button mimics "next"
+    
     if (done) {
         return (
             <>

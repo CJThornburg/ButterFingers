@@ -50,11 +50,9 @@ export const thunkGetAllTexts = () => async (dispatch) => {
             "Content-Type": "application/json",
         },
     });
-    // console.log(response)
 
     if (response.ok) {
         const textData = await response.json();
-        // console.log("DATA BEFORE PASSING TO ACTION", userReviewsData)
         if (textData.errors) {
             return;
         }

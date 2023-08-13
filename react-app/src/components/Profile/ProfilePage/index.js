@@ -12,8 +12,7 @@ function ProfilePage() {
   const { username } = useParams();
   const dispatch = useDispatch();
 
-  // need query by all but just username and id, so can filter texts and scores by user id
-  // const texts = useSelector(state => Object.values(state.texts))
+
 
   const userObj = useSelector(state => Object.values(state.users).find(user => user.username.toLowerCase() === username.toLowerCase()))
   const textObjs = useSelector(state => state.texts)
@@ -26,10 +25,10 @@ function ProfilePage() {
     return null
   }
 
-  // const currentUser = Object.values(userObj).find(user => user.username.toLowerCase() === username.toLowerCase());
-  // console.log(username)
+
+
   // ! why do i have to do ?, conditional short circuit for it is breaking code :(
-  console.log(userObj?.id);
+
   const userScores = scores.filter((score => score.userId === userObj?.id))
   const totalExp = userScores.reduce((accumulator, currentValue) => accumulator + currentValue.runExp, 0);
   const totalMistakes = userScores.reduce((accumulator, currentValue) => accumulator + currentValue.mistakes, 0)
@@ -38,21 +37,21 @@ function ProfilePage() {
   const totalKpm = userScores.reduce((accumulator, currentValue) => accumulator + currentValue.kpm, 0);
   const averageKpm = totalKpm / userScores.length;
 
-  // for each score, search text and grab   characterCount noSpaceCharacterCount wordCount
+  // Below:for each score, search text and sum all the characterCount noSpaceCharacterCount wordCount
   let totalChars = 0
   let totalCharsNospace = 0
   let totalWords = 0
   for (const score of scores) {
     let currentTextId = score.textId
-    console.log(currentTextId)
+
     totalChars += textObjs[currentTextId].characterCount
     totalCharsNospace += textObjs[currentTextId].noSpaceCharacterCount
     totalWords += textObjs[currentTextId].wordCount
   }
-  console.log("totalWords", totalWords)
 
 
-  // console.log(currentUser, "!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!")
+
+
   const userTexts = texts.filter((score => score.userId === userObj?.id))
 
   const level = getLevel(totalExp)
@@ -139,11 +138,6 @@ function ProfilePage() {
               >
 
               </PlayerText>
-
-              {/* <h4>{text.name}</h4> */}
-              {/* TODO add onclick to redirect to testing with this card :') */}
-              {/* <button onClick={(e) => handleRunIt(e, text.id)}>run it!</button>
-              {renderTest && <h1></h1>} */}
             </>
           ))}
 

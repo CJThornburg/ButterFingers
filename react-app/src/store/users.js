@@ -1,15 +1,14 @@
 export const thunkGetAllProfiles = () => async (dispatch) => {
-    console.log("in the PROFILES thunk")
     const response = await fetch("/api/users", {
         headers: {
             "Content-Type": "application/json",
         },
     });
-    console.log(response)
+
 
     if (response.ok) {
         const usersData = await response.json();
-        console.log("DATA BEFORE PASSING TO ACTION", usersData)
+
         if (usersData.errors) {
             return;
         }
@@ -49,19 +48,6 @@ export default function reducer(state = initialState, action) {
             newState = { ...action.usersData.Users }
             return newState
 
-        // case POST_SCORE:
-        //     newState[action.newScore.id] = action.newScore
-        //     return newState;
-
-
-        // // case EDIT_TEXT:
-        // //     newState[action.editScore.id] = action.editScore
-        // //     return newState
-        // case DELETE_SCORE:
-
-
-        //     delete newState[action.scoreId]
-        //     return newState
 
         default:
             return state;
