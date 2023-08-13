@@ -1,19 +1,22 @@
 """empty message
 
-Revision ID: b42744ac84af
+Revision ID: 1a8a1b9f34dd
 Revises:
-Create Date: 2023-08-11 19:13:58.963159
+Create Date: 2023-08-13 16:18:43.766726
 
 """
 from alembic import op
 import sqlalchemy as sa
+
 import os
 environment = os.getenv("FLASK_ENV")
 SCHEMA = os.environ.get("SCHEMA")
 
 
+
+
 # revision identifiers, used by Alembic.
-revision = 'b42744ac84af'
+revision = '1a8a1b9f34dd'
 down_revision = None
 branch_labels = None
 depends_on = None
@@ -36,6 +39,8 @@ def upgrade():
     sa.Column('username', sa.String(length=20), nullable=False),
     sa.Column('email', sa.String(length=255), nullable=False),
     sa.Column('hashed_password', sa.String(length=255), nullable=False),
+    sa.Column('profile_imageURL', sa.Text(), nullable=True),
+    sa.Column('createdAt', sa.DateTime(), nullable=True),
     sa.Column('totalExp', sa.Integer(), nullable=False),
     sa.PrimaryKeyConstraint('id'),
     sa.UniqueConstraint('email'),
@@ -59,6 +64,7 @@ def upgrade():
     )
     if environment == "production":
         op.execute(f"ALTER TABLE texts SET SCHEMA {SCHEMA};")
+
     op.create_table('scores',
     sa.Column('id', sa.Integer(), nullable=False),
     sa.Column('textId', sa.Integer(), nullable=True),

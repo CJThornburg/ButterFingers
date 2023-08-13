@@ -3,11 +3,13 @@ import thunk from 'redux-thunk';
 import session from './session'
 import texts from './texts'
 import scores from './scores'
+import users from './users'
 
 const rootReducer = combineReducers({
   session,
   texts,
-  scores
+  scores,
+  users
 });
 
 

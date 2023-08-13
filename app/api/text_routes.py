@@ -29,6 +29,11 @@ def getTexts():
     Query for all users and returns them in a list of user dictionaries
     """
     texts = Text.query.all()
+    pprint( {'texts': [text.to_dict() for text in texts]})
+    texts = [text.to_dict() for text in texts]
+    return {
+            "texts": {text["id"]: text for text in texts}
+            }
     return {'texts': [text.to_dict() for text in texts]}
 
 

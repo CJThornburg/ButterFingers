@@ -3,11 +3,13 @@ import { useDispatch } from "react-redux";
 import { Route, Switch } from "react-router-dom";
 import SignupFormPage from "./components/SignupFormPage";
 import LoginFormPage from "./components/LoginFormPage";
+import ProfilePage from './components/Profile/ProfilePage'
 import { authenticate } from "./store/session";
 import Navigation from "./components/Navigation";
 import TextPage from './components/Texts/TextPage'
 import { thunkGetAllTexts } from "./store/texts";
-import {thunkGetAllScores} from './store/scores'
+import { thunkGetAllScores } from './store/scores'
+import { thunkGetAllProfiles } from './store/users'
 
 function App() {
   const dispatch = useDispatch();
@@ -16,7 +18,9 @@ function App() {
     dispatch(authenticate())
       .then(() => setIsLoaded(true))
       .then(() => dispatch(thunkGetAllTexts()))
-      .then(() => dispatch(thunkGetAllScores()) )
+      .then(() => dispatch(thunkGetAllScores()))
+      .then(() => dispatch(thunkGetAllProfiles()))
+
 
   }, [dispatch]);
 
@@ -34,6 +38,10 @@ function App() {
           <Route path='/test'>
             <TextPage></TextPage>
           </Route>
+          <Route path='/users/:username'>
+            <ProfilePage></ProfilePage>
+          </Route>
+
         </Switch>
       )}
     </>

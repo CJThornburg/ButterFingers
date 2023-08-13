@@ -1,4 +1,4 @@
-// constants
+
 const SET_USER = "session/SET_USER";
 const REMOVE_USER = "session/REMOVE_USER";
 
@@ -99,8 +99,7 @@ export default function reducer(state = initialState, action) {
 	switch (action.type) {
 		case SET_USER:
 			return { user: action.payload };
-		// case REMOVE_USER:
-		// 	return { user: null };
+	
 		default:
 			return state;
 	}

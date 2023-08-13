@@ -45,16 +45,14 @@ export const thunkCreateText = (name, typingText) => async (dispatch) => {
 
 
 export const thunkGetAllTexts = () => async (dispatch) => {
-    const response = await fetch("api/texts", {
+    const response = await fetch("/api/texts", {
         headers: {
             "Content-Type": "application/json",
         },
     });
-    // console.log(response)
 
     if (response.ok) {
         const textData = await response.json();
-        // console.log("DATA BEFORE PASSING TO ACTION", userReviewsData)
         if (textData.errors) {
             return;
         }
@@ -138,23 +136,27 @@ let initialState = {}
 
 
 export default function reducer(state = initialState, action) {
-    let newState = { ...state };
+    let newState
 
     switch (action.type) {
         case GET_TEXT:
+            newState = { ...state };
             newState = { ...action.TextsData.texts }
             return newState
 
         case POST_TEXT:
+            newState = { ...state };
+
             newState[action.newText.id] = action.newText
             return newState;
 
 
         case EDIT_TEXT:
+            newState = { ...state };
             newState[action.editText.id] = action.editText
             return newState
         case DELETE_TEXT:
-
+            newState = { ...state };
 
             delete newState[action.textId]
             return newState

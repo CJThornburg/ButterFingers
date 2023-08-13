@@ -53,21 +53,18 @@ export const thunkCreateScore = (textId, time, mistakes, kpm, runExp, userId) =>
 
 
 export const thunkGetAllScores = () => async (dispatch) => {
-    console.log("in the thunk")
+
     const response = await fetch("/api/scores/", {
         headers: {
             "Content-Type": "application/json",
         },
     });
-    console.log(response)
 
     if (response.ok) {
         const scoreData = await response.json();
-        console.log("DATA BEFORE PASSING TO ACTION", scoreData)
         if (scoreData.errors) {
             return;
         }
-
         dispatch(getScores(scoreData));
     }
 }
