@@ -1,7 +1,30 @@
 
 import "./ProfilePage.css";
+import { useDispatch, useSelector } from "react-redux";
 
-function userNameCard() {
+
+
+function ProfilePage() {
+
+
+// need query by all but just username and id, so can filter texts and scores by user id
+// const texts = useSelector(state => Object.values(state.texts))
+
+// const texts = useSelector(state => Object.values(state.texts))
+const texts = useSelector(state => Object.values(state.texts))
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
   return (
@@ -14,4 +37,4 @@ function userNameCard() {
   );
 }
 
-export default userNameCard;
+export default ProfilePage;

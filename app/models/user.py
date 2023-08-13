@@ -49,3 +49,9 @@ class User(db.Model, UserMixin):
             'email': self.email,
             "totalExp": self.totalExp
         }
+
+    def to_dict_min(self):
+        return{
+            'id': self.id,
+            'username': self.username
+        }

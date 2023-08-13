@@ -38,7 +38,7 @@ function App() {
           <Route path='/test'>
             <TextPage></TextPage>
           </Route>
-          <Route path='/user/:username'>
+          <Route path='/users/:username'>
             <ProfilePage></ProfilePage>
           </Route>
 

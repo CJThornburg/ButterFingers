@@ -14,9 +14,9 @@ def users():
     """
     users = User.query.all()
 
-    users = [user.to_dict() for user in users]
-    # pprint(users)
-    return {'Users': {user["id"]: user for user in users}}
+    users = [user.to_dict_min() for user in users]
+    pprint(users)
+    return {'Users': {user["username"]: user for user in users}}
 
 
 @user_routes.route('/<int:id>')
