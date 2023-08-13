@@ -30,6 +30,10 @@ def getTexts():
     """
     texts = Text.query.all()
     pprint( {'texts': [text.to_dict() for text in texts]})
+    texts = [text.to_dict() for text in texts]
+    return {
+            "texts": {text["id"]: text for text in texts}
+            }
     return {'texts': [text.to_dict() for text in texts]}
 
 
