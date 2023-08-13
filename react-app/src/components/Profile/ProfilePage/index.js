@@ -56,6 +56,7 @@ function ProfilePage() {
         profilePage
       </h1>
       <div>
+        
         {userObj?.username}
 
       </div>

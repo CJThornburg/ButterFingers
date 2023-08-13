@@ -16,11 +16,11 @@ class User(db.Model, UserMixin):
     username = db.Column(db.String(20), nullable=False, unique=True)
     email = db.Column(db.String(255), nullable=False, unique=True)
     hashed_password = db.Column(db.String(255), nullable=False)
+    profile_imageURL = db.Column(db.Text, nullable=True, default="https://img.freepik.com/free-icon/user_318-826358.jpg")
 
     # one user to many text
     totalExp = db.Column(db.Integer, default=0, nullable=False)
     texts = db.relationship('Text', back_populates='user', cascade="all, delete-orphan")
-
 
     # one player(user) to many scores
     scores = db.relationship("Score", back_populates="player")
@@ -53,5 +53,6 @@ class User(db.Model, UserMixin):
     def to_dict_min(self):
         return{
             'id': self.id,
-            'username': self.username
+            'username': self.username,
+            "profile_imageURL": self.profile_imageURL
         }
