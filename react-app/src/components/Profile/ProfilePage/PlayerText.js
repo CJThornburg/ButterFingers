@@ -1,8 +1,10 @@
 import React, { useState, useEffect } from "react";
 import { useDispatch } from "react-redux";
 import { thunkCreateScore } from "../../../store/scores"
-function PlayerText({ text, username }) {
-
+import { thunkDeleteText } from "../../../store/texts";
+import { thunkGetAllTexts } from "../../../store/texts";
+function PlayerText({ text, username, owner }) {
+    
 
     const [renderTest, setRenderTest] = useState(false)
     const [done, setDone] = useState(false)
@@ -12,6 +14,7 @@ function PlayerText({ text, username }) {
     const [userText, setUserText] = useState("")
     const resultsObj = {}
     const dispatch = useDispatch();
+
 
 
     let currentIndex
@@ -78,7 +81,21 @@ function PlayerText({ text, username }) {
         setRenderTest(false)
     }
 
-    
+    const handleDelete = (e, textId) => {
+
+        async function deleteText() {
+
+            await dispatch(thunkDeleteText(textId))
+
+            await dispatch(thunkGetAllTexts())
+        }
+
+        deleteText()
+
+
+    }
+
+
     if (done) {
         return (
             <>
@@ -108,6 +125,7 @@ function PlayerText({ text, username }) {
             {/* TODO add onclick to redirect to testing with this card :') */}
 
             <button onClick={(e) => handleRunIt(e, text.id)}>run it!</button>
+            {owner && <i onClick={(e) => handleDelete(e, text.id)} className="fa-solid fas fa-trash"></i>}
             {renderTest && <>
 
 

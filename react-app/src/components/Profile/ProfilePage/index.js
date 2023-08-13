@@ -15,13 +15,14 @@ function ProfilePage() {
 
 
   const userObj = useSelector(state => Object.values(state.users).find(user => user.username.toLowerCase() === username.toLowerCase()))
+  const currentUsername = useSelector(state => state.session.user.username)
   const textObjs = useSelector(state => state.texts)
   const texts = useSelector(state => Object.values(state.texts))
   const scores = useSelector(state => Object.values(state.scores))
 
 
 
-  if (texts.length === 0) {
+  if (texts.length === 0  ) {
     return null
   }
 
@@ -68,6 +69,82 @@ function ProfilePage() {
   // checks i need
   // current profile page is owned by current user
   // if so render whole page + delete profile button
+  // TODO DELETE BUTTON to delete
+  // TODO 2: add delete button to user texts
+  console.log(currentUsername)
+  console.log(username)
+  console.log(currentUsername === username)
+  if (currentUsername.toLowerCase() === username.toLowerCase()) {
+    console.log("hi")
+    let owner = true
+    return (
+      <>
+        <h1>
+
+          profilePage
+        </h1>
+        <div>
+          <img className="PP-pp" src={userObj?.profile_imageURL}></img>
+
+          <p className="PP-main-Profile-info PP-username">
+            {userObj?.username}
+          </p>
+          <p className="PP-main-Profile-info PP-joined">
+            joined:  {userObj?.createdAt}
+          </p>
+          <p className="PP-main-Profile-info PP-level">
+            Level: {level}
+
+          </p>
+          {/* if friends render more stats */}
+          <p className="PP-tests">Tests Completed: {userScores.length}</p>
+          <p className="PP-kpm">Average KPM: {averageKpm.toFixed(2)}</p>
+          <p className="PP-time">Total time: {totalTimeMin.toFixed(2)}mins</p>
+
+
+
+
+
+          {/* div for mistakes, characters and noSpace characters */}
+
+
+
+
+          {/* if not current user friends and no request sent render send request button */}
+          <div>
+
+          </div>
+
+          {/* if friends or current user */}
+          <div className="PP-stats2 PP-totals">
+            <p className="PP-mistakes"> typed characters: {totalChars}</p>
+            <p className="PP-mistakes">typed non-space characters: {totalCharsNospace}</p>
+            <p className="PP-mistakes">totals mistakes: {totalMistakes}</p>
+
+          </div>
+
+
+          {/* if friends or current user */}
+          <div>
+            {userTexts.map((text) => (
+              <>
+                <PlayerText key={text.id}
+                  text={text}
+                  owner={owner}
+                  username={username}
+                >
+
+                </PlayerText>
+              </>
+            ))}
+
+          </div>
+
+        </div>
+      </>
+    )
+  }
+
   // friendship exist at all
   // if exist and is active render whole page
   // if exist but is pending
@@ -133,8 +210,8 @@ function ProfilePage() {
           {userTexts.map((text) => (
             <>
               <PlayerText key={text.id}
-              text={text}
-              username={username}
+                text={text}
+                username={username}
               >
 
               </PlayerText>
