@@ -4,12 +4,14 @@ import session from './session'
 import texts from './texts'
 import scores from './scores'
 import users from './users'
+import friends from './friends'
 
 const rootReducer = combineReducers({
   session,
   texts,
   scores,
-  users
+  users,
+  friends
 });
 
 

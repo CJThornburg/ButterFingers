@@ -10,6 +10,7 @@ import TextPage from './components/Texts/TextPage'
 import { thunkGetAllTexts } from "./store/texts";
 import { thunkGetAllScores } from './store/scores'
 import { thunkGetAllProfiles } from './store/users'
+import { thunkGetAllFriends } from './store/friends'
 
 function App() {
   const dispatch = useDispatch();
@@ -20,6 +21,7 @@ function App() {
       .then(() => dispatch(thunkGetAllTexts()))
       .then(() => dispatch(thunkGetAllScores()))
       .then(() => dispatch(thunkGetAllProfiles()))
+      .then(() => dispatch(thunkGetAllFriends()))
 
 
   }, [dispatch]);

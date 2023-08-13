@@ -11,25 +11,6 @@ friend_routes = Blueprint('friends', __name__)
 
 
 
-# ! REMEMBER FRONT END PROFILE PAGES NEED TO BE /<str: username>
-# ! REMEMBER FRONT END PROFILE PAGES NEED TO BE /<str: username>
-# ! REMEMBER FRONT END PROFILE PAGES NEED TO BE /<str: username>
-# ! REMEMBER FRONT END PROFILE PAGES NEED TO BE /<str: username>
-# ! REMEMBER FRONT END PROFILE PAGES NEED TO BE /<str: username>
-# ! REMEMBER FRONT END PROFILE PAGES NEED TO BE /<str: username>
-# ! REMEMBER FRONT END PROFILE PAGES NEED TO BE /<str: username>
-# ! REMEMBER FRONT END PROFILE PAGES NEED TO BE /<str: username>
-# ! REMEMBER FRONT END PROFILE PAGES NEED TO BE /<str: username>
-# ! REMEMBER FRONT END PROFILE PAGES NEED TO BE /<str: username>
-# ! REMEMBER FRONT END PROFILE PAGES NEED TO BE /<str: username>
-# ! REMEMBER FRONT END PROFILE PAGES NEED TO BE /<str: username>
-# ! REMEMBER FRONT END PROFILE PAGES NEED TO BE /<str: username>
-# ! REMEMBER FRONT END PROFILE PAGES NEED TO BE /<str: username>
-# ! REMEMBER FRONT END PROFILE PAGES NEED TO BE /<str: username>
-# ! REMEMBER FRONT END PROFILE PAGES NEED TO BE /<str: username>
-# ! REMEMBER FRONT END PROFILE PAGES NEED TO BE /<str: username>
-# ! REMEMBER FRONT END PROFILE PAGES NEED TO BE /<str: username>
-
 
 
 @friend_routes.route('/')
@@ -91,7 +72,7 @@ def postStatus():
 
 @friend_routes.route("/<username>/accept", methods=["PUT"])
 @login_required
-def rejectReq(username):
+def acceptReq(username):
     cur_user = current_user.to_dict()
     cur_user = cur_user["username"]
     # username is correct = fromUser
@@ -113,7 +94,25 @@ def rejectReq(username):
 
     # query for toUser  is the current user,
 
+@friend_routes.route("/<username>/reject", methods=["PUT"])
+@login_required
+def rejectReq(username):
+    cur_user = current_user.to_dict()
+    cur_user = cur_user["username"]
+    # username is correct = fromUser
+    # !
+    # user1 is on user3 page, user 1 sees a accept request because they have a Touser == to currly logged in and fromUser === username params
+    # !
+    friend = Friend.query.filter(Friend.toUser == cur_user).first()
 
+
+    if not friend:
+        return {"message": "error, friendship does not exist"}
+
+
+    friend.status="reject"
+    db.session.commit()
+    return friend.to_dict()
 
 
 # @friend_routes.route("/<username>/reject", methods=["PUT"])
