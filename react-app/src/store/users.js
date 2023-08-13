@@ -45,6 +45,7 @@ export default function reducer(state = initialState, action) {
 
     switch (action.type) {
         case GET_USERS:
+            newState = { ...state };
             newState = { ...action.usersData.Users }
             return newState
 
