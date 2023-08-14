@@ -64,7 +64,7 @@ export const thunkGetAllTexts = () => async (dispatch) => {
 
 
 export const thunkEditText = (name, typingText, textId) => async (dispatch) => {
-    const response = await fetch(`api/texts/${textId}`, {
+    const response = await fetch(`/api/texts/${textId}`, {
         method: "PUT",
         headers: {
             "Content-Type": "application/json",

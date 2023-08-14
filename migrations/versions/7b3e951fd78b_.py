@@ -1,22 +1,16 @@
 """empty message
 
-Revision ID: 1a8a1b9f34dd
-Revises:
-Create Date: 2023-08-13 16:18:43.766726
+Revision ID: 7b3e951fd78b
+Revises: 
+Create Date: 2023-08-13 21:02:12.491323
 
 """
 from alembic import op
 import sqlalchemy as sa
 
-import os
-environment = os.getenv("FLASK_ENV")
-SCHEMA = os.environ.get("SCHEMA")
-
-
-
 
 # revision identifiers, used by Alembic.
-revision = '1a8a1b9f34dd'
+revision = '7b3e951fd78b'
 down_revision = None
 branch_labels = None
 depends_on = None
@@ -29,11 +23,8 @@ def upgrade():
     sa.Column('fromUser', sa.String(length=20), nullable=True),
     sa.Column('toUser', sa.String(length=20), nullable=True),
     sa.Column('status', sa.String(length=10), nullable=True),
-    sa.Column('friendRequestTo', sa.String(length=20), nullable=True),
     sa.PrimaryKeyConstraint('id')
     )
-    if environment == "production":
-        op.execute(f"ALTER TABLE friends SET SCHEMA {SCHEMA};")
     op.create_table('users',
     sa.Column('id', sa.Integer(), nullable=False),
     sa.Column('username', sa.String(length=20), nullable=False),
@@ -46,9 +37,6 @@ def upgrade():
     sa.UniqueConstraint('email'),
     sa.UniqueConstraint('username')
     )
-    if environment == "production":
-        op.execute(f"ALTER TABLE users SET SCHEMA {SCHEMA};")
-
     op.create_table('texts',
     sa.Column('id', sa.Integer(), nullable=False),
     sa.Column('name', sa.String(length=30), nullable=False),
@@ -62,9 +50,6 @@ def upgrade():
     sa.ForeignKeyConstraint(['userId'], ['users.id'], ),
     sa.PrimaryKeyConstraint('id')
     )
-    if environment == "production":
-        op.execute(f"ALTER TABLE texts SET SCHEMA {SCHEMA};")
-
     op.create_table('scores',
     sa.Column('id', sa.Integer(), nullable=False),
     sa.Column('textId', sa.Integer(), nullable=True),
@@ -78,8 +63,6 @@ def upgrade():
     sa.ForeignKeyConstraint(['userId'], ['users.id'], ),
     sa.PrimaryKeyConstraint('id')
     )
-    if environment == "production":
-        op.execute(f"ALTER TABLE scores SET SCHEMA {SCHEMA};")
     # ### end Alembic commands ###
 
 

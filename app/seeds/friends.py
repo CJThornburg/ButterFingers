@@ -9,25 +9,21 @@ def seed_friends():
           "fromUser": "demo",
           "toUser": "demo1",
           "status": "active",
-
         },
         {
           "fromUser": "demo2",
           "toUser": "demo3",
-          "friendRequestTo": "demo3",
           "status": "pending"
         },
         {
           "fromUser": "demo2",
           "toUser": "demo3",
-          "friendRequestTo": "demo3",
           "status": "rejected"
         },
         {
           "fromUser": "demo1",
           "toUser": "demo4",
           "status": "active",
-
         },
         {
           "fromUser": "demo1",
@@ -37,20 +33,22 @@ def seed_friends():
         {
           "fromUser": "demo",
           "toUser": "demo3",
-          "friendRequestTo": "demo",
           "status": "pending"
         },
         {
           "fromUser": "demo",
           "toUser": "demo4",
-          "friendRequestTo": "demo4",
           "status": "pending"
         },
         {
           "fromUser": "demo",
           "toUser": "demo5",
-          "friendRequestTo": "demo4",
           "status": "rejected"
+        },
+        {
+          "fromUser": "demo4",
+          "toUser": "demo",
+          "status": "pending"
         }
     ]
 

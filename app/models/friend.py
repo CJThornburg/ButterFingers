@@ -13,11 +13,8 @@ class Friend(db.Model):
 
     fromUser = db.Column(db.String(20))
     toUser = db.Column(db.db.String(20))
-
-
-
     status = db.Column(db.String(10))
-    friendRequestTo = db.Column(db.String(20))
+
 
 
 
@@ -27,5 +24,4 @@ class Friend(db.Model):
             'fromUser': self.fromUser,
             'toUser': self.toUser,
             'status': self.status,
-            'friendRequestTo': self.friendRequestTo
                }
