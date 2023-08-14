@@ -5,37 +5,37 @@ from sqlalchemy.sql import text
 # Adds a demo user, you can add other users here if you want
 def seed_users():
     demo = User(
-        username='Demo', email='demo@aa.io', password='password')
+        username='demo', email='demo@aa.io', password='password')
     faye = User(
         username='marnie', email='marnie@aa.io', password='password')
     bobbie = User(
         username='bobbie', email='bobbie@aa.io', password='password')
     demo1 = User(
-        username='Demo1', email='demo1@aa.io', password='password')
+        username='demo1', email='demo1@aa.io', password='password')
     demo2 = User(
-        username='Demo2', email='demo2@aa.io', password='password')
+        username='demo2', email='demo2@aa.io', password='password')
     demo3 = User(
-        username='Demo3', email='demo3@aa.io', password='password')
+        username='demo3', email='demo3@aa.io', password='password')
     demo4 = User(
-        username='Demo4', email='demo4@aa.io', password='password')
+        username='demo4', email='demo4@aa.io', password='password')
     demo5 = User(
-        username='Demo5', email='demo5@aa.io', password='password')
+        username='demo5', email='demo5@aa.io', password='password')
     demo6 = User(
-        username='Demo6', email='demo6@aa.io', password='password')
+        username='demo6', email='demo6@aa.io', password='password')
     demo7 = User(
-        username='Demo7', email='demo7@aa.io', password='password')
+        username='demo7', email='demo7@aa.io', password='password')
     demo8 = User(
-        username='Demo8', email='demo8@aa.io', password='password')
+        username='demo8', email='demo8@aa.io', password='password')
     demo9 = User(
-        username='Demo9', email='demo9@aa.io', password='password')
+        username='demo9', email='demo9@aa.io', password='password')
     demo10 = User(
-        username='Demo10', email='demo10@aa.io', password='password')
+        username='demo10', email='demo10@aa.io', password='password')
     demo11 = User(
-        username='Demo11', email='demo11@aa.io', password='password')
+        username='demo11', email='demo11@aa.io', password='password')
     demo12 = User(
-        username='Demo12', email='demo12@aa.io', password='password')
+        username='demo12', email='demo12@aa.io', password='password')
     demo13 = User(
-        username='Demo13', email='demo13@aa.io', password='password')
+        username='demo13', email='demo13@aa.io', password='password')
 
 
     db.session.add(demo)

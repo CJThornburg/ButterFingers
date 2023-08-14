@@ -1,6 +1,7 @@
 from flask import Blueprint, jsonify, request
 from flask_login import login_required, current_user
 from app.models import Friend, db
+from sqlalchemy import and_
 
 from pprint import pprint
 
@@ -59,7 +60,6 @@ def postStatus():
         fromUser = cur_user["username"],
         toUser=body['toUser'],
         status='pending',
-        friendRequestTo=body['toUser']
     )
     pprint(newFriend.to_dict())
     db.session.add(newFriend)
@@ -73,21 +73,26 @@ def postStatus():
 @friend_routes.route("/<username>/accept", methods=["PUT"])
 @login_required
 def acceptReq(username):
+    print("passed in username", username)
     cur_user = current_user.to_dict()
+    print("current user")
+    pprint(cur_user)
     cur_user = cur_user["username"]
-    # username is correct = fromUser
-    # !
-    # user1 is on user3 page, user 1 sees a accept request because they have a Touser == to currly logged in and fromUser === username params
-    # !
-    friend = Friend.query.filter(Friend.toUser == cur_user).first()
-
-
+    # # username is correct = fromUser
+    # # !
+    # # user1 is on user3 page, user 1 sees a accept request because they have a Touser == to currly logged in and fromUser === username params
+    # # !
+    friend = Friend.query.filter(and_(Friend.toUser == cur_user.lower(), Friend.fromUser == username.lower())).first()
+    # friend = Friend.query.filter(Friend.toUser == cur_user).first()
     if not friend:
         return {"message": "error, friendship does not exist"}
+    pprint( friend.to_dict())
+
 
 
     friend.status="active"
     db.session.commit()
+    # return {"hi": "hi"}
     return friend.to_dict()
     #   can get fromUser from the react url /<username>, need to pull in params
     #  this action will only be visible to user if, the get returned them
@@ -103,7 +108,7 @@ def rejectReq(username):
     # !
     # user1 is on user3 page, user 1 sees a accept request because they have a Touser == to currly logged in and fromUser === username params
     # !
-    friend = Friend.query.filter(Friend.toUser == cur_user).first()
+    friend = Friend.query.filter(and_(Friend.toUser == cur_user.lower(), Friend.fromUser == username.lower())).first()
 
 
     if not friend:
@@ -111,6 +116,28 @@ def rejectReq(username):
 
 
     friend.status="reject"
+    db.session.commit()
+    return friend.to_dict()
+
+
+
+@friend_routes.route("/<username>/undo-reject", methods=["PUT"])
+@login_required
+def undoRejectReq(username):
+    cur_user = current_user.to_dict()
+    cur_user = cur_user["username"]
+    # username is correct = fromUser
+    # !
+    # user1 is on user3 page, user 1 sees a accept request because they have a Touser == to currly logged in and fromUser === username params
+    # !
+    friend = Friend.query.filter(and_(Friend.toUser == cur_user.lower(), Friend.fromUser == username.lower())).first()
+
+
+    if not friend:
+        return {"message": "error, friendship does not exist"}
+
+
+    friend.status="active"
     db.session.commit()
     return friend.to_dict()
 
