@@ -11,6 +11,7 @@ import { thunkGetAllTexts } from "./store/texts";
 import { thunkGetAllScores } from './store/scores'
 import { thunkGetAllProfiles } from './store/users'
 import { thunkGetAllFriends } from './store/friends'
+import ProtectedRoute from "./components/auth/ProtectedRoute";
 
 function App() {
   const dispatch = useDispatch();
@@ -33,15 +34,20 @@ function App() {
         <Switch>
           <Route path="/login" >
             <LoginFormPage />
+              <SignupFormPage />
           </Route>
           <Route path="/signup">
             <SignupFormPage />
           </Route>
-          <Route path='/test'>
+          <Route exact path='/test'>
+          <ProtectedRoute>
             <TextPage></TextPage>
+          </ProtectedRoute>
           </Route>
           <Route path='/users/:username'>
+
             <ProfilePage></ProfilePage>
+
           </Route>
 
         </Switch>
