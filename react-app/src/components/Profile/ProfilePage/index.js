@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from "react";
 import "./ProfilePage.css";
 import { useDispatch, useSelector } from "react-redux";
-import { thunkGetAllTexts } from "../../../store/texts"
-import { thunkCreateFriendRelationship } from "../../../store/friends"
+// import { thunkGetAllTexts } from "../../../store/texts"
+import { thunkCreateFriendRelationship, thunkAcceptFriend, thunkRejectFriend, thunkUndoRejectFriend  } from "../../../store/friends"
 import { useParams, useHistory } from "react-router-dom";
 import { getLevel } from "../../../utils";
 import PlayerText from "./PlayerText";
@@ -30,11 +30,22 @@ function ProfilePage() {
   }
 
 
-
+// onClicks
  const handleFriendRequest =async() => {
   const data = await dispatch(thunkCreateFriendRelationship(username));
  }
 
+ const handleAccept = async() => {
+  const data = await dispatch(thunkAcceptFriend(username))
+ }
+
+ const handleReject = async() => {
+  const data = await dispatch(thunkRejectFriend(username))
+ }
+
+ const handleUndoReject = async() => {
+  const data = await dispatch(thunkUndoRejectFriend(username))
+ }
 
   // ! why do i have to do ?, conditional short circuit for it is breaking code :(
 
@@ -69,6 +80,7 @@ function ProfilePage() {
 
 
   let totalTimeMin = (totalTime / 60000)
+
 
 
   // number of cards
@@ -205,7 +217,9 @@ function ProfilePage() {
   // if to user === currentUsername and status === pending
     // accept button
     // !current user has received a request from the user of this page
-    // TODO accept and reject handling
+    // TODO accept and reject TESTING
+    // !!!!!!!!!!!!!
+    //
   if (relevantFriends.toUser === currentUsername && relevantFriends.status === "pending") {
     return (<>
       <div className="PP-top-card-request">
@@ -224,8 +238,8 @@ function ProfilePage() {
             Level: {level} </p>
         </div>
         <div>
-          <button >accept</button>
-          <button >reject</button>
+          <button onClick={handleAccept} >accept</button>
+          <button onClick={handleReject} >reject</button>
         </div>
 
 
@@ -235,6 +249,7 @@ function ProfilePage() {
 
 
   // TODO current user rejected, but now wants to send a friend request
+  // TODO another return statement :')
   // change status to pending, and flip to and from
 
   // ! current user has sent a request to other user and waiting for response
