@@ -217,7 +217,7 @@ function ProfilePage() {
   // if to user === currentUsername and status === pending
     // accept button
     // !current user has received a request from the user of this page
-    // TODO accept and reject TESTING
+    // TODO accept and reject and undo TESTING
     // !!!!!!!!!!!!!
     //
   if (relevantFriends.toUser === currentUsername && relevantFriends.status === "pending") {
@@ -247,9 +247,35 @@ function ProfilePage() {
       </>)
   }
 
+  // current user rejected, but can cancel and send request
+  if (relevantFriends.toUser === currentUsername && relevantFriends.status === "rejected") {
+    return (<>
+      <div className="PP-top-card-request">
 
-  // TODO current user rejected, but now wants to send a friend request
-  // TODO another return statement :')
+
+        <div>
+          <img className="PP-pp" src={userObj?.profile_imageURL}></img>
+
+          <p className="PP-main-Profile-info PP-username">
+            {userObj?.username}
+          </p>
+          <p className="PP-main-Profile-info PP-joined">
+            joined:  {userObj?.createdAt}
+          </p>
+          <p className="PP-main-Profile-info PP-level">
+            Level: {level} </p>
+        </div>
+        <div>
+
+          <button disabled >rejected</button>
+          <button onClick={handleUndoReject}>undo, and send request </button>
+        </div>
+
+
+        </div>
+      </>)
+  }
+
   // change status to pending, and flip to and from
 
   // ! current user has sent a request to other user and waiting for response
