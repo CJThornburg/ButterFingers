@@ -49,6 +49,9 @@ function App() {
             <ProfilePage></ProfilePage>
 
           </Route>
+          <Route exact path="/">
+              <h1>splash page :)</h1>
+          </Route>
 
         </Switch>
       )}
