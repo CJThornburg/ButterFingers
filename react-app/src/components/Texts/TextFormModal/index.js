@@ -176,7 +176,7 @@ function TextFormModal({ from, textObj, setCopyText, setTextObj, setShowTextArea
 
 
         {/* close modal and opens test with current text value as the test text */}
-        <button type="button">Run it!</button>
+        {/* <button type="button">Run it!</button> */}
       </form>
 
 
