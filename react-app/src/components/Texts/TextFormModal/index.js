@@ -53,10 +53,13 @@ function TextFormModal({ from, textObj, setCopyText, setTextObj, setShowTextArea
     //   err["Name"] = "Name can not just be a bunch of spaces"
     // }
 
+    if(text.split(" ").length < 3) {
+      err["Text"] = "Typing text needs to be at least 3 words";
+    }
     if (text.length < 10)
-      err["Text"] = "text needs 10 or more characters";
+      err["Text"] = "Typing text needs 10 or more characters";
     if (text.length > 1000)
-      err["Text"] = " Text needs to be less than 225 or more characters";
+      err["Text"] = " Tying text needs to be less than 225 or more characters";
 
     if (name.length < 4) {
       err["Name"] = "Name  needs 4 or more characters";
@@ -153,11 +156,12 @@ function TextFormModal({ from, textObj, setCopyText, setTextObj, setShowTextArea
           <p className="error-text">*{vaErrors.Name}</p>
         )}
         <label>
-          Name
+          
           <input
             type="text"
             value={name}
             onChange={(e) => setName(e.target.value)}
+            placeholder="Name"
             required
           />
         </label>
@@ -169,6 +173,7 @@ function TextFormModal({ from, textObj, setCopyText, setTextObj, setShowTextArea
         <textarea
 
           value={text}
+          placeholder="Typing text"
           onChange={(e) => setText(e.target.value)}
           required
         >
@@ -176,7 +181,7 @@ function TextFormModal({ from, textObj, setCopyText, setTextObj, setShowTextArea
 
 
         {/* close modal and opens test with current text value as the test text */}
-        <button type="button">Run it!</button>
+        {/* <button type="button">Run it!</button> */}
       </form>
 
 
