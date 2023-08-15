@@ -57,5 +57,6 @@ class User(db.Model, UserMixin):
             'id': self.id,
             'username': self.username,
             "profile_imageURL": self.profile_imageURL,
+            "coverPhoto": self.coverPhoto,
             "createdAt": self.createdAt
         }

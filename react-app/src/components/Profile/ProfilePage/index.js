@@ -52,7 +52,7 @@ function ProfilePage() {
   // ! why do i have to do ?, conditional short circuit for it is breaking code :(
 
   const userScores = scores.filter((score => score.userId === userObj?.id))
-  
+
   const totalExp = userScores.reduce((accumulator, currentValue) => accumulator + currentValue.runExp, 0);
   const totalMistakes = userScores.reduce((accumulator, currentValue) => accumulator + currentValue.mistakes, 0)
 
@@ -116,7 +116,8 @@ function ProfilePage() {
           profilePage
         </h1>
         <div>
-          <img className="PP-pp" src={userObj?.profile_imageURL}></img>
+          <img className="PP-cp" src={userObj?.coverPhoto}></img>
+        <img className="PP-pp" src={userObj?.profile_imageURL}></img>
 
           <p className="PP-main-Profile-info PP-username">
             {userObj?.username}
