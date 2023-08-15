@@ -15,7 +15,6 @@ friend_routes = Blueprint('friends', __name__)
 
 
 @friend_routes.route('/')
-@login_required
 def getFriends():
     """
     Query for all users and returns them in a list of user dictionaries
@@ -115,8 +114,11 @@ def rejectReq(username):
         return {"message": "error, friendship does not exist"}
 
 
-    friend.status="reject"
+    friend.status="rejected"
     db.session.commit()
+    print("!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!")
+    pprint(friend.to_dict)
+    print("!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!")
     return friend.to_dict()
 
 
@@ -137,7 +139,7 @@ def undoRejectReq(username):
         return {"message": "error, friendship does not exist"}
 
 
-    friend.status="active"
+    friend.status="pending"
     db.session.commit()
     return friend.to_dict()
 

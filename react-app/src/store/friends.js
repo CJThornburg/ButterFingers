@@ -78,6 +78,8 @@ export const thunkRejectFriend = (username) => async (dispatch) => {
 
     if (response.ok) {
         const data = await response.json();
+        console.log(" AFTER FETCH", data)
+        console.log("DATA AFTER FETCH", data)
         dispatch(rejectFriend(data));
         return data;
     } else if (response.status < 500) {
@@ -144,6 +146,7 @@ const addFriend = (acceptFriends) => {
 }
 // TODO think this can also just be add friend cause its doing the same thing
 const rejectFriend = (rejectFriends) => {
+    console.log("in action maker", rejectFriends)
     return {
         type: REJECT_FRIEND,
         rejectFriends
@@ -179,7 +182,9 @@ export default function reducer(state = initialState, action) {
             return newState
 
         case REJECT_FRIEND:
+            console.log("action.rejectFriends in reducer", action.rejectFriends)
             newState[action.rejectFriends.id] = action.rejectFriends
+            console.log("newState in reject friends", newState)
             return newState
 
         case UNDO_REJECT_FRIEND:

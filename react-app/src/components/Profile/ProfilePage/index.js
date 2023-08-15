@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import "./ProfilePage.css";
 import { useDispatch, useSelector } from "react-redux";
 // import { thunkGetAllTexts } from "../../../store/texts"
-import { thunkCreateFriendRelationship, thunkAcceptFriend, thunkRejectFriend, thunkUndoRejectFriend  } from "../../../store/friends"
+import { thunkCreateFriendRelationship, thunkAcceptFriend, thunkRejectFriend, thunkUndoRejectFriend } from "../../../store/friends"
 import { useParams, useHistory } from "react-router-dom";
 import { getLevel } from "../../../utils";
 import PlayerText from "./PlayerText";
@@ -22,6 +22,7 @@ function ProfilePage() {
   const scores = useSelector(state => Object.values(state.scores))
   const friends = useSelector(state => Object.values(state.friends))
 
+  console.log("USER OBJCECT", userObj)
 
   console.log(friends)
 
@@ -30,38 +31,48 @@ function ProfilePage() {
   }
 
 
-// onClicks
- const handleFriendRequest =async() => {
-  const data = await dispatch(thunkCreateFriendRelationship(username));
- }
+  // onClicks
+  const handleFriendRequest = async () => {
+    const data = await dispatch(thunkCreateFriendRelationship(username));
+  }
 
- const handleAccept = async() => {
-  const data = await dispatch(thunkAcceptFriend(username))
- }
+  const handleAccept = async () => {
+    const data = await dispatch(thunkAcceptFriend(username))
+  }
 
- const handleReject = async() => {
-  const data = await dispatch(thunkRejectFriend(username))
- }
+  const handleReject = async () => {
+    const data = await dispatch(thunkRejectFriend(username))
+    console.log(data)
+  }
 
- const handleUndoReject = async() => {
-  const data = await dispatch(thunkUndoRejectFriend(username))
- }
+  const handleUndoReject = async () => {
+    const data = await dispatch(thunkUndoRejectFriend(username))
+  }
 
   // ! why do i have to do ?, conditional short circuit for it is breaking code :(
 
   const userScores = scores.filter((score => score.userId === userObj?.id))
+
   const totalExp = userScores.reduce((accumulator, currentValue) => accumulator + currentValue.runExp, 0);
   const totalMistakes = userScores.reduce((accumulator, currentValue) => accumulator + currentValue.mistakes, 0)
 
   const totalTime = userScores.reduce((accumulator, currentValue) => accumulator + currentValue.time, 0)
   const totalKpm = userScores.reduce((accumulator, currentValue) => accumulator + currentValue.kpm, 0);
-  const averageKpm = totalKpm / userScores.length;
+
+  let averageKpm = 0
+  if (totalKpm === 0) {
+    averageKpm = 0
+  } else {
+
+    averageKpm = totalKpm / userScores.length;
+  }
 
   // Below:for each score, search text and sum all the characterCount noSpaceCharacterCount wordCount
+
   let totalChars = 0
   let totalCharsNospace = 0
   let totalWords = 0
-  for (const score of scores) {
+  for (const score of userScores) {
     let currentTextId = score.textId
 
     totalChars += textObjs[currentTextId].characterCount
@@ -105,7 +116,8 @@ function ProfilePage() {
           profilePage
         </h1>
         <div>
-          <img className="PP-pp" src={userObj?.profile_imageURL}></img>
+          <img className="PP-cp" src={userObj?.coverPhoto}></img>
+        <img className="PP-pp" src={userObj?.profile_imageURL}></img>
 
           <p className="PP-main-Profile-info PP-username">
             {userObj?.username}
@@ -173,24 +185,24 @@ function ProfilePage() {
   // ! current user is not friends with user page they are on
   if (!relevantFriends) {
     return (<>
-    <div className="PP-top-card-request">
+      <div className="PP-top-card-request">
 
 
-      <div>
-        <img className="PP-pp" src={userObj?.profile_imageURL}></img>
+        <div>
+          <img className="PP-pp" src={userObj?.profile_imageURL}></img>
 
-        <p className="PP-main-Profile-info PP-username">
-          {userObj?.username}
-        </p>
-        <p className="PP-main-Profile-info PP-joined">
-          joined:  {userObj?.createdAt}
-        </p>
-        <p className="PP-main-Profile-info PP-level">
-          Level: {level} </p>
-      </div>
-      <div>
-        <button onClick={handleFriendRequest}> send friend request</button>
-      </div>
+          <p className="PP-main-Profile-info PP-username">
+            {userObj?.username}
+          </p>
+          <p className="PP-main-Profile-info PP-joined">
+            joined:  {userObj?.createdAt}
+          </p>
+          <p className="PP-main-Profile-info PP-level">
+            Level: {level} </p>
+        </div>
+        <div>
+          <button onClick={handleFriendRequest}> send friend request</button>
+        </div>
 
 
       </div>
@@ -215,11 +227,11 @@ function ProfilePage() {
 
 
   // if to user === currentUsername and status === pending
-    // accept button
-    // !current user has received a request from the user of this page
-    // TODO accept and reject and undo TESTING
-    // !!!!!!!!!!!!!
-    //
+  // accept button
+  // !current user has received a request from the user of this page
+  // TODO accept and reject and undo TESTING
+  // !!!!!!!!!!!!!
+  //
   if (relevantFriends.toUser === currentUsername && relevantFriends.status === "pending") {
     return (<>
       <div className="PP-top-card-request">
@@ -243,8 +255,8 @@ function ProfilePage() {
         </div>
 
 
-        </div>
-      </>)
+      </div>
+    </>)
   }
 
   // current user rejected, but can cancel and send request
@@ -268,12 +280,12 @@ function ProfilePage() {
         <div>
 
           <button disabled >rejected</button>
-          <button onClick={handleUndoReject}>undo, and send request </button>
+          <button onClick={handleUndoReject}>undo rejection </button>
         </div>
 
 
-        </div>
-      </>)
+      </div>
+    </>)
   }
 
   // change status to pending, and flip to and from
@@ -300,68 +312,71 @@ function ProfilePage() {
         <div>
           <button disabled>Friend Request Sent</button>
         </div>
-        </div>
-      </>)
+      </div>
+    </>)
   }
 
 
 
 
   // ! current user is friends with the user of this page
-   if (relevantFriends.status === "active")
-  return (
-    <>
-      <h1>
+  if (relevantFriends.status === "active")
+    return (
+      <>
+        <h1>
 
-        profilePage
-      </h1>
-      <div>
-        <img className="PP-pp" src={userObj?.profile_imageURL}></img>
-
-        <p className="PP-main-Profile-info PP-username">
-          {userObj?.username}
-        </p>
-        <p className="PP-main-Profile-info PP-joined">
-          joined:  {userObj?.createdAt}
-        </p>
-        <p className="PP-main-Profile-info PP-level">
-          Level: {level}
-
-        </p>
-        {/* if friends render more stats */}
-        <p className="PP-tests">Tests Completed: {userScores.length}</p>
-        <p className="PP-kpm">Average KPM: {averageKpm.toFixed(2)}</p>
-        <p className="PP-time">Total time: {totalTimeMin.toFixed(2)}mins</p>
-
+          profilePage
+        </h1>
         <div>
+          <img className="PP-pp" src={userObj?.profile_imageURL}></img>
+
+          <p className="PP-main-Profile-info PP-username">
+            {userObj?.username}
+          </p>
+          <p className="PP-main-Profile-info PP-joined">
+            joined:  {userObj?.createdAt}
+          </p>
+          <p className="PP-main-Profile-info PP-level">
+            Level: {level}
+
+          </p>
+          {/* if friends render more stats */}
+          <p className="PP-tests">Tests Completed: {userScores.length}</p>
+          <p className="PP-kpm">Average KPM: {averageKpm.toFixed(2) || 0}</p>
+          <p className="PP-time">Total time: {totalTimeMin.toFixed(2)}mins</p>
+
+          <div>
+
+          </div>
+
+          {/* if friends or current user */}
+          <div className="PP-stats2 PP-totals">
+            <p className="PP-mistakes"> typed characters: {totalChars}</p>
+            <p className="PP-mistakes">typed non-space characters: {totalCharsNospace}</p>
+            <p className="PP-mistakes">totals mistakes: {totalMistakes}</p>
+
+          </div>
+
+          <div>
+            {userTexts.map((text) => (
+              <>
+                <PlayerText key={text.id}
+                  text={text}
+                  username={username}
+                >
+
+                </PlayerText>
+              </>
+            ))}
+
+          </div>
 
         </div>
+      </>
+    );
 
-        {/* if friends or current user */}
-        <div className="PP-stats2 PP-totals">
-          <p className="PP-mistakes"> typed characters: {totalChars}</p>
-          <p className="PP-mistakes">typed non-space characters: {totalCharsNospace}</p>
-          <p className="PP-mistakes">totals mistakes: {totalMistakes}</p>
 
-        </div>
-
-        <div>
-          {userTexts.map((text) => (
-            <>
-              <PlayerText key={text.id}
-                text={text}
-                username={username}
-              >
-
-              </PlayerText>
-            </>
-          ))}
-
-        </div>
-
-      </div>
-    </>
-  );
+  return (<>"hi"</>)
 }
 
 export default ProfilePage;

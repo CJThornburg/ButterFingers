@@ -12,6 +12,7 @@ import { thunkGetAllScores } from './store/scores'
 import { thunkGetAllProfiles } from './store/users'
 import { thunkGetAllFriends } from './store/friends'
 import ProtectedRoute from "./components/auth/ProtectedRoute";
+import Splash from './components/Splash'
 
 function App() {
   const dispatch = useDispatch();
@@ -48,6 +49,9 @@ function App() {
 
             <ProfilePage></ProfilePage>
 
+          </Route>
+          <Route exact path="/">
+              <Splash></Splash>
           </Route>
 
         </Switch>

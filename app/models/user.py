@@ -17,6 +17,7 @@ class User(db.Model, UserMixin):
     email = db.Column(db.String(255), nullable=False, unique=True)
     hashed_password = db.Column(db.String(255), nullable=False)
     profile_imageURL = db.Column(db.Text, nullable=True, default="https://img.freepik.com/free-icon/user_318-826358.jpg")
+    coverPhoto = db.Column(db.String(255), nullable=True, default="https://mechanicalkeyboards.com/shop/images/products/large_9315_large_DKON2161ST-USPHSFTPGC1U2Z_main.png")
     createdAt = db.Column(db.DateTime, default=db.func.now())
 
     # one user to many text
@@ -56,5 +57,6 @@ class User(db.Model, UserMixin):
             'id': self.id,
             'username': self.username,
             "profile_imageURL": self.profile_imageURL,
+            "coverPhoto": self.coverPhoto,
             "createdAt": self.createdAt
         }
