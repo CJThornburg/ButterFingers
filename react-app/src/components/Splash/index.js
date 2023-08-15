@@ -1,12 +1,17 @@
 import {useState} from "react";
 import LoginFormPage from "../LoginFormPage";
 import SignupFormPage from "../SignupFormPage";
+import { useSelector } from "react-redux";
+import { Redirect } from "react-router-dom";
 
 function Splash() {
 
+  const sessionUser = useSelector((state) => state.session.user);
     const [logIn, setLogIn] = useState(false)
     const [signUp, setSignUp] = useState(false)
 
+
+    if (sessionUser) return <Redirect to="/test" />;
 
     const handleLogin = () => {
         setLogIn(true)

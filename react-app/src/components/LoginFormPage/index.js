@@ -5,7 +5,7 @@ import { Redirect } from "react-router-dom";
 import './LoginForm.css';
 import { useHistory } from "react-router-dom";
 
-function LoginFormPage({from}) {
+function LoginFormPage({ from }) {
   const dispatch = useDispatch();
   const sessionUser = useSelector((state) => state.session.user);
   const [email, setEmail] = useState("");
@@ -18,12 +18,18 @@ function LoginFormPage({from}) {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    // setErrors([])
     const data = await dispatch(login(email, password));
+    console.log(data)
     if (data) {
+      console.log("in errors")
       setErrors(data);
-    }
-    if (from === "splash"){
-    history.push("/test")
+    }else {
+
+      if (from === "splash") {
+        history.push("/test")
+      }
+
     }
 
   };
@@ -35,9 +41,9 @@ function LoginFormPage({from}) {
     if (data) {
       setErrors(data);
     } else {
-      if (from === "splash"){
+      if (from === "splash") {
         history.push("/test")
-        }
+      }
 
     }
   };
@@ -48,9 +54,9 @@ function LoginFormPage({from}) {
     if (data) {
       setErrors(data);
     } else {
-      if (from === "splash"){
+      if (from === "splash") {
         history.push("/test")
-        }
+      }
 
     }
   };
@@ -67,7 +73,7 @@ function LoginFormPage({from}) {
         <label>
           Email
           <input
-            type="text"
+            type="email"
             value={email}
             onChange={(e) => setEmail(e.target.value)}
             required

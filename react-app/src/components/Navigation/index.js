@@ -27,9 +27,9 @@ function Navigation({ isLoaded }) {
 	return (
 		<ul className='noPoint Nav-nav-div'>
 			{sessionUser ? (<>
-				<li>
+				{/* <li>
 					<NavLink exact to="/">Home</NavLink>
-				</li>
+				</li> */}
 				<li>
 					<NavLink exact to="/test">Test</NavLink>
 				</li>

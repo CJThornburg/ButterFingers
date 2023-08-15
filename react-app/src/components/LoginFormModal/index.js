@@ -61,8 +61,8 @@ function LoginFormModal() {
         <label>
           Email
           <input
-          // TODO this should be email not text for browser side validation????
-            type="text"
+       
+            type="email"
             value={email}
             onChange={(e) => setEmail(e.target.value)}
             required

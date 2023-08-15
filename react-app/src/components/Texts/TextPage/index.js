@@ -233,7 +233,7 @@ function TextPage() {
     <>
 
       <div className="TP-textType-buttons">
-        <p className="TP-A-words"><span className="TP-A">A</span>words </p>
+        <p className="TP-A-words"> Options: </p>
         <button onClick={(e) => { handleLengthChange(e, 20) }}>20</button>
         <button onClick={(e) => { handleLengthChange(e, 50) }}>50</button>
         <button onClick={(e) => { handleLengthChange(e, 100) }}>100</button>
