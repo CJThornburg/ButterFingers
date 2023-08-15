@@ -35,11 +35,11 @@ def seed_friends():
           "toUser": "demo3",
           "status": "pending"
         },
-        {
-          "fromUser": "demo",
-          "toUser": "demo4",
-          "status": "pending"
-        },
+        # {
+        #   "fromUser": "demo",
+        #   "toUser": "demo4",
+        #   "status": "pending"
+        # },
         {
           "fromUser": "demo",
           "toUser": "demo5",

@@ -114,8 +114,11 @@ def rejectReq(username):
         return {"message": "error, friendship does not exist"}
 
 
-    friend.status="reject"
+    friend.status="rejected"
     db.session.commit()
+    print("!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!")
+    pprint(friend.to_dict)
+    print("!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!")
     return friend.to_dict()
 
 
@@ -136,7 +139,7 @@ def undoRejectReq(username):
         return {"message": "error, friendship does not exist"}
 
 
-    friend.status="active"
+    friend.status="pending"
     db.session.commit()
     return friend.to_dict()
 
