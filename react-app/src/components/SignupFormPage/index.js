@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Redirect } from "react-router-dom";
 import { signUp } from "../../store/session";
+import { thunkGetAllProfiles } from '../../store/users'
 import './SignupForm.css';
 
 function SignupFormPage() {
@@ -10,6 +11,8 @@ function SignupFormPage() {
   const [email, setEmail] = useState("");
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
+  const [profilePic, setProfilePic] = useState("");
+  const [coverPhoto, setCoverPhoto] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
   const [errors, setErrors] = useState([]);
   const [vaErrors, setVaErrors] = useState({});
@@ -29,8 +32,19 @@ function SignupFormPage() {
     const err = {};
 
 
+    console.log(profilePic.length)
 
-
+    if (profilePic.length !== 0) {
+        if (
+          !(
+            profilePic.endsWith(".png") ||
+            profilePic.endsWith(".jpg") ||
+            profilePic.endsWith(".jpeg")
+          )
+        ) {
+          err["ProfilePicture"] = "If including image url, it must be a valid format '.png, .jpg, or .jpeg' "
+        }
+    }
 
     if (!email.replace(/\s/g, '').length) {
       err["Email"] = 'Name can not contain only whitespace (ie. spaces, tabs or line breaks)'
@@ -63,9 +77,11 @@ function SignupFormPage() {
     }
 
 
+
+
     // console.log(err)
     setVaErrors(err);
-  }, [email, username, password, confirmPassword]);
+  }, [email, username, password, confirmPassword, coverPhoto, profilePic]);
 
 
 
@@ -98,7 +114,11 @@ function SignupFormPage() {
       const data = await dispatch(signUp(username, email, password));
       if (data) {
         setErrors(data)
+      } else {
+        const users = await dispatch(thunkGetAllProfiles())
       }
+
+
     } else {
       setErrors(['Confirm Password field must be the same as the Password field']);
     }
@@ -121,11 +141,12 @@ function SignupFormPage() {
           <p className="error-text">*{vaErrors.Email}</p>
         )}
         <label>
-          Email
+
           <input
             type="email"
             value={email}
             onChange={(e) => setEmail(e.target.value)}
+            placeholder="Email"
             required
           />
         </label>
@@ -133,11 +154,11 @@ function SignupFormPage() {
           <p className="error-text">*{vaErrors.Username}</p>
         )}
         <label>
-          Username
           <input
             type="text"
             value={username}
             onChange={(e) => setUsername(e.target.value)}
+            placeholder="Username"
             required
           />
         </label>
@@ -145,21 +166,45 @@ function SignupFormPage() {
           <p className="error-text">*{vaErrors.Password}</p>
         )}
         <label>
-          Password
+
           <input
             type="password"
             value={password}
             onChange={(e) => setPassword(e.target.value)}
+            placeholder="Password"
             required
           />
         </label>
+
         <label>
-          Confirm Password
           <input
             type="password"
             value={confirmPassword}
             onChange={(e) => setConfirmPassword(e.target.value)}
+            placeholder="Confirm Password"
             required
+          />
+        </label>
+        {vaErrors.ProfilePicture && submitted && (
+          <p className="error-text">*{vaErrors.ProfilePicture}</p>
+        )}
+        <label>
+
+          <input
+            type="text"
+            value={profilePic}
+            onChange={(e) => setProfilePic(e.target.value)}
+            placeholder=" Profile Picture (not required)"
+
+          />
+        </label>
+        <label>
+          <input
+            type="text"
+            value={coverPhoto}
+            onChange={(e) => setCoverPhoto(e.target.value)}
+            placeholder="Cover Photo (not required)"
+
           />
         </label>
         <button type="submit">Sign Up</button>
