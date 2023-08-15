@@ -15,7 +15,6 @@ friend_routes = Blueprint('friends', __name__)
 
 
 @friend_routes.route('/')
-@login_required
 def getFriends():
     """
     Query for all users and returns them in a list of user dictionaries
