@@ -8,7 +8,7 @@ score_routes = Blueprint('scores', __name__)
 
 
 @score_routes.route('/')
-@login_required
+
 def getScores():
     """
     Query for all users and returns them in a list of user dictionaries

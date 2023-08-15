@@ -22,8 +22,6 @@ def validation_errors_to_error_messages(validation_errors):
 
 
 @text_routes.route('')
-@login_required
-
 def getTexts():
     """
     Query for all users and returns them in a list of user dictionaries
