@@ -1,0 +1,10 @@
+.SFP-div{
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.SP-title{
+    margin-top: 0;
+    margin-bottom: 10px;
+}

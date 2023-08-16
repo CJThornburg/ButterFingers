@@ -1,1 +1,75 @@
 /* TODO Add site wide styles */
+
+
+body {
+    background-color: #323437;
+}
+
+
+
+.wgt {
+    color: #D1D0C5
+}
+
+.yt {
+   color:#E2B714
+}
+
+
+
+
+.error-text {
+    color: red;
+}
+
+
+.placeholder-Text::placeholder {
+    color: #646669;
+    margin-left: 4px;
+    /* color: red; */
+}
+
+
+.placeholder-Text:focus{
+    border-color:#E2B714;
+    outline-color: #E2B714;
+    outline:0.15em solid #E2B714
+}
+.placeholder-Text {
+    background-color: #2C2E31;
+    box-shadow: none;
+    border: none;
+    height: 40px;
+    border-radius: 10px;
+    color: #D1D0C5;
+    caret-color: #E2B714;
+    font-size: 1.8vh;
+}
+
+
+
+
+.default_button {
+    background-color: #2C2E31;
+    box-shadow: none;
+    border: 1px solid transparent;
+    outline: none;
+    height: 40px;
+    border-radius: 10px;
+    color: #D1D0C5;
+    font-size: 1.8vh;
+}
+
+.default_button:hover {
+    color:#2C2E31;
+    background-color: #D1D0C5;
+
+    .buttonIcon{
+        color: #2C2E31;
+    }
+}
+
+
+.pointer:hover {
+    cursor: pointer;
+}

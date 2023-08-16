@@ -1,0 +1,14 @@
+.LFP-div {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.LFP-title{
+    margin-top: 0;
+    margin-bottom: 10px;
+}
+
+.LP-button {
+    margin-top: 15px;
+}

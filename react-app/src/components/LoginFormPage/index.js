@@ -63,38 +63,42 @@ function LoginFormPage({ from }) {
 
   return (
     <>
-      <h1>Log In</h1>
-      <form onSubmit={handleSubmit}>
-        <ul>
-          {errors.map((error, idx) => (
-            <li key={idx}>{error}</li>
-          ))}
-        </ul>
+      <h1 className="wgt LFP-title">login</h1>
+      <form onSubmit={handleSubmit} className="LFP-div">
+      {errors.length > 0 &&<ul>
+          {errors.map((error, idx) => <li className="error-text" key={idx}>{error}</li>)}
+        </ul>}
         <label>
-          Email
+
           <input
             type="email"
             value={email}
             onChange={(e) => setEmail(e.target.value)}
             required
+            placeholder="Email"
+            className="placeholder-Text"
           />
         </label>
         <label>
-          Password
+
           <input
             type="password"
             value={password}
             onChange={(e) => setPassword(e.target.value)}
             required
+            placeholder="Password"
+            className="placeholder-Text"
           />
+
         </label>
-        <button type="submit">Log In</button>
+
+        <button className="default_button  pointer" type="submit "> <i className="fa-solid fas fa-keyboard buttonIcon"></i> login</button>
       </form>
-      <form onSubmit={handleDemoSubmit}>
-        <button id="Demo-user" type="submit">DemoUser</button>
+      <form onSubmit={handleDemoSubmit} className="LFP-div">
+        <button className="LP-button default_button pointer" id="Demo-user" type="submit"><i class="fa-solid fas fa-id-card buttonIcon"></i> DemoUser</button>
       </form>
-      <form onSubmit={handleDemoSubmit1}>
-        <button id="Demo-user" type="submit">DemoUser1</button>
+      <form onSubmit={handleDemoSubmit1} className="LFP-div">
+        <button  className="LP-button default_button pointer"  id="Demo-user" type="submit"><i class="fa-solid  fas fa-id-card buttonIcon"></i> DemoUser1</button>
       </form>
     </>
   );
