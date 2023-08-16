@@ -131,11 +131,11 @@ function SignupFormPage() {
 
   return (
     <>
-      <h1>Sign Up</h1>
-      <form onSubmit={handleSubmit}>
-        <ul>
-          {errors.map((error, idx) => <li key={idx}>{error}</li>)}
-        </ul>
+      <h1 className="wgt SP-title">register</h1>
+      <form onSubmit={handleSubmit} className="SFP-div">
+        {errors.length > 0 &&<ul>
+          {errors.map((error, idx) => <li className="error-text" key={idx}>{error}</li>)}
+        </ul>}
 
         {vaErrors.Email && submitted && (
           <p className="error-text">*{vaErrors.Email}</p>
@@ -148,6 +148,7 @@ function SignupFormPage() {
             onChange={(e) => setEmail(e.target.value)}
             placeholder="Email"
             required
+            className="placeholder-Text"
           />
         </label>
         {vaErrors.Username && submitted && (
@@ -160,6 +161,7 @@ function SignupFormPage() {
             onChange={(e) => setUsername(e.target.value)}
             placeholder="Username"
             required
+            className="placeholder-Text"
           />
         </label>
         {vaErrors.Password && submitted && (
@@ -173,6 +175,7 @@ function SignupFormPage() {
             onChange={(e) => setPassword(e.target.value)}
             placeholder="Password"
             required
+            className="placeholder-Text"
           />
         </label>
 
@@ -183,6 +186,7 @@ function SignupFormPage() {
             onChange={(e) => setConfirmPassword(e.target.value)}
             placeholder="Confirm Password"
             required
+            className="placeholder-Text"
           />
         </label>
         {vaErrors.ProfilePicture && submitted && (
@@ -195,7 +199,7 @@ function SignupFormPage() {
             value={profilePic}
             onChange={(e) => setProfilePic(e.target.value)}
             placeholder=" Profile Picture (not required)"
-
+            className="placeholder-Text"
           />
         </label>
         <label>
@@ -204,11 +208,12 @@ function SignupFormPage() {
             value={coverPhoto}
             onChange={(e) => setCoverPhoto(e.target.value)}
             placeholder="Cover Photo (not required)"
-
+            className="placeholder-Text"
           />
         </label>
-        <button type="submit">Sign Up</button>
+        <button type="submit" className="default_button pointer"> <i class="buttonIcon fa-solid fas fa-user-plus wgt "></i>    Sign Up!</button>
       </form>
+
     </>
   );
 }

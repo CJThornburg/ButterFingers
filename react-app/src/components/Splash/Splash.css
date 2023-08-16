@@ -1,0 +1,6 @@
+.S-div-holder{
+    display: flex;
+    height: 90vh;
+    align-items: center;
+    justify-content: space-around;
+}
