@@ -1,5 +1,5 @@
 /* TODO Add site wide styles */
-
+@import url('https://fonts.googleapis.com/css2?family=Lexend+Deca&family=Roboto+Mono&display=swap');
 
 body {
     background-color: #323437;
@@ -44,6 +44,7 @@ body {
     color: #D1D0C5;
     caret-color: #E2B714;
     font-size: 1.8vh;
+    font-family: 'Roboto Mono', monospace;
 }
 
 
@@ -58,11 +59,31 @@ body {
     border-radius: 10px;
     color: #D1D0C5;
     font-size: 1.8vh;
+    font-family: 'Roboto Mono', monospace;
 }
+
+.disabled_default_button{
+    background-color: #D1D0C5;
+    box-shadow: none;
+    border: 1px solid transparent;
+    outline: none;
+    height: 40px;
+    border-radius: 10px;
+    color: #2C2E31;
+    font-size: 1.8vh;
+    font-family: 'Roboto Mono', monospace;
+}
+
+
+.disabled_default_button:hover{
+  cursor: not-allowed ;
+}
+
 
 .default_button:hover {
     color:#2C2E31;
     background-color: #D1D0C5;
+    cursor: pointer;
 
     .buttonIcon{
         color: #2C2E31;
@@ -72,4 +93,25 @@ body {
 
 .pointer:hover {
     cursor: pointer;
+}
+
+
+.anti-link{
+    text-decoration: none;
+}
+
+
+
+.HFont {
+    font-family: 'Lexend Deca', sans-serif;
+
+}
+
+.pFont {
+    font-family: 'Roboto Mono', monospace;
+}
+
+
+.cursor:hover{
+    cursor:pointer
 }

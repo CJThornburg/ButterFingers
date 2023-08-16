@@ -116,6 +116,19 @@ export const thunkUndoRejectFriend = (username) => async (dispatch) => {
 };
 
 
+export const thunkDeleteFriend = (friendId) => async (dispatch) => {
+    let response = await fetch(`/api/friends/delete/${friendId}`, {
+        method: "DELETE"
+    });
+    response = await response.json()
+
+    dispatch(deleteFriend(friendId)
+    )
+    return "successfully deleted"
+}
+
+
+
 
 
 const GET_FRIENDS = "FRIENDS/GET_ALL"
@@ -123,6 +136,15 @@ const POST_FRIENDS = "FRIENDS/NEW"
 const ADD_FRIEND = "FRIENDS/ADD"
 const REJECT_FRIEND = "FRIENDS/REJECT"
 const UNDO_REJECT_FRIEND = "FRIENDS/UN_REJECT"
+const DELETE_FRIEND = "FRIENDS/Delete"
+
+
+const deleteFriend = (friendId) => {
+    return {
+        type: DELETE_FRIEND,
+        friendId
+    }
+}
 
 const getFriends = (friendsData) => {
     return {
@@ -189,6 +211,11 @@ export default function reducer(state = initialState, action) {
 
         case UNDO_REJECT_FRIEND:
             newState[action.undoRejectFriends.id] = action.undoRejectFriends
+            return newState
+
+        case DELETE_FRIEND:
+            newState = { ...state };
+            delete newState[action.friendId]
             return newState
 
         default:

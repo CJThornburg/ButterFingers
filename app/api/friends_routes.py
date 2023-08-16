@@ -159,3 +159,26 @@ def undoRejectReq(username):
 #     friend.status="active"
 #     db.session.commit()
 #     return friend.to_dict()
+
+
+
+@friend_routes.route('/delete/<int:id>', methods=["DELETE"])
+@login_required
+def deleteFriend(id):
+    """
+    Query for a text by id and deletes it and returns success or error obj
+    """
+    # only going to render delete button if they are user so dont need to check back here too
+    # if end up needing it
+    # cur_user = current_user.to_dict()
+    # query....
+    # if text.userId == cur_user["id"]:
+        # delete
+    # else "not yours"
+    friend = Friend.query.get(id)
+    if not friend:
+        return {"message": "Text couldn't be found"}
+    else:
+        db.session.delete(friend)
+        db.session.commit()
+        return {"mes": "friend successfully deleted"}

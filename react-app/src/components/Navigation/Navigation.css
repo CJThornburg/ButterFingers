@@ -19,3 +19,32 @@
   justify-content: space-around;
   /* width: 100% */
 }
+
+.N-navLink{
+  font-size: 2.2vh;
+}
+
+
+.N-navLink:hover{
+  font-size: 2.5vh;
+}
+
+
+.Nav-test{
+  display: flex;
+  gap:5px;
+  align-items: center;
+}
+
+.Nav-profile-logout-div{
+  display: flex;
+
+  align-items: center;
+  gap: 10px;
+}
+
+
+.form-div {
+  display: flex;
+  gap: 10px;
+}

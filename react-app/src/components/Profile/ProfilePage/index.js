@@ -2,10 +2,12 @@ import React, { useState, useEffect } from "react";
 import "./ProfilePage.css";
 import { useDispatch, useSelector } from "react-redux";
 // import { thunkGetAllTexts } from "../../../store/texts"
-import { thunkCreateFriendRelationship, thunkAcceptFriend, thunkRejectFriend, thunkUndoRejectFriend } from "../../../store/friends"
-import { useParams, useHistory } from "react-router-dom";
+
+import { thunkCreateFriendRelationship, thunkAcceptFriend, thunkRejectFriend, thunkUndoRejectFriend, thunkDeleteFriend, thunkGetAllFriends } from "../../../store/friends"
+import { useParams, useHistory, Link } from "react-router-dom";
 import { getLevel } from "../../../utils";
 import PlayerText from "./PlayerText";
+
 
 
 
@@ -21,6 +23,7 @@ function ProfilePage() {
   const texts = useSelector(state => Object.values(state.texts))
   const scores = useSelector(state => Object.values(state.scores))
   const friends = useSelector(state => Object.values(state.friends))
+
 
   console.log("USER OBJCECT", userObj)
 
@@ -39,14 +42,35 @@ function ProfilePage() {
   const handleAccept = async () => {
     const data = await dispatch(thunkAcceptFriend(username))
   }
+  const handleAcceptFromOwn = async (username) => {
+    const data = await dispatch(thunkAcceptFriend(username))
+  }
 
   const handleReject = async () => {
     const data = await dispatch(thunkRejectFriend(username))
     console.log(data)
   }
+  const handleRejectFromOwn = async (username) => {
+    const data = await dispatch(thunkRejectFriend(username))
+    console.log(data)
+  }
+
 
   const handleUndoReject = async () => {
     const data = await dispatch(thunkUndoRejectFriend(username))
+
+  }
+
+  const removeFriend = async () => {
+    // const data = await dispatch(thunkUndoRejectFriend(username))
+    await dispatch(thunkDeleteFriend(relevantFriends.id))
+    // await thunkGetAllFriends()
+  }
+
+  const removeFriendFromOwn = async (friendId) => {
+    // const data = await dispatch(thunkUndoRejectFriend(username))
+    await dispatch(thunkDeleteFriend(friendId))
+    // await thunkGetAllFriends()
   }
 
   // ! why do i have to do ?, conditional short circuit for it is breaking code :(
@@ -93,9 +117,29 @@ function ProfilePage() {
   let totalTimeMin = (totalTime / 60000)
 
 
+  // currentUsername === logged in user
 
+  // Filterers for current user friends list, request lists
+
+  const currentSentFriendRequests = friends.filter(friend => (friend.fromUser.toLowerCase() === currentUsername.toLowerCase() && friend.status === "pending"));
+  console.log("sent friend request", currentSentFriendRequests)
   // number of cards
 
+  const currentReceivedFriendRequests = friends.filter(friend => (friend.toUser.toLowerCase() === currentUsername.toLowerCase() && friend.status === "pending"));
+  console.log("received friend request", currentReceivedFriendRequests)
+
+
+  const currentFriendsTo = friends.filter(friend => (
+    (friend.toUser.toLowerCase() === currentUsername.toLowerCase()) && friend.status === "active"));
+// grab fromUser username
+
+
+  const currentFriendsFrom = friends.filter(friend => (
+      friend.fromUser.toLowerCase() === currentUsername.toLowerCase() && friend.status === "active"));
+
+  // grab toUser userName
+  console.log("current friends TO current user", currentFriendsTo)
+  console.log("current friend FRom current user", currentFriendsFrom)
   // checks i need
   // current profile page is owned by current user
   // if so render whole page + delete profile button
@@ -117,7 +161,7 @@ function ProfilePage() {
         </h1>
         <div>
           <img className="PP-cp" src={userObj?.coverPhoto}></img>
-        <img className="PP-pp" src={userObj?.profile_imageURL}></img>
+          <img className="PP-pp" src={userObj?.profile_imageURL}></img>
 
           <p className="PP-main-Profile-info PP-username">
             {userObj?.username}
@@ -129,6 +173,42 @@ function ProfilePage() {
             Level: {level}
 
           </p>
+          <div className="PP-list-div">
+            <h4 className="wgt">Friends</h4>
+            { currentFriendsTo.map((friend) => (
+              <div >
+             <Link className="anti-link wgt" to={`/users/${friend.fromUser}`}><button className="default_button" >{friend.fromUser}</button>  </Link>
+             <i onClick={(e) => removeFriendFromOwn(friend.id)} className="fa-solid fas fa-trash cursor"></i>
+              </div>
+            ))}
+            { currentFriendsFrom.map((friend) => (
+              <div >
+             <Link className="anti-link wgt" to={`/users/${friend.toUser}`}><button className="default_button" >{friend.toUser}</button>  </Link>
+             <i onClick={(e) => removeFriendFromOwn(friend.id)} className="fa-solid fas fa-trash cursor"></i>
+              </div>
+            ))}
+          </div>
+          <div className="PP-list-div">
+            <h4 className="wgt">Pending Sent Request</h4>
+            {  currentSentFriendRequests.map((friend) => (
+              <div >
+             <Link className="anti-link wgt" to={`/users/${friend.toUser}`}><button className="default_button" >{friend.toUser}</button>  </Link>
+             <i onClick={(e) => removeFriendFromOwn(friend.id)} className="fa-solid fas fa-trash cursor"></i>
+              </div>
+            ))}
+
+          </div>
+          <div className="PP-list-div">
+            <h4 className="wgt">Pending Received Request</h4>
+            {  currentReceivedFriendRequests.map((friend) => (
+              <div >
+             <Link className="anti-link wgt" to={`/users/${friend.fromUser}`}><button className="default_button" >{friend.fromUser}</button>  </Link>
+             <button className="default_button"  onClick={(e) => handleAcceptFromOwn(friend.fromUser)} >accept</button>
+             <button className="default_button"  onClick={(e) => handleRejectFromOwn(friend.fromUser)} > decline</button>
+              </div>
+            ))}
+
+          </div>
 
           <p className="PP-tests">Tests Completed: {userScores.length}</p>
           <p className="PP-kpm">Average KPM: {averageKpm.toFixed(2)}</p>
@@ -173,6 +253,13 @@ function ProfilePage() {
   // if rejected, delete record    or turn to rejected
   // if does not exist
   // render send request button, current user = fromUser, toUser is to profile page on
+  // pending request sent
+
+
+
+
+  //
+
 
   const relevantFriends = friends.find(friend => (friend.fromUser.toLowerCase() === currentUsername.toLowerCase() && friend.toUser.toLowerCase() === username.toLowerCase()) ||
     (friend.toUser.toLowerCase() === currentUsername.toLowerCase() && friend.fromUser.toLowerCase() === username.toLowerCase()));
@@ -201,7 +288,7 @@ function ProfilePage() {
             Level: {level} </p>
         </div>
         <div>
-          <button onClick={handleFriendRequest}> send friend request</button>
+          <button className="default_button" onClick={handleFriendRequest}> send friend request</button>
         </div>
 
 
@@ -250,8 +337,8 @@ function ProfilePage() {
             Level: {level} </p>
         </div>
         <div>
-          <button onClick={handleAccept} >accept</button>
-          <button onClick={handleReject} >reject</button>
+          <button className="default_button" onClick={handleAccept} >accept</button>
+          <button className="default_button" onClick={handleReject} >reject</button>
         </div>
 
 
@@ -279,8 +366,8 @@ function ProfilePage() {
         </div>
         <div>
 
-          <button disabled >rejected</button>
-          <button onClick={handleUndoReject}>undo rejection </button>
+          <button className="default_button" disabled >rejected</button>
+          <button className="default_button" onClick={handleUndoReject}>undo rejection </button>
         </div>
 
 
@@ -303,6 +390,7 @@ function ProfilePage() {
           <p className="PP-main-Profile-info PP-username">
             {userObj?.username}
           </p>
+
           <p className="PP-main-Profile-info PP-joined">
             joined:  {userObj?.createdAt}
           </p>
@@ -310,7 +398,8 @@ function ProfilePage() {
             Level: {level} </p>
         </div>
         <div>
-          <button disabled>Friend Request Sent</button>
+          <button  className="disabled_default_button" disabled>Friend Request Sent</button>
+          <button className="default_button" onClick={removeFriend}>Cancel Friend Request </button>
         </div>
       </div>
     </>)
@@ -333,6 +422,7 @@ function ProfilePage() {
           <p className="PP-main-Profile-info PP-username">
             {userObj?.username}
           </p>
+          <button className="default_button" onClick={removeFriend}>Unfriend</button>
           <p className="PP-main-Profile-info PP-joined">
             joined:  {userObj?.createdAt}
           </p>
