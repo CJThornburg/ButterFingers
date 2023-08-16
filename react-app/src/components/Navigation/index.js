@@ -30,12 +30,14 @@ function Navigation({ isLoaded }) {
 				{/* <li>
 					<NavLink exact to="/">Home</NavLink>
 				</li> */}
-				<li>
-					<NavLink exact to="/test">Test</NavLink>
+				<li className='Nav-test'>
+					<NavLink className="anti-link N-navLink wgt HFont" exact to="/test">Test</NavLink>
 				</li>
 				<li>
-					<NavLink exact to={`/users/${sessionUser.username}`}>{sessionUser.username}</NavLink>
-					{isLoaded && <button onClick={handleLogout}>Log Out</button> }
+				<div className='Nav-profile-logout-div'>
+					<NavLink className="anti-link N-navLink wgt HFont" exact to={`/users/${sessionUser.username}`}>{sessionUser.username}</NavLink>
+					{isLoaded && <button className="default_button" onClick={handleLogout}><i class="fa-solid fas fa-door-open"></i></button>}
+				</div>
 
 				</li>
 

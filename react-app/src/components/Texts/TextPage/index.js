@@ -82,7 +82,7 @@ function TextPage() {
 
 
 
-  const handleLengthChange = (e, num) => {
+  const handleLengthChange = (e, num, from) => {
     let matchingLengthTexts
     let randomInt
     if (num !== -1) {
@@ -128,7 +128,11 @@ function TextPage() {
 
 
     }
-    setShowStartButton(true)
+
+    if (from === "select") {
+      setShowStartButton(true)
+      setShowTextArea(false)
+    }
     setChange(false)
   }
 
@@ -141,6 +145,7 @@ function TextPage() {
 
   const startTest = () => {
     setShowTextArea(true)
+    setShowStartButton(false)
     let startTime = new Date().getTime()
 
     setStart(startTime)
@@ -184,11 +189,13 @@ function TextPage() {
       console.log("error", res)
     }
     setUserText("")
+
     setMistakes(0)
     setMs()
     setDone(false)
     startTest()
-    handleLengthChange("e", option)
+    handleLengthChange("e", option, "next")
+
   }
 
   const handleDelete = async () => {
@@ -231,43 +238,51 @@ function TextPage() {
 
   return (
     <>
+      {/* <div className="TP-Whole-div"> */}
 
-      <div className="TP-textType-buttons">
-        <p className="TP-A-words"> Options: </p>
-        <button onClick={(e) => { handleLengthChange(e, 20) }}>20</button>
-        <button onClick={(e) => { handleLengthChange(e, 50) }}>50</button>
-        <button onClick={(e) => { handleLengthChange(e, 100) }}>100</button>
-        <button onClick={(e) => { handleLengthChange(e, -1) }}>Random</button>
 
-        {/* if clicked, render change button, and a default text and clicking that one that will open modal. The default is there to prevent errors if its a new user and they have no texts to render without having to give everyone a default card*/}
-        {/* const [showTextArea, setShowTextArea] = useState(false) */}
-        <button onClick={showChange}>Custom</button>
-        {change && <OpenModalButton
-          buttonText="Change"
+      <div className="TP-textType-buttons TP-Whole-div">
+        <div className="TP-Options-div">
+        <p className="TP-A-words HFont wgt"><i class="fa-solid fas fa-font"></i> Options: </p>
+        <button className="default_button" onClick={(e) => { handleLengthChange(e, 20, "select") }}>20</button>
+        <button className="default_button" onClick={(e) => { handleLengthChange(e, 50, "select") }}>50</button>
+        <button className="default_button" onClick={(e) => { handleLengthChange(e, 100, "select") }}>100</button>
+        <button className="default_button" onClick={(e) => { handleLengthChange(e, -1, "select") }}>Random</button>
+
+
+        {/* <button className="default_button" onClick={showChange}>Custom</button> */}
+         <OpenModalButton
+          buttonText="Custom"
+
           onItemClick={closeMenu}
           modalComponent={<TextFormModal from="Post" setTextObj={setTextObj} setCopyText={setCopyText} setShowTextArea={setShowTextArea} setMistakes={setMistakes} setMs={setMs} setStart={setStart} setUserText={setUserText} startTest={startTest} />}
 
 
-        />}
+        />
+        </div>
+
+        {/* if clicked, render change button, and a default text and clicking that one that will open modal. The default is there to prevent errors if its a new user and they have no texts to render without having to give everyone a default card*/}
+        {/* const [showTextArea, setShowTextArea] = useState(false) */}
+        <div></div>
       </div>
 
-      {showTextArea && <form>
+      {showTextArea && <form className="TP-form">
 
-        <p>{copyText}</p>
+        <p className="wgt TP-copyText pFont">{copyText}</p>
 
         <textarea
           value={userText}
           onChange={(e) => userInputChange(e)}
-          className="TP-textarea"
+          className="TP-textarea textarea-Text"
           autoFocus
         >
         </textarea>
       </form>}
 
-      {showStartButton && <button onClick={startTest}>
-        Click here to start test
+      {showStartButton && <button className="default_button" onClick={startTest}>
+        Click to start!
       </button>}
-
+      {/* </div> */}
     </>
   )
 }

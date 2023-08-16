@@ -131,7 +131,7 @@ function SignupFormPage() {
 
   return (
     <>
-      <h1 className="wgt SP-title">register</h1>
+      <h1 className="wgt SP-title pFont">register</h1>
       <form onSubmit={handleSubmit} className="SFP-div">
         {errors.length > 0 &&<ul>
           {errors.map((error, idx) => <li className="error-text" key={idx}>{error}</li>)}
@@ -146,7 +146,7 @@ function SignupFormPage() {
             type="email"
             value={email}
             onChange={(e) => setEmail(e.target.value)}
-            placeholder="Email"
+            placeholder=" Email"
             required
             className="placeholder-Text"
           />
@@ -159,7 +159,7 @@ function SignupFormPage() {
             type="text"
             value={username}
             onChange={(e) => setUsername(e.target.value)}
-            placeholder="Username"
+            placeholder=" Username"
             required
             className="placeholder-Text"
           />
@@ -173,7 +173,7 @@ function SignupFormPage() {
             type="password"
             value={password}
             onChange={(e) => setPassword(e.target.value)}
-            placeholder="Password"
+            placeholder=" Password"
             required
             className="placeholder-Text"
           />
@@ -184,7 +184,7 @@ function SignupFormPage() {
             type="password"
             value={confirmPassword}
             onChange={(e) => setConfirmPassword(e.target.value)}
-            placeholder="Confirm Password"
+            placeholder=" Confirm Password"
             required
             className="placeholder-Text"
           />
@@ -207,7 +207,7 @@ function SignupFormPage() {
             type="text"
             value={coverPhoto}
             onChange={(e) => setCoverPhoto(e.target.value)}
-            placeholder="Cover Photo (not required)"
+            placeholder=" Cover Photo (not required)"
             className="placeholder-Text"
           />
         </label>

@@ -2,3 +2,50 @@
     width: 800px;
     height: 400px;
 }
+.TP-form{
+  width: 850px;
+}
+
+
+.TP-Whole-div{
+    display: flex;
+    justify-content: space-around;
+
+    align-items: center;
+    height: 15vh;
+}
+
+
+.TP-Options-div {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    background-color: #2C2E31;
+    padding: 10px;
+    padding-left: 30px;
+    padding-right: 30px;
+    border-radius: 20px;
+}
+
+.TP-copyText {
+    font-size: 2vh;
+}
+
+
+
+.textarea-Text:focus{
+    border-color:#E2B714;
+    outline-color: #E2B714;
+    outline:0.15em solid #E2B714
+}
+.textarea-Text {
+    background-color: #2C2E31;
+    box-shadow: none;
+    border: none;
+
+    border-radius: 10px;
+    color: #D1D0C5;
+    caret-color: #E2B714;
+    font-size: 1.8vh;
+    font-family: 'Roboto Mono', monospace;
+}

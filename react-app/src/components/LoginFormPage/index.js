@@ -63,7 +63,7 @@ function LoginFormPage({ from }) {
 
   return (
     <>
-      <h1 className="wgt LFP-title">login</h1>
+      <h1 className="wgt LFP-title pFont">login</h1>
       <form onSubmit={handleSubmit} className="LFP-div">
       {errors.length > 0 &&<ul>
           {errors.map((error, idx) => <li className="error-text" key={idx}>{error}</li>)}
@@ -75,7 +75,7 @@ function LoginFormPage({ from }) {
             value={email}
             onChange={(e) => setEmail(e.target.value)}
             required
-            placeholder="Email"
+            placeholder=" Email"
             className="placeholder-Text"
           />
         </label>
@@ -86,7 +86,7 @@ function LoginFormPage({ from }) {
             value={password}
             onChange={(e) => setPassword(e.target.value)}
             required
-            placeholder="Password"
+            placeholder=" Password"
             className="placeholder-Text"
           />
 

@@ -32,10 +32,10 @@ function Splash() {
 
 
       <div className="">
-      <h1 className="wgt">
+      <h1 className="wgt HFont">
         Welcome to ButterFingers, let those fingers rip!
       </h1>
-       <h2 className="wgt">
+       <h2 className="wgt HFont">
        Connect and speed run your friends!
        </h2>
       </div>
