@@ -6,3 +6,11 @@
     width: 800px;
     height:400px;
 }
+
+
+.PP-list-div{
+    border: 2px solid #E2B714;
+
+    border-radius: 20px;
+    padding: 20px;
+}

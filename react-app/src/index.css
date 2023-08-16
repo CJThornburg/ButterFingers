@@ -62,6 +62,24 @@ body {
     font-family: 'Roboto Mono', monospace;
 }
 
+.disabled_default_button{
+    background-color: #D1D0C5;
+    box-shadow: none;
+    border: 1px solid transparent;
+    outline: none;
+    height: 40px;
+    border-radius: 10px;
+    color: #2C2E31;
+    font-size: 1.8vh;
+    font-family: 'Roboto Mono', monospace;
+}
+
+
+.disabled_default_button:hover{
+  cursor: not-allowed ;
+}
+
+
 .default_button:hover {
     color:#2C2E31;
     background-color: #D1D0C5;
@@ -91,4 +109,9 @@ body {
 
 .pFont {
     font-family: 'Roboto Mono', monospace;
+}
+
+
+.cursor:hover{
+    cursor:pointer
 }

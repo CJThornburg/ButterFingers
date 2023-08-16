@@ -63,6 +63,8 @@ export const thunkGetAllTexts = () => async (dispatch) => {
 
 
 
+
+
 export const thunkEditText = (name, typingText, textId) => async (dispatch) => {
     const response = await fetch(`/api/texts/${textId}`, {
         method: "PUT",
@@ -136,7 +138,7 @@ let initialState = {}
 
 
 export default function reducer(state = initialState, action) {
-    let newState
+    let newState = { ...state };
 
     switch (action.type) {
         case GET_TEXT:
@@ -155,6 +157,7 @@ export default function reducer(state = initialState, action) {
             newState = { ...state };
             newState[action.editText.id] = action.editText
             return newState
+
         case DELETE_TEXT:
             newState = { ...state };
 
