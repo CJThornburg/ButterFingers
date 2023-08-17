@@ -12,7 +12,7 @@ body {
 }
 
 .yt {
-   color:#E2B714
+    color: #E2B714
 }
 
 
@@ -30,11 +30,12 @@ body {
 }
 
 
-.placeholder-Text:focus{
-    border-color:#E2B714;
+.placeholder-Text:focus {
+    border-color: #E2B714;
     outline-color: #E2B714;
-    outline:0.15em solid #E2B714
+    outline: 0.15em solid #E2B714
 }
+
 .placeholder-Text {
     background-color: #2C2E31;
     box-shadow: none;
@@ -63,7 +64,7 @@ body {
     font-weight: 700;
 }
 
-.disabled_default_button{
+.disabled_default_button {
     background-color: #D1D0C5;
     box-shadow: none;
     border: 1px solid transparent;
@@ -76,17 +77,17 @@ body {
 }
 
 
-.disabled_default_button:hover{
-  cursor: not-allowed ;
+.disabled_default_button:hover {
+    cursor: not-allowed;
 }
 
 
 .default_button:hover {
-    color:#2C2E31;
+    color: #2C2E31;
     background-color: #D1D0C5;
     cursor: pointer;
 
-    .buttonIcon{
+    .buttonIcon {
         color: #2C2E31;
     }
 }
@@ -97,7 +98,7 @@ body {
 }
 
 
-.anti-link{
+.anti-link {
     text-decoration: none;
 }
 
@@ -113,8 +114,8 @@ body {
 }
 
 
-.cursor:hover{
-    cursor:pointer
+.cursor:hover {
+    cursor: pointer
 }
 
 
@@ -133,6 +134,7 @@ body {
     align-items: center;
     height: 70vh;
 }
+
 .column-holder {
     display: flex;
     /* justify-content: flex-start; */
@@ -152,7 +154,7 @@ body {
     /* height: 70vh; */
 }
 
-.stats-holder{
+.stats-holder {
     align-items: center;
 }
 
@@ -167,14 +169,25 @@ body {
                 </div>
             </div> */
 
-.click-toStart{
+.click-toStart {
     display: flex;
     justify-content: center;
 }
 
 
 
-.left-text{
+.left-text {
     /* text-align: left; */
     /* margin-left: 10px; */
+}
+
+.PT-button-div {
+    display: flex;
+    gap: 25px;
+
+}
+
+.PT-button-div-run-del {
+    display: flex;
+    gap: 12px;
 }

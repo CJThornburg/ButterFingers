@@ -105,18 +105,22 @@ function PlayerText({ text, username, owner }) {
     if (done) {
         return (
             <>
-                <hr></hr>
-                <h4 className="pFont">Completed: <span className="yt "> {text.name}</span></h4>
-                <h3 className="pFont">KPM: <span className="yt ">{((text.characterCount / ms) * 60000).toFixed(2)}</span> </h3>
-                <h3 className="pFont">Time:  <span className="yt ">{(ms / 1000).toFixed(2)}</span></h3>
-                <h3 className="pFont">ACC: <span className="yt "> {(((text.characterCount) / (text.characterCount + mistakes)) * 100).toFixed(2)}%</span></h3>
-                <h4 className="pFont">Word Count: <span className="yt "> {text.wordCount}</span></h4>
-                <h4 className="pFont">Mistakes: <span className="yt ">{mistakes}</span> </h4>
-                <h4 className="pFont">Characters: <span className="yt ">{text.characterCount}</span>  </h4>
-                <h4 className="pFont">non space Characters: <span className="yt ">{text.noSpaceCharacterCount}</span> </h4>
-                <h4 className="pFont">exp: <span className="yt ">{text.textExp}</span> </h4>
-                <button className="default_button" autoFocus onClick={handleNext}>Again!</button>
-                <button className="default_button" onClick={handleClose}>Close</button>
+
+                <h4 className="pFont wgt">Completed: <span className="yt "> {text.name}</span></h4>
+                <h3 className="pFont wgt">KPM: <span className="yt ">{((text.characterCount / ms) * 60000).toFixed(2)}</span> </h3>
+                <h3 className="pFont wgt">Time:  <span className="yt ">{(ms / 1000).toFixed(2)}</span></h3>
+                <h3 className="pFont wgt">ACC: <span className="yt "> {(((text.characterCount) / (text.characterCount + mistakes)) * 100).toFixed(2)}%</span></h3>
+                <h4 className="pFont wgt">Word Count: <span className="yt "> {text.wordCount}</span></h4>
+                <h4 className="pFont wgt">Mistakes: <span className="yt ">{mistakes}</span> </h4>
+                <h4 className="pFont wgt">Characters: <span className="yt ">{text.characterCount}</span>  </h4>
+                <h4 className="pFont wgt">non space Characters: <span className="yt ">{text.noSpaceCharacterCount}</span> </h4>
+                <h4 className="pFont wgt">exp: <span className="yt ">{text.textExp}</span> </h4>
+                <div className="PT-button-div">
+
+                    <button className="default_button" autoFocus onClick={handleNext}>Again!</button>
+                    <button className="default_button" onClick={handleClose}>Close</button>
+
+                </div>
             </>
         )
     }
@@ -126,13 +130,19 @@ function PlayerText({ text, username, owner }) {
 
     return (
         <>
-            <hr></hr>
+
             <h4 className="wgt pFont">{text.name}</h4>
             {/* TODO add onclick to redirect to testing with this card :') */}
 
-            {!renderTest && <button className="default_button" onClick={(e) => handleRunIt(e, text.id)}>run it!</button>}
 
-            {owner && !renderTest && <button className="default_button"><i onClick={(e) => handleDelete(e, text.id)} className=" fa-solid fas fa-trash"></i> </button>}
+            <div className="PT-button-div-run-del">
+                {!renderTest && <button className="default_button" onClick={(e) => handleRunIt(e, text.id)}>run it!</button>}
+
+                {owner && !renderTest &&
+                    <button className="default_button">
+                        <i onClick={(e) => handleDelete(e, text.id)} className=" fa-solid fas fa-trash"></i> </button>}
+            </div>
+
             {renderTest && <>
 
 

@@ -253,6 +253,9 @@ function ProfilePage() {
             <div>
               {userTexts.map((text) => (
                 <>
+                <div className="Player-card overflow ">
+
+
                   <PlayerText key={text.id}
                     text={text}
                     owner={owner}
@@ -260,6 +263,7 @@ function ProfilePage() {
                   >
 
                   </PlayerText>
+                  </div>
                 </>
               ))}
 
@@ -268,7 +272,7 @@ function ProfilePage() {
 
 
 
-            
+
           </div>
         </div>
       </>
@@ -541,19 +545,24 @@ function ProfilePage() {
 
 
 
-          <div>
-            {userTexts.map((text) => (
-              <>
-                <PlayerText key={text.id}
-                  text={text}
-                  username={username}
-                >
+            <div>
+              {userTexts.map((text) => (
+                <>
+                <div className="Player-card overflow ">
 
-                </PlayerText>
-              </>
-            ))}
 
-          </div>
+                  <PlayerText key={text.id}
+                    text={text}
+                   
+                    username={username}
+                  >
+
+                  </PlayerText>
+                  </div>
+                </>
+              ))}
+
+            </div>
 
         </div>
         </div>
