@@ -17,9 +17,10 @@ function Navigation({ isLoaded }) {
 	// const [signedIn, setSignedIn] = useState(false)
 	let users = useSelector(state => state.users)
 
+	const { setModalContent, setOnModalClose } = useModal();
 	console.log(users)
 	const [userNameSearch, setUserNameSearch] = useState("")
-	const [similarUsers, setSimilarUsers] = useState([])
+	// const [similarUsers, setSimilarUsers] = useState([])
 
 
 	const history = useHistory();
@@ -38,20 +39,30 @@ function Navigation({ isLoaded }) {
 
 	const handleSearch = (e) => {
 		e.preventDefault();
+		let exactMatch = false
 		if (users[userNameSearch]) {
-			history.push(`/users/${userNameSearch}`)
+
+			exactMatch=true
+
+			// history.push(`/users/${userNameSearch}`)
 			setUserNameSearch("")
-		} else {
+		}
 
 			const similarUsers1 = Object.values(users).filter(user => user.username.includes(userNameSearch))
+			console.log("similar users ", similarUsers1 )
 
-			
+			// if (onModalClose) setOnModalClose(onModalClose);
+    setModalContent(<SearchResultsModal exactMatch={exactMatch} exactUserName={userNameSearch} results={similarUsers1} />);
+
+
+
+
 
 
 			// setSimilarUsers(similarUsers1)
 			//TODO    open module with similar users mapped out to links to them
 			// TODO    "No exact matches were found did you mean one of these players? "
-			console.log(similarUsers)
+			// console.log(similarUsers)
 
 
 
@@ -63,7 +74,7 @@ function Navigation({ isLoaded }) {
 
 
 
-		}
+		
 	}
 
 
