@@ -7,6 +7,9 @@ import { useHistory } from "react-router-dom";
 import { logout } from "../../store/session";
 import { useDispatch, useSelector } from "react-redux";
 import userStats from '../Profile/userStats';
+import { useModal } from "../../context/Modal";
+import OpenModalButton from "../OpenModalButton";
+import SearchResultsModal from './SearchResultsModal'
 
 
 function Navigation({ isLoaded }) {
@@ -16,6 +19,7 @@ function Navigation({ isLoaded }) {
 
 	console.log(users)
 	const [userNameSearch, setUserNameSearch] = useState("")
+	const [similarUsers, setSimilarUsers] = useState([])
 
 
 	const history = useHistory();
@@ -28,6 +32,7 @@ function Navigation({ isLoaded }) {
 		e.preventDefault();
 		dispatch(logout());
 		// closeMenu();
+
 		history.push('/')
 	};
 
@@ -35,9 +40,29 @@ function Navigation({ isLoaded }) {
 		e.preventDefault();
 		if (users[userNameSearch]) {
 			history.push(`/users/${userNameSearch}`)
+			setUserNameSearch("")
 		} else {
-			alert(`User with that username does not exist.
-Please check spelling and try again`)
+
+			const similarUsers1 = Object.values(users).filter(user => user.username.includes(userNameSearch))
+
+			
+
+
+			// setSimilarUsers(similarUsers1)
+			//TODO    open module with similar users mapped out to links to them
+			// TODO    "No exact matches were found did you mean one of these players? "
+			console.log(similarUsers)
+
+
+
+
+// 			alert(`User with that username does not exist.
+// Please check spelling and try again`)
+
+
+
+
+
 		}
 	}
 
@@ -70,7 +95,12 @@ Please check spelling and try again`)
 						/>
 					</label>
 					<button className='default_button' onClick={handleSearch}>Search</button>
-
+					{/* <OpenModalButton
+          buttonText="Search"
+          className="TF-input"
+		  onClick={handleSearch}
+          modalComponent={<SearchResultsModal  results={similarUsers } />} */}
+        {/* /> */}
 				</form>
 
 
