@@ -50,7 +50,7 @@ Please check spelling and try again`)
 				{/* <li>
 					<NavLink exact to="/">Home</NavLink>
 				</li> */}
-				<li><h2 className='wgt HFont'>ButterFingers</h2></li>
+				<li><NavLink className="anti-link yt HFont" exact to="/test"><h1 className='BF'>ButterFingers</h1></NavLink></li>
 				<li className='Nav-test'>
 					<NavLink className="anti-link N-navLink wgt HFont" exact to="/test">Test</NavLink>
 				</li>

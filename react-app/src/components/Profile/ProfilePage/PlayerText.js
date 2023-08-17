@@ -3,8 +3,10 @@ import { useDispatch } from "react-redux";
 import { thunkCreateScore } from "../../../store/scores"
 import { thunkDeleteText } from "../../../store/texts";
 import { thunkGetAllTexts } from "../../../store/texts";
+import './ProfilePage.css'
+
 function PlayerText({ text, username, owner }) {
-    
+
 
     const [renderTest, setRenderTest] = useState(false)
     const [done, setDone] = useState(false)
@@ -81,6 +83,10 @@ function PlayerText({ text, username, owner }) {
         setRenderTest(false)
     }
 
+    const handleEarlyClose = async () => {
+        setDone(false)
+        setRenderTest(false)
+    }
     const handleDelete = (e, textId) => {
 
         async function deleteText() {
@@ -100,17 +106,17 @@ function PlayerText({ text, username, owner }) {
         return (
             <>
                 <hr></hr>
-                <h4>Completed: {text.name}</h4>
-                <h3>KPM {((text.characterCount / ms) * 60000).toFixed(2)}</h3>
-                <h3>Time: {(ms / 1000).toFixed(2)}</h3>
-                <h3>ACC: {(((text.characterCount) / (text.characterCount + mistakes)) * 100).toFixed(2)}%</h3>
-                <h4>Word Count: {text.wordCount}</h4>
-                <h4>Mistakes: {mistakes}</h4>
-                <h4>Characters: {text.characterCount} </h4>
-                <h4>non space Characters: {text.noSpaceCharacterCount}</h4>
-                <h4>exp: {text.textExp}</h4>
-                <button autoFocus onClick={handleNext}>Again!</button>
-                <button onClick={handleClose}>Close</button>
+                <h4 className="pFont">Completed: <span className="yt "> {text.name}</span></h4>
+                <h3 className="pFont">KPM: <span className="yt ">{((text.characterCount / ms) * 60000).toFixed(2)}</span> </h3>
+                <h3 className="pFont">Time:  <span className="yt ">{(ms / 1000).toFixed(2)}</span></h3>
+                <h3 className="pFont">ACC: <span className="yt "> {(((text.characterCount) / (text.characterCount + mistakes)) * 100).toFixed(2)}%</span></h3>
+                <h4 className="pFont">Word Count: <span className="yt "> {text.wordCount}</span></h4>
+                <h4 className="pFont">Mistakes: <span className="yt ">{mistakes}</span> </h4>
+                <h4 className="pFont">Characters: <span className="yt ">{text.characterCount}</span>  </h4>
+                <h4 className="pFont">non space Characters: <span className="yt ">{text.noSpaceCharacterCount}</span> </h4>
+                <h4 className="pFont">exp: <span className="yt ">{text.textExp}</span> </h4>
+                <button className="default_button" autoFocus onClick={handleNext}>Again!</button>
+                <button className="default_button" onClick={handleClose}>Close</button>
             </>
         )
     }
@@ -121,28 +127,31 @@ function PlayerText({ text, username, owner }) {
     return (
         <>
             <hr></hr>
-            <h4>{text.name}</h4>
+            <h4 className="wgt pFont">{text.name}</h4>
             {/* TODO add onclick to redirect to testing with this card :') */}
 
-            <button onClick={(e) => handleRunIt(e, text.id)}>run it!</button>
-            {owner && <i onClick={(e) => handleDelete(e, text.id)} className="fa-solid fas fa-trash"></i>}
+            {!renderTest && <button className="default_button" onClick={(e) => handleRunIt(e, text.id)}>run it!</button>}
+
+            {owner && !renderTest && <button className="default_button"><i onClick={(e) => handleDelete(e, text.id)} className=" fa-solid fas fa-trash"></i> </button>}
             {renderTest && <>
 
 
                 <form>
 
-                    <p>{text.typingText}</p>
+                    <p className="pFont wgt">{text.typingText}</p>
 
 
                     <textarea
                         value={userText}
                         onChange={(e) => userInputChange(e)}
-                        className="TP-textarea"
+                        className=" placeholder-Text "
                         autoFocus
+                        id="PP-textAreas"
                     >
                     </textarea>
-                </form>
 
+                </form>
+                <button className="default_button" onClick={handleEarlyClose}>Quit</button>
 
 
 
