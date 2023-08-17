@@ -25,6 +25,7 @@
     padding-left: 30px;
     padding-right: 30px;
     border-radius: 20px;
+    /* margin-right: 200px; */
 }
 
 .TP-copyText {
@@ -48,4 +49,10 @@
     caret-color: #E2B714;
     font-size: 1.8vh;
     font-family: 'Roboto Mono', monospace;
+}
+
+
+.TP-next-delete-div {
+    display: flex;
+    gap: 10px
 }

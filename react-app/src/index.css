@@ -115,3 +115,58 @@ body {
 .cursor:hover{
     cursor:pointer
 }
+
+
+
+.overflow {
+    overflow-wrap: break-word;
+
+    word-break: break-word;
+
+}
+
+
+.column-holder-center {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 70vh;
+}
+.column-holder {
+    display: flex;
+    /* justify-content: flex-start; */
+    justify-content: center;
+
+    /* width: 1000px; */
+    /* height: 70vh; */
+}
+
+.column-holder-stats {
+    display: flex;
+    /* justify-content: flex-start; */
+    justify-content: center;
+    align-items: center;
+    height: 70vh;
+    /* width: 1000px; */
+    /* height: 70vh; */
+}
+
+.stats-holder{
+    align-items: center;
+}
+
+.column {
+    width: 800px;
+}
+
+/* <div className="column-holder Gd-nav-padding">
+                <div className="column">
+
+
+                </div>
+            </div> */
+
+.click-toStart{
+    display: flex;
+    justify-content: center;
+}

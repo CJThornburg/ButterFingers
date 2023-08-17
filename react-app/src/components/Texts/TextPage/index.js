@@ -215,22 +215,32 @@ function TextPage() {
     // TODO if characters less than ~20, for KPM just say "too short of text sample to calculate kpm"
 
     return (<>
-      <h3>KPM {((textObj.characterCount / ms) * 60000).toFixed(2)}</h3>
-      <h3>Time: {(ms / 1000).toFixed(2)}</h3>
-      <h3>ACC: {(((textObj.characterCount) / (textObj.characterCount + mistakes)) * 100).toFixed(2)}%</h3>
-      <h4>Word Count: {textObj.wordCount}</h4>
-      <h4>Mistakes: {mistakes}</h4>
-      <h4>Characters: {textObj.characterCount} </h4>
-      <h4>non space Characters: {textObj.noSpaceCharacterCount}</h4>
-      <h4>exp: {textObj.textExp}</h4>
-      {/*
+
+
+      <div className="column-holder-stats ">
+        <div className="column ">
+
+          <h3 className="pFont wgt">Key Strokes Per Minute: {((textObj.characterCount / ms) * 60000).toFixed(2)}</h3>
+          <h3 className="pFont wgt">Time: {(ms / 1000).toFixed(2)}</h3>
+          <h3 className="pFont wgt">Accuracy: {(((textObj.characterCount) / (textObj.characterCount + mistakes)) * 100).toFixed(2)}%</h3>
+          <h4 className="pFont wgt">Word Count: {textObj.wordCount}</h4>
+          <h4 className="pFont wgt">Mistakes: {mistakes}</h4>
+          <h4 className="pFont wgt">Characters: {textObj.characterCount} </h4>
+          <h4 className="pFont wgt">non space Characters: {textObj.noSpaceCharacterCount}</h4>
+          <h4 className="pFont wgt">exp: {textObj.textExp}</h4>
+          {/*
       <h1>vs</h1>
 
       <h2>Text card history</h2> */}
-      <button autoFocus onClick={handleNext}>Next!</button>
-      {/* if delete  just reset state don't commit  */}
-      <button onClick={handleDelete}>Delete :(</button>
+          <div className="TP-next-delete-div">
 
+            <button autoFocus className="default_button" onClick={handleNext}>Next!</button>
+            {/* if delete  just reset state don't commit  */}
+            <button className="default_button" onClick={handleDelete}>Delete :(</button>
+
+          </div>
+        </div>
+      </div>
       {/* if redo, load current text object again */}
     </>)
   }
@@ -240,31 +250,38 @@ function TextPage() {
     <>
       {/* <div className="TP-Whole-div"> */}
 
+      <div className="column-holder">
+        <div className="column">
 
       <div className="TP-textType-buttons TP-Whole-div">
         <div className="TP-Options-div">
-        <p className="TP-A-words HFont wgt"><i class="fa-solid fas fa-font"></i> Options: </p>
-        <button className="default_button" onClick={(e) => { handleLengthChange(e, 20, "select") }}>20</button>
-        <button className="default_button" onClick={(e) => { handleLengthChange(e, 50, "select") }}>50</button>
-        <button className="default_button" onClick={(e) => { handleLengthChange(e, 100, "select") }}>100</button>
-        <button className="default_button" onClick={(e) => { handleLengthChange(e, -1, "select") }}>Random</button>
+          <p className="TP-A-words HFont wgt"><i class="fa-solid fas fa-font"></i> Options: </p>
+          <button className="default_button" onClick={(e) => { handleLengthChange(e, 20, "select") }}>20</button>
+          <button className="default_button" onClick={(e) => { handleLengthChange(e, 50, "select") }}>50</button>
+          <button className="default_button" onClick={(e) => { handleLengthChange(e, 100, "select") }}>100</button>
+          <button className="default_button" onClick={(e) => { handleLengthChange(e, -1, "select") }}>Random</button>
 
 
-        {/* <button className="default_button" onClick={showChange}>Custom</button> */}
-         <OpenModalButton
-          buttonText="Custom"
+          {/* <button className="default_button" onClick={showChange}>Custom</button> */}
+          <OpenModalButton
+            buttonText="Custom"
 
-          onItemClick={closeMenu}
-          modalComponent={<TextFormModal from="Post" setTextObj={setTextObj} setCopyText={setCopyText} setShowTextArea={setShowTextArea} setMistakes={setMistakes} setMs={setMs} setStart={setStart} setUserText={setUserText} startTest={startTest} />}
+            onItemClick={closeMenu}
+            modalComponent={<TextFormModal from="Post" setTextObj={setTextObj} setCopyText={setCopyText} setShowTextArea={setShowTextArea} setMistakes={setMistakes} setMs={setMs} setStart={setStart} setUserText={setUserText} startTest={startTest} />}
 
 
-        />
+          />
         </div>
-
+        </div>
+          <div></div>
+      </div>
         {/* if clicked, render change button, and a default text and clicking that one that will open modal. The default is there to prevent errors if its a new user and they have no texts to render without having to give everyone a default card*/}
         {/* const [showTextArea, setShowTextArea] = useState(false) */}
-        <div></div>
+
       </div>
+
+      <div className="column-holder">
+        <div className="column">
 
       {showTextArea && <form className="TP-form">
 
@@ -278,11 +295,17 @@ function TextPage() {
         >
         </textarea>
       </form>}
-
+      </div>
+      </div>
+      <div className="column-holder">
+        <div className="column click-toStart">
       {showStartButton && <button className="default_button" onClick={startTest}>
         Click to start!
       </button>}
+      </div>
+      </div>
       {/* </div> */}
+
     </>
   )
 }
