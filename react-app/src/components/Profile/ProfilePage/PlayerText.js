@@ -99,6 +99,7 @@ function PlayerText({ text, username, owner }) {
         deleteText()
 
 
+
     }
 
 
@@ -126,7 +127,7 @@ function PlayerText({ text, username, owner }) {
     }
 
 
-
+// !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!! add delete functionality
 
     return (
         <>
@@ -138,9 +139,11 @@ function PlayerText({ text, username, owner }) {
             <div className="PT-button-div-run-del">
                 {!renderTest && <button className="default_button" onClick={(e) => handleRunIt(e, text.id)}>run it!</button>}
 
-                {owner && !renderTest &&
+
+{/* !!!!!!!!!!!!!!!!!!!!!!! */}
+                {/* {owner && !renderTest &&
                     <button className="default_button">
-                        <i onClick={(e) => handleDelete(e, text.id)} className=" fa-solid fas fa-trash"></i> </button>}
+                        <i onClick={(e) => handleDelete(e, text.id)} className=" fa-solid fas fa-trash"></i> </button>} */}
             </div>
 
             {renderTest && <>

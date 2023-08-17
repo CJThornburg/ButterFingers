@@ -44,10 +44,12 @@
 
 
 .PP-list-div {
-    border: 2px solid #E2B714;
-
-    border-radius: 20px;
-    padding: 20px;
+    border: 2px solid #e2b514e5;
+    margin-top: 15px;
+    margin-bottom: 15px;
+    padding: 30px;
+    border-radius: 30px;
+    box-shadow: 3px 4px 15px #e2b5145b;
 }
 
 
@@ -63,10 +65,18 @@
 
 
 .Player-card {
-    border: 2px solid #E2B714;
+    border: 2px solid #e2b514e5;
     margin-top: 15px;
     margin-bottom: 15px;
     padding: 30px;
     border-radius: 30px;
+    box-shadow: 3px 4px 15px #e2b5145b;
+}
+
+
+.user-delete-div {
+    display: flex;
+    gap: 10px;
+    margin-top: 10px;
 
 }
