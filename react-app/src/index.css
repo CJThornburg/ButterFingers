@@ -1,5 +1,5 @@
 /* TODO Add site wide styles */
-@import url('https://fonts.googleapis.com/css2?family=Lexend+Deca&family=Roboto+Mono&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Lexend+Deca&family=Roboto+Mono:wght@400;700&display=swap');
 
 body {
     background-color: #323437;
@@ -60,6 +60,7 @@ body {
     color: #D1D0C5;
     font-size: 1.8vh;
     font-family: 'Roboto Mono', monospace;
+    font-weight: 700;
 }
 
 .disabled_default_button{
@@ -169,4 +170,11 @@ body {
 .click-toStart{
     display: flex;
     justify-content: center;
+}
+
+
+
+.left-text{
+    /* text-align: left; */
+    /* margin-left: 10px; */
 }

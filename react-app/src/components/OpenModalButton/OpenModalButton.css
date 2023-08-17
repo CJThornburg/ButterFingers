@@ -1,0 +1,26 @@
+.default_button_yellow {
+    background-color: #2C2E31;
+    box-shadow: none;
+    border: 1px solid transparent;
+    outline: none;
+    height: 40px;
+    border-radius: 10px;
+    color: #E2B714;
+    font-size: 1.8vh;
+    font-family: 'Roboto Mono', monospace;
+    font-weight: 700;
+}
+.default_button_yellow:hover {
+    color:#2C2E31;
+    background-color: #D1D0C5;
+    cursor: pointer;
+
+    .buttonIcon{
+        color: #2C2E31;
+    }
+}
+
+
+#Save-margin{
+    margin: 15px;
+}

@@ -6,6 +6,7 @@ import { thunkCreateText, thunkEditText } from "../../../store/texts";
 import { useModal } from "../../../context/Modal";
 import OpenModalButton from "../../OpenModalButton";
 import PlayerDeckModal from "../playersDeckModal"
+import './TextForm.css'
 
 
 function TextFormModal({ from, textObj, setCopyText, setTextObj, setShowTextArea, setMistakes, setMs, setStart, setUserText, startTest }) {
@@ -53,7 +54,7 @@ function TextFormModal({ from, textObj, setCopyText, setTextObj, setShowTextArea
     //   err["Name"] = "Name can not just be a bunch of spaces"
     // }
 
-    if(text.split(" ").length < 3) {
+    if (text.split(" ").length < 3) {
       err["Text"] = "Typing text needs to be at least 3 words";
     }
     if (text.length < 10)
@@ -136,19 +137,13 @@ function TextFormModal({ from, textObj, setCopyText, setTextObj, setShowTextArea
 
   return (
     <>
-      <form onSubmit={handleSubmit}>
+      {/* <div className="TF-Form"> */}
+
+
+      <form onSubmit={handleSubmit} className="TF-Form">
 
         <div className="TFM-buttons-div">
-          <button type="submit">save</button>
 
-          {/* figure out how to allow users to open saved things if in edit form */}
-
-
-
-          {from === "Post" && <OpenModalButton
-            buttonText="Saved Texts"
-            modalComponent={<PlayerDeckModal setCopyText={setCopyText} setTextObj2={setTextObj} setShowTextArea={setShowTextArea} setMistakes={setMistakes} setMs={setMs} setStart={setStart} setUserText={setUserText} startTest={startTest} />}
-          />}
 
         </div>
 
@@ -156,13 +151,14 @@ function TextFormModal({ from, textObj, setCopyText, setTextObj, setShowTextArea
           <p className="error-text">*{vaErrors.Name}</p>
         )}
         <label>
-          
+
           <input
             type="text"
             value={name}
             onChange={(e) => setName(e.target.value)}
-            placeholder="Name"
+            placeholder=" Name"
             required
+            className="placeholder-Text TF-input"
           />
         </label>
 
@@ -173,18 +169,32 @@ function TextFormModal({ from, textObj, setCopyText, setTextObj, setShowTextArea
         <textarea
 
           value={text}
-          placeholder="Typing text"
+          placeholder=" Typing text"
           onChange={(e) => setText(e.target.value)}
           required
+          className="placeholder-Text TF-input "
+          id="textSize"
         >
         </textarea>
 
+        <button type="submit" className="default_button TF-input left-text">save</button>
+
+        {/* figure out how to allow users to open saved things if in edit form */}
+
+
+
+        {from === "Post" && <OpenModalButton
+          buttonText="       saved texts"
+          className="TF-input"
+          margin={true}
+          modalComponent={<PlayerDeckModal setCopyText={setCopyText} setTextObj2={setTextObj} setShowTextArea={setShowTextArea} setMistakes={setMistakes} setMs={setMs}  setStart={setStart} setUserText={setUserText} startTest={startTest} />}
+        />}
 
         {/* close modal and opens test with current text value as the test text */}
         {/* <button type="button">Run it!</button> */}
       </form>
 
-
+      {/* </div> */}
 
     </>
   )

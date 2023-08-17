@@ -53,6 +53,7 @@ function TextPage() {
   const dispatch = useDispatch();
   const [ms, setMs] = useState()
   const [end, setEnd] = useState()
+  const [customYellow, setCustomYellow] = useState(false)
 
   const user = useSelector(state => state.session.user.id)
   const texts = useSelector(state => Object.values(state.texts))
@@ -85,6 +86,7 @@ function TextPage() {
   const handleLengthChange = (e, num, from) => {
     let matchingLengthTexts
     let randomInt
+    setCustomYellow(false)
     if (num !== -1) {
 
       matchingLengthTexts = texts.filter((text) => text.wordCount === num)
@@ -100,6 +102,7 @@ function TextPage() {
         setTextObj(matchingLengthTexts[randomInt])
         setCopyText(matchingLengthTexts[randomInt].typingText)
         setUserText("")
+
         setOption(num)
         break;
 
@@ -152,9 +155,14 @@ function TextPage() {
 
   }
 
+  const clearOption = ()=>{
+    setShowStartButton(false)
+    setOption("")
+    setCustomYellow(true)
+  }
 
-
-  const closeMenu = () => setShowMenu(false);
+  const closeMenu = () => {
+    setShowMenu(false)};
 
   let currentIndex
   const userInputChange = (e) => {
@@ -256,21 +264,24 @@ function TextPage() {
       <div className="TP-textType-buttons TP-Whole-div">
         <div className="TP-Options-div">
           <p className="TP-A-words HFont wgt"><i class="fa-solid fas fa-font"></i> Options: </p>
-          <button className="default_button" onClick={(e) => { handleLengthChange(e, 20, "select") }}>20</button>
-          <button className="default_button" onClick={(e) => { handleLengthChange(e, 50, "select") }}>50</button>
-          <button className="default_button" onClick={(e) => { handleLengthChange(e, 100, "select") }}>100</button>
-          <button className="default_button" onClick={(e) => { handleLengthChange(e, -1, "select") }}>Random</button>
+          <button className="default_button" onClick={(e) => { handleLengthChange(e, 20, "select") }}><span className={option ===20 ? `yt`:` `}>   20 </span></button>
+          <button className="default_button" onClick={(e) => { handleLengthChange(e, 50, "select") }}><span className={option ===50 ? 'yt': ''}>   50</span> </button>
+          <button className="default_button" onClick={(e) => { handleLengthChange(e, 100, "select") }}><span className={option ===100 ? 'yt': ''}>  100 </span> </button>
+          <button className="default_button" onClick={(e) => { handleLengthChange(e, -1, "select") }}><span className={option ===-1 ? 'yt': ''}>  Random </span> </button>
 
 
           {/* <button className="default_button" onClick={showChange}>Custom</button> */}
+          <span className="yt">
           <OpenModalButton
+            customYellow={customYellow}
             buttonText="Custom"
-
+            onButtonClick={clearOption}
             onItemClick={closeMenu}
             modalComponent={<TextFormModal from="Post" setTextObj={setTextObj} setCopyText={setCopyText} setShowTextArea={setShowTextArea} setMistakes={setMistakes} setMs={setMs} setStart={setStart} setUserText={setUserText} startTest={startTest} />}
 
 
           />
+          </span>
         </div>
         </div>
           <div></div>
