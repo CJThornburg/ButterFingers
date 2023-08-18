@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { thunkCreateScore } from "../../../store/scores"
 import { useDispatch, useSelector } from "react-redux";
-
+import ResultsGraph from '../../ResultsGraph'
 import OpenModalButton from "../../OpenModalButton";
 import TextFormModal from "../TextFormModal"
 import './TextPage.css'
@@ -57,6 +57,7 @@ function TextPage() {
 
   const user = useSelector(state => state.session.user.id)
   const texts = useSelector(state => Object.values(state.texts))
+  const scores = useSelector(state => Object.values(state.scores))
   const resultsObj = {}
 
 
@@ -188,13 +189,14 @@ function TextPage() {
 
 
   const disablePaste = (e) => {
-    e.preventDefault(); // no cheating >:(
+    // !!!! cheat cheating anti-cheat
+    // e.preventDefault(); // no cheating >:(
   };
 
   // buttons on "stats" page
   const handleNext = async () => {
 
-    let kpm = (textObj.characterCount / (ms / 1000))
+    let kpm = (((textObj.characterCount * 60)/ (ms /1000)).toFixed(2))
     let res = await dispatch(thunkCreateScore(textObj.id, ms, mistakes, kpm, textObj.textExp, user))
     if (res) {
       console.log("error", res)
@@ -225,13 +227,18 @@ function TextPage() {
     // TODO add data showing users overall stats for this text
     // TODO if characters less than ~20, for KPM just say "too short of text sample to calculate kpm"
 
+    console.log(scores)
+    console.log(scores[0].textId)
+    console.log(textObj)
+    let relevantScores = scores.filter((score)=> score.userId=== user )
+    console.log("relevant scores", relevantScores)
     return (<>
 
 
       <div className="column-holder-stats ">
         <div className="column ">
 
-          <h3 className="pFont wgt">Key Strokes Per Minute: {((textObj.characterCount / ms) * 60000).toFixed(2)}</h3>
+          <h3 className="pFont wgt">Key Strokes Per Minute: {((textObj.characterCount * 60)/ (ms /1000)).toFixed(2)}</h3>
           <h3 className="pFont wgt">Time: {(ms / 1000).toFixed(2)}</h3>
           <h3 className="pFont wgt">Accuracy: {(((textObj.characterCount) / (textObj.characterCount + mistakes)) * 100).toFixed(2)}%</h3>
           <h4 className="pFont wgt">Word Count: {textObj.wordCount}</h4>
@@ -242,7 +249,15 @@ function TextPage() {
           {/*
       <h1>vs</h1>
 
+
+
+
       <h2>Text card history</h2> */}
+
+{/* {ms:  , date:} of scores with the same userId*/}
+        <ResultsGraph relevantScores={relevantScores}></ResultsGraph>
+
+
           <div className="TP-next-delete-div">
 
             <button autoFocus className="default_button" onClick={handleNext}>Next!</button>
