@@ -90,3 +90,13 @@ const formattedDate = `${day} ${month} ${year}`;
 
 return formattedDate
 }
+
+
+
+export const disablePaste = (e) => {
+    // !!!! cheat cheating anti-cheat
+    e.preventDefault(); // no cheating >:(
+  };
+// pairs with :
+// onPaste={(e)=> disablePaste(e)}
+// on input fields attributes
