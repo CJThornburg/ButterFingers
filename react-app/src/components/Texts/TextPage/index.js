@@ -187,6 +187,9 @@ function TextPage() {
   }
 
 
+  const disablePaste = (e) => {
+    e.preventDefault(); // no cheating >:(
+  };
 
   // buttons on "stats" page
   const handleNext = async () => {
@@ -303,6 +306,7 @@ function TextPage() {
           onChange={(e) => userInputChange(e)}
           className="TP-textarea textarea-Text"
           autoFocus
+          onPaste={disablePaste}
         >
         </textarea>
       </form>}
