@@ -255,8 +255,12 @@ function TextPage() {
 
 
       <div className="column-holder-stats ">
+
         <div className="column ">
 
+          <div className="spacer"></div>
+        {relevantScores.length >= 3 &&  <ResultsGraph relevantScores={relevantScores}></ResultsGraph>}
+{relevantScores.length < 3 && <div className="PP-noGraph-div HFont"> <h1 className="st">User has not run enough tests to generate a graph. :( </h1></div> }
           <h3 className="pFont wgt">Key Strokes Per Minute: <span className="yt"> {((textObj.characterCount * 60)/ (ms /1000)).toFixed(2)} </span></h3>
           <h3 className="pFont wgt">Time: <span className="yt">{(ms / 1000).toFixed(2)}</span></h3>
           <h3 className="pFont wgt">Accuracy: <span className="yt">{(((textObj.characterCount) / (textObj.characterCount + mistakes)) * 100).toFixed(2)}% </span></h3>
@@ -275,7 +279,8 @@ function TextPage() {
 
 {/* {ms:  , date:} of scores with the same userId*/}
 
-        <ResultsGraph relevantScores={relevantScores}></ResultsGraph>
+
+        {/* <ResultsGraph relevantScores={relevantScores}></ResultsGraph> */}
 
 
           <div className="TP-next-delete-div">

@@ -531,7 +531,7 @@ function ProfilePage() {
             </p>
 
             {userScores.length > 3 &&  <ResultsGraph relevantScores={userScores}></ResultsGraph>}
-            {userScores.length < 3 && <div className="PP-noGraph-div HFont"> <h1 className="st">User has not ran enough tests to generate graph :( </h1></div> }
+            {userScores.length < 3 && <div className="PP-noGraph-div HFont"> <h1 className="st">User has not run enough tests to generate a graph. :( </h1></div> }
 
 
             {/* if friends render more stats */}

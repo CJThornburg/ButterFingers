@@ -7,6 +7,13 @@ function ResultsGraph({relevantScores}) {
 
     console.log("rel on RG comp", relevantScores )
 
+
+
+
+    // if (relevantScores.len <3 ) {
+    //     return (<div className="PP-noGraph-div HFont"> <h1 className="st">User has not ran enough tests to generate graph :( </h1></div>)
+    // }
+
     const customFontFamily = "'Lexend Deca', sans-serif";
     const axisLabelStyle = {
         fontSize: "2vh", // Adjust font size as needed
