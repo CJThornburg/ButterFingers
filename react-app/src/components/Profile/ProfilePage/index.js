@@ -7,7 +7,8 @@ import { thunkCreateFriendRelationship, thunkAcceptFriend, thunkRejectFriend, th
 import { useParams, useHistory, Link } from "react-router-dom";
 import { getLevel } from "../../../utils";
 import PlayerText from "./PlayerText";
-
+import ResultsGraph from "../../ResultsGraph";
+import { jsDMYDateFormatter } from "../../../utils";
 
 
 
@@ -149,8 +150,11 @@ function ProfilePage() {
   // if exist and is active render whole page
   // ! current user is on own page
   if (currentUsername.toLowerCase() === username.toLowerCase()) {
-    console.log("hi")
+
     let owner = true
+
+
+
     return (
       <>
         <div className="PP-columnHolder">
@@ -170,13 +174,16 @@ function ProfilePage() {
             <p className="PP-main-Profile-info pFont yt  PP-username">
               {userObj?.username}
             </p>
-            <p className="PP-main-Profile-info  pFont wgt PP-joined">
-              joined: <span className="yt"> {userObj?.createdAt} </span>
-            </p>
+
             <p className="PP-main-Profile-info  pFont wgt PP-level">
               Level: <span className="yt"> {level}</span>
 
             </p>
+
+            <p className="PP-main-Profile-info  pFont wgt PP-joined">
+              joined: <span className="yt"> { jsDMYDateFormatter(userObj?.createdAt)} </span>
+            </p>
+            <ResultsGraph relevantScores={userScores}></ResultsGraph>
 
 
 
@@ -326,12 +333,12 @@ function ProfilePage() {
           <p className="PP-main-Profile-info pFont yt  PP-username">
             {userObj?.username}
           </p>
-          <p className="PP-main-Profile-info  pFont wgt PP-joined">
-            joined:  {userObj?.createdAt}
-          </p>
           <p className="PP-main-Profile-info  pFont wgt PP-level">
             Level: {level}
 
+          </p>
+          <p className="PP-main-Profile-info  pFont wgt PP-joined">
+            joined:  {userObj?.createdAt}
           </p>
 
           <div>
@@ -387,13 +394,17 @@ function ProfilePage() {
           <p className="PP-main-Profile-info pFont yt  PP-username">
             {userObj?.username}
           </p>
-          <p className="PP-main-Profile-info  pFont wgt PP-joined">
-            joined:  {userObj?.createdAt}
-          </p>
           <p className="PP-main-Profile-info  pFont wgt PP-level">
             Level: {level}
 
           </p>
+
+
+
+          <p className="PP-main-Profile-info  pFont wgt PP-joined">
+            joined:  {userObj?.createdAt}
+          </p>
+
 
           <div>
             <button className="default_button" onClick={handleAccept} >accept</button>
@@ -468,13 +479,14 @@ function ProfilePage() {
           <p className="PP-main-Profile-info pFont yt  PP-username">
             {userObj?.username}
           </p>
-          <p className="PP-main-Profile-info  pFont wgt PP-joined">
-            joined:  {userObj?.createdAt}
-          </p>
           <p className="PP-main-Profile-info  pFont wgt PP-level">
             Level: {level}
 
           </p>
+          <p className="PP-main-Profile-info  pFont wgt PP-joined">
+            joined:  {userObj?.createdAt}
+          </p>
+
           <div>
             <button className="default_button" onClick={removeFriend}>Cancel Friend Request </button>
           </div>
@@ -506,29 +518,13 @@ function ProfilePage() {
             <p className="PP-main-Profile-info pFont yt  PP-username">
               {userObj?.username}
             </p>
-            <p className="PP-main-Profile-info  pFont wgt PP-joined">
-              joined:  {userObj?.createdAt}
-            </p>
             <p className="PP-main-Profile-info  pFont wgt PP-level">
               Level: {level}
 
             </p>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+            <p className="PP-main-Profile-info  pFont wgt PP-joined">
+              joined:  {userObj?.createdAt}
+            </p>
 
 
             {/* if friends render more stats */}

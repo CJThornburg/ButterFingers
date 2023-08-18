@@ -54,3 +54,39 @@ export const getLevel = (exp) => {
 
 
 }
+
+
+export const jsTimeFormatter =() => {
+    const currentDate = new Date();
+
+
+    const daysOfWeek = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
+    const monthsOfYear = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
+
+
+    const formattedDate = `${daysOfWeek[currentDate.getUTCDay()]}, ${currentDate.getUTCDate()} ${monthsOfYear[currentDate.getUTCMonth()]} ${currentDate.getUTCFullYear()} ${currentDate.getUTCHours()}:${currentDate.getUTCMinutes()}:${currentDate.getUTCSeconds()} GMT`;
+
+
+    return formattedDate
+
+}
+
+
+
+export const jsDMYDateFormatter = (dateString) => {
+
+    console.log(dateString)
+    if (!dateString) {
+        return dateString
+    }
+
+    const dateParts = dateString.split(" "); // Split the string by spaces
+
+const day = dateParts[1]; // Get the day part (e.g., "18")
+const month = dateParts[2]; // Get the month part (e.g., "Aug")
+const year = dateParts[3]; // Get the year part (e.g., "2023")
+
+const formattedDate = `${day} ${month} ${year}`;
+
+return formattedDate
+}

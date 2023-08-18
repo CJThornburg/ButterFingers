@@ -5,6 +5,7 @@ import ResultsGraph from '../../ResultsGraph'
 import OpenModalButton from "../../OpenModalButton";
 import TextFormModal from "../TextFormModal"
 import './TextPage.css'
+import {jsTimeFormatter} from "../../../utils"
 
 
 
@@ -227,25 +228,43 @@ function TextPage() {
     // TODO add data showing users overall stats for this text
     // TODO if characters less than ~20, for KPM just say "too short of text sample to calculate kpm"
 
-    console.log(scores)
-    console.log(scores[0].textId)
-    console.log(textObj)
+
     let relevantScores = scores.filter((score)=> score.userId=== user )
-    console.log("relevant scores", relevantScores)
+    // let now = new Date();
+    // // let formNow = now.toISOString()
+    // // console.log(formNow)
+    // console.log("python notation ", relevantScores[0].createdAt)
+    // const currentDate = new Date();
+
+
+
+    // const daysOfWeek = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
+    // const monthsOfYear = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
+
+    // const formattedDate = `${daysOfWeek[currentDate.getUTCDay()]}, ${currentDate.getUTCDate()} ${monthsOfYear[currentDate.getUTCMonth()]} ${currentDate.getUTCFullYear()} ${currentDate.getUTCHours()}:${currentDate.getUTCMinutes()}:${currentDate.getUTCSeconds()} GMT`;
+    let formattedDate = jsTimeFormatter()
+
+
+    const currentScore = {
+      "kpm": ((textObj.characterCount * 60)/ (ms /1000)).toFixed(2),
+      "createdAt": formattedDate
+    }
+
+    relevantScores.push(currentScore)
     return (<>
 
 
       <div className="column-holder-stats ">
         <div className="column ">
 
-          <h3 className="pFont wgt">Key Strokes Per Minute: {((textObj.characterCount * 60)/ (ms /1000)).toFixed(2)}</h3>
-          <h3 className="pFont wgt">Time: {(ms / 1000).toFixed(2)}</h3>
-          <h3 className="pFont wgt">Accuracy: {(((textObj.characterCount) / (textObj.characterCount + mistakes)) * 100).toFixed(2)}%</h3>
-          <h4 className="pFont wgt">Word Count: {textObj.wordCount}</h4>
-          <h4 className="pFont wgt">Mistakes: {mistakes}</h4>
-          <h4 className="pFont wgt">Characters: {textObj.characterCount} </h4>
-          <h4 className="pFont wgt">non space Characters: {textObj.noSpaceCharacterCount}</h4>
-          <h4 className="pFont wgt">exp: {textObj.textExp}</h4>
+          <h3 className="pFont wgt">Key Strokes Per Minute: <span className="yt"> {((textObj.characterCount * 60)/ (ms /1000)).toFixed(2)} </span></h3>
+          <h3 className="pFont wgt">Time: <span className="yt">{(ms / 1000).toFixed(2)}</span></h3>
+          <h3 className="pFont wgt">Accuracy: <span className="yt">{(((textObj.characterCount) / (textObj.characterCount + mistakes)) * 100).toFixed(2)}% </span></h3>
+          <h4 className="pFont wgt">Word Count: <span className="yt"> {textObj.wordCount}</span></h4>
+          <h4 className="pFont wgt">Mistakes: <span className="yt"> {mistakes}</span></h4>
+          <h4 className="pFont wgt">Characters: <span className="yt"> {textObj.characterCount} </span></h4>
+          <h4 className="pFont wgt">non space Characters: <span className="yt">{textObj.noSpaceCharacterCount}</span></h4>
+          <h4 className="pFont wgt">exp: <span className="yt">{textObj.textExp}</span> </h4>
           {/*
       <h1>vs</h1>
 

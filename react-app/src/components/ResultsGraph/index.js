@@ -29,13 +29,13 @@ function ResultsGraph({relevantScores}) {
 
             <Area dataKey="kpm" stroke="#E2B714" fill="url(#color)"/>
 
-            <XAxis dataKey="createdAt" axisLine={false} tickLine={false} tick={{ fontSize: "1.2vh", fontFamily: customFontFamily }}  tickFormatter={(num => num.substr(0,10))}    label={{ value: "Test Time", position: "insideBottom", offset: -5,  style: axisLabelStyle }}
+            <XAxis dataKey="createdAt" axisLine={false} tickLine={false} tick={{ fontSize: "1.2vh", fontFamily: customFontFamily }}  tickFormatter={(num => num.substr(0,11))}    label={{ value: "Test Time", position: "insideBottom", offset: -5,  style: axisLabelStyle }}
                 interval={Math.ceil(relevantScores.length / 10)}
             />
 
             <YAxis dataKey="kpm" axisLine={false} tickLine={false}  label={{ value: "KSPM", position: "insideLeft", angle: -90,  style: axisLabelStyle, }}/>
 
-            <Tooltip/>
+            <Tooltip   contentStyle={{ backgroundColor: "#323437", color: "#D1D0C5", "borderColor": "#E2B714", "border-radius": "10px" }}/>
 
             <CartesianGrid opacity={0.1} vertical={false}/>
         </AreaChart>
