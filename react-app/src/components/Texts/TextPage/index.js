@@ -5,7 +5,7 @@ import ResultsGraph from '../../ResultsGraph'
 import OpenModalButton from "../../OpenModalButton";
 import TextFormModal from "../TextFormModal"
 import './TextPage.css'
-import {jsTimeFormatter} from "../../../utils"
+import {jsTimeFormatter, disablePaste} from "../../../utils"
 
 
 
@@ -189,10 +189,10 @@ function TextPage() {
   }
 
 
-  const disablePaste = (e) => {
-    // !!!! cheat cheating anti-cheat
-    // e.preventDefault(); // no cheating >:(
-  };
+  // const disablePaste = (e) => {
+  //   // !!!! cheat cheating anti-cheat
+  //   e.preventDefault(); // no cheating >:(
+  // };
 
   // buttons on "stats" page
   const handleNext = async () => {
@@ -346,7 +346,7 @@ function TextPage() {
           onChange={(e) => userInputChange(e)}
           className="TP-textarea textarea-Text"
           autoFocus
-          onPaste={disablePaste}
+          onPaste={(e)=> disablePaste(e)}
         >
         </textarea>
       </form>}

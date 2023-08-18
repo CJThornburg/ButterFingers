@@ -4,6 +4,7 @@ import { thunkCreateScore } from "../../../store/scores"
 import { thunkDeleteText } from "../../../store/texts";
 import { thunkGetAllTexts } from "../../../store/texts";
 import './ProfilePage.css'
+import {disablePaste} from '../../../utils'
 
 function PlayerText({ text, username, owner }) {
 
@@ -81,11 +82,13 @@ function PlayerText({ text, username, owner }) {
         }
         setDone(false)
         setRenderTest(false)
+        setUserText("")
     }
 
     const handleEarlyClose = async () => {
         setDone(false)
         setRenderTest(false)
+        setUserText("")
     }
     const handleDelete = (e, textId) => {
 
@@ -128,7 +131,7 @@ function PlayerText({ text, username, owner }) {
     }
 
 
-// !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!! add delete functionality
+
 
     return (
         <>
@@ -161,6 +164,7 @@ function PlayerText({ text, username, owner }) {
                         className=" placeholder-Text "
                         autoFocus
                         id="PP-textAreas"
+                        onPaste={(e)=> disablePaste(e)}
                     >
                     </textarea>
 
