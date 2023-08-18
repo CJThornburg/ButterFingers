@@ -1,0 +1,18 @@
+.TF-Form{
+    display: flex;
+    flex-direction: column;
+    background-color: #323437;
+    width: 800px;
+    height: 53vh;
+    border-radius: 30px;
+    padding: 10px;
+}
+
+
+.TF-input {
+    margin: 15px;
+}
+
+#textSize{
+    height: 30vh;
+}

@@ -131,7 +131,7 @@ function SignupFormPage() {
 
   return (
     <>
-      <h1 className="wgt SP-title pFont">register</h1>
+      <h1 className="yt SP-title pFont">register</h1>
       <form onSubmit={handleSubmit} className="SFP-div">
         {errors.length > 0 &&<ul>
           {errors.map((error, idx) => <li className="error-text" key={idx}>{error}</li>)}
@@ -211,7 +211,7 @@ function SignupFormPage() {
             className="placeholder-Text"
           />
         </label>
-        <button type="submit" className="default_button pointer"> <i class="buttonIcon fa-solid fas fa-user-plus wgt "></i>    Sign Up!</button>
+        <button type="submit" className="default_button pointer"> <i class="buttonIcon fa-solid fas fa-user-plus wgt "></i>   <span className="">Sign Up!</span> </button>
       </form>
 
     </>

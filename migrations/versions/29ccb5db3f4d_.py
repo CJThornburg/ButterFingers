@@ -1,8 +1,8 @@
 """empty message
 
-Revision ID: 1f5b387f4b00
+Revision ID: 29ccb5db3f4d
 Revises:
-Create Date: 2023-08-16 18:38:02.050516
+Create Date: 2023-08-18 17:21:07.638093
 
 """
 from alembic import op
@@ -14,7 +14,7 @@ SCHEMA = os.environ.get("SCHEMA")
 
 
 # revision identifiers, used by Alembic.
-revision = '1f5b387f4b00'
+revision = '29ccb5db3f4d'
 down_revision = None
 branch_labels = None
 depends_on = None
@@ -64,6 +64,7 @@ def upgrade():
     )
     if environment == "production":
         op.execute(f"ALTER TABLE texts SET SCHEMA {SCHEMA};")
+
     op.create_table('scores',
     sa.Column('id', sa.Integer(), nullable=False),
     sa.Column('textId', sa.Integer(), nullable=True),

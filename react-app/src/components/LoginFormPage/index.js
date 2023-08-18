@@ -63,7 +63,7 @@ function LoginFormPage({ from }) {
 
   return (
     <>
-      <h1 className="wgt LFP-title pFont">login</h1>
+      <h1 className="yt LFP-title pFont">login</h1>
       <form onSubmit={handleSubmit} className="LFP-div">
       {errors.length > 0 &&<ul>
           {errors.map((error, idx) => <li className="error-text" key={idx}>{error}</li>)}

@@ -4,6 +4,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { thunkDeleteText } from "../../../store/texts";
 import { thunkGetAllTexts } from "../../../store/texts";
 import TextFormModal from "../TextFormModal"
+import './playersDeckModal.css'
 
 
 
@@ -52,7 +53,7 @@ function PlayersDeckModal({ setCopyText, setShowTextArea, setMistakes, setMs, se
 
   if (noSavedText) {
     return (
-      <h1>No saved texts :(</h1>
+      <h1 className="wgt HFont">No saved texts :(</h1>
     )
   }
 
@@ -69,19 +70,22 @@ function PlayersDeckModal({ setCopyText, setShowTextArea, setMistakes, setMs, se
 
 
   return (
-    <>
+    <div className="PDM-div">
 
 
 
       {/* if user owns no cards return "no cards make cards and save them" */}
-      <h1> Saved texts</h1>
+      <h1 className="wgt HFont"> Saved texts</h1>
+      <div className="PDM-div-cards">
+
       {texts.map((text) => (
-        <div>
-          <button onClick={(e) => loadText(e, text)}> Name:{text.name},   Experience {text.textExp}</button>
-          <i onClick={(e) => handleDelete(e, text.id)} className="fa-solid fas fa-trash"></i>
+        <div className="PDM-card-delete-row">
+          <button className="default_button" onClick={(e) => loadText(e, text)}> Name:{text.name},   Experience {text.textExp}</button>
+          <button className="default_button" onClick={(e) => handleDelete(e, text.id)}>  <i  className="fa-solid fas fa-trash"></i></button>
           {/* if time truncate the first few lines */}
         </div>
       ))}
+      </div>
       {/* can either reopen textFormModal when a card is picked with that info,
                 OR
                 rerender this modal to use the textFormModal edit version
@@ -89,7 +93,7 @@ function PlayersDeckModal({ setCopyText, setShowTextArea, setMistakes, setMs, se
                 */}
       {/* use selector to grab all cards of current user from all texts state  */}
 
-    </>
+    </div>
   )
 
 

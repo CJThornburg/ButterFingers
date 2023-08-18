@@ -2,12 +2,13 @@
     width: 800px;
     height: 400px;
 }
-.TP-form{
-  width: 850px;
+
+.TP-form {
+    width: 850px;
 }
 
 
-.TP-Whole-div{
+.TP-Whole-div {
     display: flex;
     justify-content: space-around;
 
@@ -25,6 +26,7 @@
     padding-left: 30px;
     padding-right: 30px;
     border-radius: 20px;
+    /* margin-right: 200px; */
 }
 
 .TP-copyText {
@@ -32,12 +34,17 @@
 }
 
 
-
-.textarea-Text:focus{
-    border-color:#E2B714;
-    outline-color: #E2B714;
-    outline:0.15em solid #E2B714
+.spacer {
+    height: 100px;
 }
+
+
+.textarea-Text:focus {
+    border-color: #E2B714;
+    outline-color: #E2B714;
+    outline: 0.15em solid #E2B714
+}
+
 .textarea-Text {
     background-color: #2C2E31;
     box-shadow: none;
@@ -48,4 +55,10 @@
     caret-color: #E2B714;
     font-size: 1.8vh;
     font-family: 'Roboto Mono', monospace;
+}
+
+
+.TP-next-delete-div {
+    display: flex;
+    gap: 10px
 }

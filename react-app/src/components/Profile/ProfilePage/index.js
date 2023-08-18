@@ -7,7 +7,8 @@ import { thunkCreateFriendRelationship, thunkAcceptFriend, thunkRejectFriend, th
 import { useParams, useHistory, Link } from "react-router-dom";
 import { getLevel } from "../../../utils";
 import PlayerText from "./PlayerText";
-
+import ResultsGraph from "../../ResultsGraph";
+import { jsDMYDateFormatter } from "../../../utils";
 
 
 
@@ -25,9 +26,7 @@ function ProfilePage() {
   const friends = useSelector(state => Object.values(state.friends))
 
 
-  console.log("USER OBJCECT", userObj)
 
-  console.log(friends)
 
   if (texts.length === 0) {
     return null
@@ -131,11 +130,11 @@ function ProfilePage() {
 
   const currentFriendsTo = friends.filter(friend => (
     (friend.toUser.toLowerCase() === currentUsername.toLowerCase()) && friend.status === "active"));
-// grab fromUser username
+  // grab fromUser username
 
 
   const currentFriendsFrom = friends.filter(friend => (
-      friend.fromUser.toLowerCase() === currentUsername.toLowerCase() && friend.status === "active"));
+    friend.fromUser.toLowerCase() === currentUsername.toLowerCase() && friend.status === "active"));
 
   // grab toUser userName
   console.log("current friends TO current user", currentFriendsTo)
@@ -151,96 +150,143 @@ function ProfilePage() {
   // if exist and is active render whole page
   // ! current user is on own page
   if (currentUsername.toLowerCase() === username.toLowerCase()) {
-    console.log("hi")
+
     let owner = true
+
+
+
     return (
       <>
-        <h1>
+        <div className="PP-columnHolder">
+          <div className="column ">
 
-          profilePage
-        </h1>
-        <div>
-          <img className="PP-cp" src={userObj?.coverPhoto}></img>
-          <img className="PP-pp" src={userObj?.profile_imageURL}></img>
+            <div className="PP-cp-pp-div">
+              <div className="PP-cp-div">
+                <img className="PP-cp" src={userObj?.coverPhoto}></img>
 
-          <p className="PP-main-Profile-info PP-username">
-            {userObj?.username}
-          </p>
-          <p className="PP-main-Profile-info PP-joined">
-            joined:  {userObj?.createdAt}
-          </p>
-          <p className="PP-main-Profile-info PP-level">
-            Level: {level}
-
-          </p>
-          <div className="PP-list-div">
-            <h4 className="wgt">Friends</h4>
-            { currentFriendsTo.map((friend) => (
-              <div >
-             <Link className="anti-link wgt" to={`/users/${friend.fromUser}`}><button className="default_button" >{friend.fromUser}</button>  </Link>
-             <i onClick={(e) => removeFriendFromOwn(friend.id)} className="fa-solid fas fa-trash cursor"></i>
               </div>
-            ))}
-            { currentFriendsFrom.map((friend) => (
-              <div >
-             <Link className="anti-link wgt" to={`/users/${friend.toUser}`}><button className="default_button" >{friend.toUser}</button>  </Link>
-             <i onClick={(e) => removeFriendFromOwn(friend.id)} className="fa-solid fas fa-trash cursor"></i>
+              <div className="PP-pp-div">
+                <img className="PP-pp" src={userObj?.profile_imageURL}></img>
+
               </div>
-            ))}
-          </div>
-          <div className="PP-list-div">
-            <h4 className="wgt">Pending Sent Request</h4>
-            {  currentSentFriendRequests.map((friend) => (
-              <div >
-             <Link className="anti-link wgt" to={`/users/${friend.toUser}`}><button className="default_button" >{friend.toUser}</button>  </Link>
-             <i onClick={(e) => removeFriendFromOwn(friend.id)} className="fa-solid fas fa-trash cursor"></i>
+            </div>
+
+            <p className="PP-main-Profile-info pFont yt  PP-username">
+              {userObj?.username}
+            </p>
+
+            <p className="PP-main-Profile-info  pFont wgt PP-level">
+              Level: <span className="yt"> {level}</span>
+
+            </p>
+
+            <p className="PP-main-Profile-info  pFont wgt PP-joined">
+              joined: <span className="yt"> { jsDMYDateFormatter(userObj?.createdAt)} </span>
+            </p>
+
+            {userScores.length > 3 &&  <ResultsGraph relevantScores={userScores}></ResultsGraph>}
+            {userScores.length < 3 && <div className="PP-noGraph-div HFont"> <h1 className="st">You have not ran enough tests to generate graph :( </h1></div> }
+
+
+
+            <div className="PP-lists-div">
+              <div className="PP-list-div">
+                <h4 className="wgt HFont">Friends</h4>
+
+
+
+                {currentFriendsTo.map((friend) => (
+                  <div className="user-delete-div">
+                    <Link className="anti-link wgt" to={`/users/${friend.fromUser}`}><button className="default_button" >{friend.fromUser}</button>  </Link><button className="default_button">
+                      <i onClick={(e) => removeFriendFromOwn(friend.id)} className="fa-solid fas fa-trash cursor"></i></button>
+                  </div>
+                ))}
+                {currentFriendsFrom.map((friend) => (
+                  <div className="user-delete-div">
+                    <Link className="anti-link wgt" to={`/users/${friend.toUser}`}><button className="default_button" >{friend.toUser}</button>  </Link><button className="default_button">
+                      <i onClick={(e) => removeFriendFromOwn(friend.id)} className="fa-solid fas fa-trash cursor"></i></button>
+                  </div>
+                ))}
+
+
               </div>
-            ))}
+
+
+
+              {currentSentFriendRequests.length > 0 &&
+
+                <div className="PP-list-div">
+                  <h4 className="wgt HFont">Pending Sent Request</h4>
+                  {currentSentFriendRequests.map((friend) => (
+                    <div className="user-delete-div">
+                      <Link className="anti-link wgt" to={`/users/${friend.toUser}`}><button className="default_button" >{friend.toUser}</button>  </Link><button className="default_button">
+                        <i onClick={(e) => removeFriendFromOwn(friend.id)} className="fa-solid fas fa-trash cursor"></i></button>
+                    </div>
+                  ))}
+
+                </div>
+              }
+
+
+
+
+              {currentReceivedFriendRequests.length > 0 &&
+                <div className="PP-list-div">
+                  <h4 className="wgt HFont">Pending Received Request</h4>
+                  {currentReceivedFriendRequests.map((friend) => (
+                    <div className="user-delete-div" >
+                      <Link className="anti-link wgt" to={`/users/${friend.fromUser}`}><button className="default_button" >{friend.fromUser}</button>  </Link>
+                      <button className="default_button" onClick={(e) => handleAcceptFromOwn(friend.fromUser)} >accept</button>
+                      <button className="default_button" onClick={(e) => handleRejectFromOwn(friend.fromUser)} > decline</button>
+                    </div>
+                  ))}
+
+
+                </div>
+              }
+
+
+            </div>
+
+            <p className="PP-tests wgt pFont">Tests Completed:  <span className="yt pFont"> {userScores.length}</span> </p>
+            <p className="PP-kpm wgt pFont">Average Key stokes per min: <span className="yt pFont">{averageKpm.toFixed(2)} </span> </p>
+            <p className="PP-time wgt pFont">Total time typing:  <span className="yt pFont"> </span>{totalTimeMin.toFixed(2)}mins</p>
+
+
+            {/* if friends or current user */}
+            <div className="PP-stats2 PP-totals">
+              <p className="PP-mistakes wgt pFont"> typed characters:  <span className="yt pFont">{totalChars} </span></p>
+              <p className="PP-mistakes wgt pFont">typed non-space characters:  <span className="yt pFont">{totalCharsNospace} </span></p>
+              <p className="PP-mistakes wgt pFont">totals mistakes: <span className="yt pFont"> {totalMistakes}</span> </p>
+
+            </div>
+
+
+
+            <div>
+              {userTexts.map((text) => (
+                <>
+                  <div className="Player-card overflow ">
+
+
+                    <PlayerText key={text.id}
+                      text={text}
+                      owner={owner}
+                      username={username}
+                    >
+
+                    </PlayerText>
+                  </div>
+                </>
+              ))}
+
+            </div>
+
+
+
+
 
           </div>
-          <div className="PP-list-div">
-            <h4 className="wgt">Pending Received Request</h4>
-            {  currentReceivedFriendRequests.map((friend) => (
-              <div >
-             <Link className="anti-link wgt" to={`/users/${friend.fromUser}`}><button className="default_button" >{friend.fromUser}</button>  </Link>
-             <button className="default_button"  onClick={(e) => handleAcceptFromOwn(friend.fromUser)} >accept</button>
-             <button className="default_button"  onClick={(e) => handleRejectFromOwn(friend.fromUser)} > decline</button>
-              </div>
-            ))}
-
-          </div>
-
-          <p className="PP-tests">Tests Completed: {userScores.length}</p>
-          <p className="PP-kpm">Average KPM: {averageKpm.toFixed(2)}</p>
-          <p className="PP-time">Total time: {totalTimeMin.toFixed(2)}mins</p>
-
-          <div>
-
-          </div>
-
-          {/* if friends or current user */}
-          <div className="PP-stats2 PP-totals">
-            <p className="PP-mistakes"> typed characters: {totalChars}</p>
-            <p className="PP-mistakes">typed non-space characters: {totalCharsNospace}</p>
-            <p className="PP-mistakes">totals mistakes: {totalMistakes}</p>
-
-          </div>
-
-          <div>
-            {userTexts.map((text) => (
-              <>
-                <PlayerText key={text.id}
-                  text={text}
-                  owner={owner}
-                  username={username}
-                >
-
-                </PlayerText>
-              </>
-            ))}
-
-          </div>
-
         </div>
       </>
     )
@@ -272,27 +318,39 @@ function ProfilePage() {
   // ! current user is not friends with user page they are on
   if (!relevantFriends) {
     return (<>
-      <div className="PP-top-card-request">
+      <div className="PP-columnHolder">
+        <div className="column ">
 
+          <div className="PP-cp-pp-div">
+            <div className="PP-cp-div">
+              <img className="PP-cp" src={userObj?.coverPhoto}></img>
 
-        <div>
-          <img className="PP-pp" src={userObj?.profile_imageURL}></img>
+            </div>
+            <div className="PP-pp-div">
+              <img className="PP-pp" src={userObj?.profile_imageURL}></img>
 
-          <p className="PP-main-Profile-info PP-username">
+            </div>
+          </div>
+
+          <p className="PP-main-Profile-info pFont yt  PP-username">
             {userObj?.username}
           </p>
-          <p className="PP-main-Profile-info PP-joined">
+          <p className="PP-main-Profile-info  pFont wgt PP-level">
+            Level: {level}
+
+          </p>
+          <p className="PP-main-Profile-info  pFont wgt PP-joined">
             joined:  {userObj?.createdAt}
           </p>
-          <p className="PP-main-Profile-info PP-level">
-            Level: {level} </p>
-        </div>
-        <div>
-          <button className="default_button" onClick={handleFriendRequest}> send friend request</button>
-        </div>
+
+          <div>
+            <button className="default_button" onClick={handleFriendRequest}> send friend request</button>
+          </div>
 
 
+        </div>
       </div>
+
     </>)
 
   }
@@ -321,27 +379,42 @@ function ProfilePage() {
   //
   if (relevantFriends.toUser === currentUsername && relevantFriends.status === "pending") {
     return (<>
-      <div className="PP-top-card-request">
+      <div className="PP-columnHolder">
+        <div className="column ">
 
+          <div className="PP-cp-pp-div">
+            <div className="PP-cp-div">
+              <img className="PP-cp" src={userObj?.coverPhoto}></img>
 
-        <div>
-          <img className="PP-pp" src={userObj?.profile_imageURL}></img>
+            </div>
+            <div className="PP-pp-div">
+              <img className="PP-pp" src={userObj?.profile_imageURL}></img>
 
-          <p className="PP-main-Profile-info PP-username">
+            </div>
+          </div>
+
+          <p className="PP-main-Profile-info pFont yt  PP-username">
             {userObj?.username}
           </p>
-          <p className="PP-main-Profile-info PP-joined">
+          <p className="PP-main-Profile-info  pFont wgt PP-level">
+            Level: {level}
+
+          </p>
+
+
+
+          <p className="PP-main-Profile-info  pFont wgt PP-joined">
             joined:  {userObj?.createdAt}
           </p>
-          <p className="PP-main-Profile-info PP-level">
-            Level: {level} </p>
-        </div>
-        <div>
-          <button className="default_button" onClick={handleAccept} >accept</button>
-          <button className="default_button" onClick={handleReject} >reject</button>
-        </div>
 
 
+          <div>
+            <button className="default_button" onClick={handleAccept} >accept</button>
+            <button className="default_button" onClick={handleReject} >reject</button>
+          </div>
+
+
+        </div>
       </div>
     </>)
   }
@@ -349,28 +422,38 @@ function ProfilePage() {
   // current user rejected, but can cancel and send request
   if (relevantFriends.toUser === currentUsername && relevantFriends.status === "rejected") {
     return (<>
-      <div className="PP-top-card-request">
+      <div className="PP-columnHolder">
+        <div className="column ">
 
+          <div className="PP-cp-pp-div">
+            <div className="PP-cp-div">
+              <img className="PP-cp" src={userObj?.coverPhoto}></img>
 
-        <div>
-          <img className="PP-pp" src={userObj?.profile_imageURL}></img>
+            </div>
+            <div className="PP-pp-div">
+              <img className="PP-pp" src={userObj?.profile_imageURL}></img>
 
-          <p className="PP-main-Profile-info PP-username">
+            </div>
+          </div>
+
+          <p className="PP-main-Profile-info pFont yt  PP-username">
             {userObj?.username}
           </p>
-          <p className="PP-main-Profile-info PP-joined">
+          <p className="PP-main-Profile-info  pFont wgt PP-joined">
             joined:  {userObj?.createdAt}
           </p>
-          <p className="PP-main-Profile-info PP-level">
-            Level: {level} </p>
+          <p className="PP-main-Profile-info  pFont wgt PP-level">
+            Level: {level}
+
+          </p>
+          <div>
+
+            <button className="default_button" disabled >rejected</button>
+            <button className="default_button" onClick={handleUndoReject}>undo rejection </button>
+          </div>
+
+
         </div>
-        <div>
-
-          <button className="default_button" disabled >rejected</button>
-          <button className="default_button" onClick={handleUndoReject}>undo rejection </button>
-        </div>
-
-
       </div>
     </>)
   }
@@ -381,25 +464,34 @@ function ProfilePage() {
   // ! or the toUser  user rejected it
   if (relevantFriends.fromUser === currentUsername && ((relevantFriends.status === "pending") || relevantFriends.status === "rejected")) {
     return (<>
-      <div className="PP-top-card-request">
+      <div className="PP-columnHolder">
+        <div className="column ">
 
+          <div className="PP-cp-pp-div">
+            <div className="PP-cp-div">
+              <img className="PP-cp" src={userObj?.coverPhoto}></img>
 
-        <div>
-          <img className="PP-pp" src={userObj?.profile_imageURL}></img>
+            </div>
+            <div className="PP-pp-div">
+              <img className="PP-pp" src={userObj?.profile_imageURL}></img>
 
-          <p className="PP-main-Profile-info PP-username">
+            </div>
+          </div>
+
+          <p className="PP-main-Profile-info pFont yt  PP-username">
             {userObj?.username}
           </p>
+          <p className="PP-main-Profile-info  pFont wgt PP-level">
+            Level: {level}
 
-          <p className="PP-main-Profile-info PP-joined">
+          </p>
+          <p className="PP-main-Profile-info  pFont wgt PP-joined">
             joined:  {userObj?.createdAt}
           </p>
-          <p className="PP-main-Profile-info PP-level">
-            Level: {level} </p>
-        </div>
-        <div>
-          <button  className="disabled_default_button" disabled>Friend Request Sent</button>
-          <button className="default_button" onClick={removeFriend}>Cancel Friend Request </button>
+
+          <div>
+            <button className="default_button" onClick={removeFriend}>Cancel Friend Request </button>
+          </div>
         </div>
       </div>
     </>)
@@ -410,63 +502,82 @@ function ProfilePage() {
 
   // ! current user is friends with the user of this page
   if (relevantFriends.status === "active")
+
+  console.log(userScores)
     return (
       <>
-        <h1>
+        <div className="PP-columnHolder">
+          <div className="column ">
+            <div className="PP-cp-pp-div">
+              <div className="PP-cp-div">
+                <img className="PP-cp" src={userObj?.coverPhoto}></img>
 
-          profilePage
-        </h1>
-        <div>
-          <img className="PP-pp" src={userObj?.profile_imageURL}></img>
+              </div>
+              <div className="PP-pp-div">
+                <img className="PP-pp" src={userObj?.profile_imageURL}></img>
 
-          <p className="PP-main-Profile-info PP-username">
-            {userObj?.username}
-          </p>
-          <button className="default_button" onClick={removeFriend}>Unfriend</button>
-          <p className="PP-main-Profile-info PP-joined">
-            joined:  {userObj?.createdAt}
-          </p>
-          <p className="PP-main-Profile-info PP-level">
-            Level: {level}
+              </div>
+            </div>
 
-          </p>
-          {/* if friends render more stats */}
-          <p className="PP-tests">Tests Completed: {userScores.length}</p>
-          <p className="PP-kpm">Average KPM: {averageKpm.toFixed(2) || 0}</p>
-          <p className="PP-time">Total time: {totalTimeMin.toFixed(2)}mins</p>
+            <p className="PP-main-Profile-info pFont yt  PP-username">
+              {userObj?.username}
+            </p>
+            <p className="PP-main-Profile-info  pFont wgt PP-level">
+              Level: {level}
 
-          <div>
+            </p>
+            <p className="PP-main-Profile-info  pFont wgt PP-joined">
+              joined:  {userObj?.createdAt}
+            </p>
+
+            {userScores.length > 3 &&  <ResultsGraph relevantScores={userScores}></ResultsGraph>}
+            {userScores.length < 3 && <div className="PP-noGraph-div HFont"> <h1 className="st">User has not run enough tests to generate a graph. :( </h1></div> }
+
+
+            {/* if friends render more stats */}
+            <p className="PP-tests wgt pFont">Tests Completed:  <span className="yt pFont"> {userScores.length}</span> </p>
+            <p className="PP-kpm wgt pFont">Average Key stokes per min: <span className="yt pFont">{averageKpm.toFixed(2)} </span> </p>
+            <p className="PP-time wgt pFont">Total time typing:  <span className="yt pFont"> </span>{totalTimeMin.toFixed(2)}mins</p>
+
+
+
+
+            <div className="PP-stats2 PP-totals">
+              <p className="PP-mistakes wgt pFont"> typed characters:  <span className="yt pFont">{totalChars} </span></p>
+              <p className="PP-mistakes wgt pFont">typed non-space characters:  <span className="yt pFont">{totalCharsNospace} </span></p>
+              <p className="PP-mistakes wgt pFont">totals mistakes: <span className="yt pFont"> {totalMistakes}</span> </p>
+
+            </div>
+
+
+
+
+            <div>
+              {userTexts.map((text) => (
+                <>
+                  <div className="Player-card overflow ">
+
+
+                    <PlayerText key={text.id}
+                      text={text}
+
+                      username={username}
+                    >
+
+                    </PlayerText>
+                  </div>
+                </>
+              ))}
+
+            </div>
 
           </div>
-
-          {/* if friends or current user */}
-          <div className="PP-stats2 PP-totals">
-            <p className="PP-mistakes"> typed characters: {totalChars}</p>
-            <p className="PP-mistakes">typed non-space characters: {totalCharsNospace}</p>
-            <p className="PP-mistakes">totals mistakes: {totalMistakes}</p>
-
-          </div>
-
-          <div>
-            {userTexts.map((text) => (
-              <>
-                <PlayerText key={text.id}
-                  text={text}
-                  username={username}
-                >
-
-                </PlayerText>
-              </>
-            ))}
-
-          </div>
-
         </div>
       </>
     );
 
 
-  return (<>"hi"</>)
+
 }
 
 export default ProfilePage;

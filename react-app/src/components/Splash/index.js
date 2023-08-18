@@ -35,7 +35,7 @@ function Splash() {
       <h1 className="wgt HFont">
         Welcome to ButterFingers, let those fingers rip!
       </h1>
-       <h2 className="wgt HFont">
+       <h2 className="yt HFont">
        Connect and speed run your friends!
        </h2>
       </div>

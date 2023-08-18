@@ -20,23 +20,23 @@
   /* width: 100% */
 }
 
-.N-navLink{
+.N-navLink {
   font-size: 2.2vh;
 }
 
 
-.N-navLink:hover{
+.N-navLink:hover {
   font-size: 2.5vh;
 }
 
 
-.Nav-test{
+.Nav-test {
   display: flex;
-  gap:5px;
+  gap: 5px;
   align-items: center;
 }
 
-.Nav-profile-logout-div{
+.Nav-profile-logout-div {
   display: flex;
 
   align-items: center;
@@ -47,4 +47,35 @@
 .form-div {
   display: flex;
   gap: 10px;
+}
+
+.BF {
+  font-size: 2.8vh;
+}
+
+.SR-div {
+  background-color: #323437;
+  width: 400px;
+  height: 53vh;
+  display: flex;
+  flex-direction: column;
+  padding: 20px;
+  border-radius: 30px;
+  align-items: center;
+  /* overflow: auto; */
+}
+.SR-inner{
+    overflow: auto;
+}
+
+.userResult{
+  margin-top: 5px;
+  margin-bottom: 5px;
+}
+.userLink{
+  font-size: 2vh;
+}
+
+.userLink:hover{
+  color:#E2B714
 }

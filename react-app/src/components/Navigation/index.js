@@ -7,6 +7,9 @@ import { useHistory } from "react-router-dom";
 import { logout } from "../../store/session";
 import { useDispatch, useSelector } from "react-redux";
 import userStats from '../Profile/userStats';
+import { useModal } from "../../context/Modal";
+import OpenModalButton from "../OpenModalButton";
+import SearchResultsModal from './SearchResultsModal'
 
 
 function Navigation({ isLoaded }) {
@@ -14,8 +17,10 @@ function Navigation({ isLoaded }) {
 	// const [signedIn, setSignedIn] = useState(false)
 	let users = useSelector(state => state.users)
 
+	const { setModalContent, setOnModalClose } = useModal();
 	console.log(users)
 	const [userNameSearch, setUserNameSearch] = useState("")
+	// const [similarUsers, setSimilarUsers] = useState([])
 
 
 	const history = useHistory();
@@ -28,17 +33,48 @@ function Navigation({ isLoaded }) {
 		e.preventDefault();
 		dispatch(logout());
 		// closeMenu();
+
 		history.push('/')
 	};
 
 	const handleSearch = (e) => {
 		e.preventDefault();
+		let exactMatch = false
 		if (users[userNameSearch]) {
-			history.push(`/users/${userNameSearch}`)
-		} else {
-			alert(`User with that username does not exist.
-Please check spelling and try again`)
+
+			exactMatch=true
+
+			// history.push(`/users/${userNameSearch}`)
+			setUserNameSearch("")
 		}
+
+			const similarUsers1 = Object.values(users).filter(user => user.username.includes(userNameSearch))
+			console.log("similar users ", similarUsers1 )
+
+			// if (onModalClose) setOnModalClose(onModalClose);
+    setModalContent(<SearchResultsModal exactMatch={exactMatch} exactUserName={userNameSearch} results={similarUsers1} />);
+
+
+
+
+
+
+			// setSimilarUsers(similarUsers1)
+			//TODO    open module with similar users mapped out to links to them
+			// TODO    "No exact matches were found did you mean one of these players? "
+			// console.log(similarUsers)
+
+
+
+
+// 			alert(`User with that username does not exist.
+// Please check spelling and try again`)
+
+
+
+
+
+		
 	}
 
 
@@ -50,7 +86,7 @@ Please check spelling and try again`)
 				{/* <li>
 					<NavLink exact to="/">Home</NavLink>
 				</li> */}
-				<li><h2 className='wgt HFont'>ButterFingers</h2></li>
+				<li><NavLink className="anti-link yt HFont" exact to="/test"><h1 className='BF'>ButterFingers</h1></NavLink></li>
 				<li className='Nav-test'>
 					<NavLink className="anti-link N-navLink wgt HFont" exact to="/test">Test</NavLink>
 				</li>
@@ -70,7 +106,12 @@ Please check spelling and try again`)
 						/>
 					</label>
 					<button className='default_button' onClick={handleSearch}>Search</button>
-
+					{/* <OpenModalButton
+          buttonText="Search"
+          className="TF-input"
+		  onClick={handleSearch}
+          modalComponent={<SearchResultsModal  results={similarUsers } />} */}
+        {/* /> */}
 				</form>
 
 
