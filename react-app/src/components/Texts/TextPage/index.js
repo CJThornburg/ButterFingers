@@ -255,6 +255,7 @@ function TextPage() {
       <h2>Text card history</h2> */}
 
 {/* {ms:  , date:} of scores with the same userId*/}
+
         <ResultsGraph relevantScores={relevantScores}></ResultsGraph>
 
 

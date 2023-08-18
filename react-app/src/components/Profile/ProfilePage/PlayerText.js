@@ -103,12 +103,13 @@ function PlayerText({ text, username, owner }) {
     }
 
 
+
     if (done) {
         return (
             <>
 
                 <h4 className="pFont wgt">Completed: <span className="yt "> {text.name}</span></h4>
-                <h3 className="pFont wgt">KPM: <span className="yt ">{((text.characterCount / ms) * 60000).toFixed(2)}</span> </h3>
+                <h3 className="pFont wgt">KSPM: <span className="yt ">{((text.characterCount * 60)/ (ms /1000)).toFixed(2)}</span> </h3>
                 <h3 className="pFont wgt">Time:  <span className="yt ">{(ms / 1000).toFixed(2)}</span></h3>
                 <h3 className="pFont wgt">ACC: <span className="yt "> {(((text.characterCount) / (text.characterCount + mistakes)) * 100).toFixed(2)}%</span></h3>
                 <h4 className="pFont wgt">Word Count: <span className="yt "> {text.wordCount}</span></h4>
