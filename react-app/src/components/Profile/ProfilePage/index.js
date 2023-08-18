@@ -183,7 +183,9 @@ function ProfilePage() {
             <p className="PP-main-Profile-info  pFont wgt PP-joined">
               joined: <span className="yt"> { jsDMYDateFormatter(userObj?.createdAt)} </span>
             </p>
-            <ResultsGraph relevantScores={userScores}></ResultsGraph>
+
+            {userScores.length > 3 &&  <ResultsGraph relevantScores={userScores}></ResultsGraph>}
+            {userScores.length < 3 && <div className="PP-noGraph-div HFont"> <h1 className="st">You have not ran enough tests to generate graph :( </h1></div> }
 
 
 
@@ -500,6 +502,8 @@ function ProfilePage() {
 
   // ! current user is friends with the user of this page
   if (relevantFriends.status === "active")
+
+  console.log(userScores)
     return (
       <>
         <div className="PP-columnHolder">
@@ -525,6 +529,9 @@ function ProfilePage() {
             <p className="PP-main-Profile-info  pFont wgt PP-joined">
               joined:  {userObj?.createdAt}
             </p>
+
+            {userScores.length > 3 &&  <ResultsGraph relevantScores={userScores}></ResultsGraph>}
+            {userScores.length < 3 && <div className="PP-noGraph-div HFont"> <h1 className="st">User has not ran enough tests to generate graph :( </h1></div> }
 
 
             {/* if friends render more stats */}
