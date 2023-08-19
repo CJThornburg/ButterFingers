@@ -17,6 +17,8 @@ export const thunkDeleteText = (scoreId) => async (dispatch) => {
 
 
 export const thunkCreateScore = (textId, time, mistakes, kpm, runExp, userId) => async (dispatch) => {
+    console.log("runEXP", runExp)
+    console.log("kspm", kpm)
     const response = await fetch(`/api/scores/new`, {
         method: "POST",
         headers: {
