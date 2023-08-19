@@ -64,6 +64,12 @@ body {
     font-weight: 700;
 }
 
+
+.default_button:focus {
+    border: 2px solid #E2B714;
+    
+}
+
 .disabled_default_button {
     background-color: #D1D0C5;
     box-shadow: none;
