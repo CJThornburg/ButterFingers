@@ -4,7 +4,7 @@ import { thunkCreateScore } from "../../../store/scores"
 import { thunkDeleteText } from "../../../store/texts";
 import { thunkGetAllTexts } from "../../../store/texts";
 import './ProfilePage.css'
-import {disablePaste} from '../../../utils'
+import { disablePaste } from '../../../utils'
 
 function PlayerText({ text, username, owner }) {
 
@@ -60,8 +60,8 @@ function PlayerText({ text, username, owner }) {
     }
 
     const handleNext = async () => {
+        let kpm = (((text.characterCount * 60)/ (ms /1000)))
 
-        let kpm = (text.characterCount / (ms / 1000))
         let res = await dispatch(thunkCreateScore(text.id, ms, mistakes, kpm, text.textExp, username.id))
         if (res?.error) {
             console.log("error", res)
@@ -75,7 +75,10 @@ function PlayerText({ text, username, owner }) {
 
     const handleClose = async () => {
 
-        let kpm = (text.characterCount / (ms / 1000))
+        let kpm = (((text.characterCount * 60)/ (ms /1000)))
+        console.log("text.characterCount", text.characterCount)
+        console.log("ms", ms)
+        console.log(kpm)
         let res = await dispatch(thunkCreateScore(text.id, ms, mistakes, kpm, text.textExp, username.id))
         if (res?.error) {
             console.log("error", res)
@@ -112,7 +115,7 @@ function PlayerText({ text, username, owner }) {
             <>
 
                 <h4 className="pFont wgt">Completed: <span className="yt "> {text.name}</span></h4>
-                <h3 className="pFont wgt">KSPM: <span className="yt ">{((text.characterCount * 60)/ (ms /1000)).toFixed(2)}</span> </h3>
+                <h3 className="pFont wgt">KSPM: <span className="yt ">{((text.characterCount * 60) / (ms / 1000)).toFixed(2)}</span> </h3>
                 <h3 className="pFont wgt">Time:  <span className="yt ">{(ms / 1000).toFixed(2)}</span></h3>
                 <h3 className="pFont wgt">ACC: <span className="yt "> {(((text.characterCount) / (text.characterCount + mistakes)) * 100).toFixed(2)}%</span></h3>
                 <h4 className="pFont wgt">Word Count: <span className="yt "> {text.wordCount}</span></h4>
@@ -144,7 +147,7 @@ function PlayerText({ text, username, owner }) {
                 {!renderTest && <button className="default_button" onClick={(e) => handleRunIt(e, text.id)}>run it!</button>}
 
 
-{/* !!!!!!!!!!!!!!!!!!!!!!! */}
+                {/* !!!!!!!!!!!!!!!!!!!!!!! */}
                 {/* {owner && !renderTest &&
                     <button className="default_button">
                         <i onClick={(e) => handleDelete(e, text.id)} className=" fa-solid fas fa-trash"></i> </button>} */}
@@ -161,14 +164,21 @@ function PlayerText({ text, username, owner }) {
                     <textarea
                         value={userText}
                         onChange={(e) => userInputChange(e)}
-                        className=" placeholder-Text "
+                        className=" placeholder-Text noSizeChange"
                         autoFocus
                         id="PP-textAreas"
-                        onPaste={(e)=> disablePaste(e)}
+                        onPaste={(e) => disablePaste(e)}
                     >
                     </textarea>
 
                 </form>
+                <div className="TP-current-stats">
+
+
+                    <div ><p className="TP-current-stat HFont wgt">Characters left: <span className="pFont yt">{` ${userText.length}/${text.typingText.length}`}</span></p>  </div>
+                    <div ><p className="TP-current-stat HFont wgt">Mistakes: <span className="pFont yt">{mistakes}</span></p></div>
+
+                </div>
                 <button className="default_button" onClick={handleEarlyClose}>Quit</button>
 
 

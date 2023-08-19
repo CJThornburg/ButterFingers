@@ -307,10 +307,10 @@ function TextPage() {
       <div className="TP-textType-buttons TP-Whole-div">
         <div className="TP-Options-div">
           <p className="TP-A-words HFont wgt"><i class="fa-solid fas fa-font"></i> Options: </p>
-          <button className="default_button" onClick={(e) => { handleLengthChange(e, 20, "select") }}><span className={option ===20 ? `yt`:` `}>   20 </span></button>
-          <button className="default_button" onClick={(e) => { handleLengthChange(e, 50, "select") }}><span className={option ===50 ? 'yt': ''}>   50</span> </button>
-          <button className="default_button" onClick={(e) => { handleLengthChange(e, 100, "select") }}><span className={option ===100 ? 'yt': ''}>  100 </span> </button>
-          <button className="default_button" onClick={(e) => { handleLengthChange(e, -1, "select") }}><span className={option ===-1 ? 'yt': ''}>  Random </span> </button>
+          <button className="default_button_noBorder" onClick={(e) => { handleLengthChange(e, 20, "select") }}><span className={option ===20 ? `yt`:` `}>   20 </span></button>
+          <button className="default_button_noBorder" onClick={(e) => { handleLengthChange(e, 50, "select") }}><span className={option ===50 ? 'yt': ''}>   50</span> </button>
+          <button className="default_button_noBorder" onClick={(e) => { handleLengthChange(e, 100, "select") }}><span className={option ===100 ? 'yt': ''}>  100 </span> </button>
+          <button className="default_button_noBorder" onClick={(e) => { handleLengthChange(e, -1, "select") }}><span className={option ===-1 ? 'yt': ''}>  Random </span> </button>
 
 
           {/* <button className="default_button" onClick={showChange}>Custom</button> */}
@@ -346,13 +346,19 @@ function TextPage() {
         <textarea
           value={userText}
           onChange={(e) => userInputChange(e)}
-          className="TP-textarea textarea-Text"
+          className="TP-textarea textarea-Text noSizeChange"
           autoFocus
           onPaste={(e)=> disablePaste(e)}
         >
         </textarea>
       </form>
-      <div className="TP-mistakes-count HFont wgt">Mistakes: <span className="pFont yt">{mistakes}</span></div>
+        <div className="TP-current-stats">
+
+
+      <div ><p className="TP-current-stat HFont wgt">Characters left: <span className="pFont yt">{` ${userText.length}/${copyText.length}`}</span></p>  </div>
+      <div ><p className="TP-current-stat HFont wgt">Mistakes: <span className="pFont yt">{mistakes}</span></p></div>
+
+        </div>
 </>
       }
       </div>

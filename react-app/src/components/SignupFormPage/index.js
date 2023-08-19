@@ -48,15 +48,17 @@ function SignupFormPage() {
 
     if (!email.replace(/\s/g, '').length) {
       err["Email"] = 'Name can not contain only whitespace (ie. spaces, tabs or line breaks)'
-
     }
+
+
+
+
     if (!username.replace(/\s/g, '').length) {
       err["Username"] = 'Username can not contain only whitespace (ie. spaces, tabs or line breaks)'
-
     }
+
     if (!password.replace(/\s/g, '').length) {
       err["Password"] = 'Password can not contain only whitespace (ie. spaces, tabs or line breaks)'
-
     }
 
     // if (name.trim().length > 0) {
@@ -70,10 +72,14 @@ function SignupFormPage() {
       err["Username"] = "Username needs to be less than 25 or more characters";
 
     if (password.length < 8) {
-      err["Password"] = "Name  needs 8 or more characters";
+      err["Password"] = "Password needs 8 or more characters";
     }
     if (password.length > 100) {
-      err["Password"] = "Name needs to be less than 25 or more characters";
+      err["Password"] = "Password needs to be less than 100 characters";
+    }
+
+    if (password.toLocaleLowerCase() === "password" || password.toLocaleLowerCase() === "qwerty" || password === "123456" || password === "123456789" ||  password.toLocaleLowerCase() === "asdfg") {
+      err["Password"] = "Password too weak";
     }
 
 
