@@ -42,11 +42,10 @@ function TextFormModal({ from, textObj, setCopyText, setTextObj, setShowTextArea
 
     if (!name.replace(/\s/g, '').length) {
       err["Name"] = 'Name can not contain only whitespace (ie. spaces, tabs or line breaks)'
-      console.log('string only contains whitespace (ie. spaces, tabs or line breaks)');
-    }
+      }
+      
     if (!text.replace(/\s/g, '').length) {
       err["Text"] = 'Name can not contain only whitespace (ie. spaces, tabs or line breaks)'
-      console.log('string only contains whitespace (ie. spaces, tabs or line breaks)');
     }
 
     // if (name.trim().length > 0) {
