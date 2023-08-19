@@ -62,3 +62,13 @@
     display: flex;
     gap: 10px
 }
+
+
+.TP-current-stats {
+    display: flex;
+    justify-content: space-evenly;
+}
+
+.TP-current-stat {
+font-size: 3vh;
+}

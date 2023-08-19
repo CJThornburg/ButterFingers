@@ -352,7 +352,13 @@ function TextPage() {
         >
         </textarea>
       </form>
-      <div className="TP-mistakes-count HFont wgt">Mistakes: <span className="pFont yt">{mistakes}</span></div>
+        <div className="TP-current-stats">
+
+
+      <div ><p className="TP-current-stat HFont wgt">Characters left: <span className="pFont yt">{` ${userText.length}/${copyText.length}`}</span></p>  </div>
+      <div ><p className="TP-current-stat HFont wgt">Mistakes: <span className="pFont yt">{mistakes}</span></p></div>
+
+        </div>
 </>
       }
       </div>
