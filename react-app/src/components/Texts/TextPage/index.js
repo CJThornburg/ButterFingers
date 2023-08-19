@@ -337,7 +337,9 @@ function TextPage() {
       <div className="column-holder">
         <div className="column">
 
-      {showTextArea && <form className="TP-form">
+      {showTextArea &&
+        <>
+       <form className="TP-form">
 
         <p className="wgt TP-copyText pFont">{copyText}</p>
 
@@ -349,7 +351,10 @@ function TextPage() {
           onPaste={(e)=> disablePaste(e)}
         >
         </textarea>
-      </form>}
+      </form>
+      <div className="TP-mistakes-count HFont wgt">Mistakes: <span className="pFont yt">{mistakes}</span></div>
+</>
+      }
       </div>
       </div>
       <div className="column-holder">
