@@ -22,7 +22,7 @@ function OpenModalButton({
     <>
     {margin?(<button id="Save-margin"  className="default_button left-text"  onClick={onClick}>{buttonText}</button>
     ) : (
-<button   className={customYellow ? "default_button_yellow" : "default_button"}  onClick={onClick}>{buttonText}</button>
+<button   className={customYellow ? "default_button_yellow" : "default_button_noBorder"}  onClick={onClick}>{buttonText}</button>
     )}
 
 

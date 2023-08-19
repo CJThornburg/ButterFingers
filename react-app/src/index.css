@@ -62,12 +62,28 @@ body {
     font-size: 1.8vh;
     font-family: 'Roboto Mono', monospace;
     font-weight: 700;
+    border: 1px solid #d1d0c54f;
+}
+
+
+.default_button_noBorder {
+    background-color: #2C2E31;
+    box-shadow: none;
+    border: 1px solid transparent;
+    outline: none;
+    height: 40px;
+    border-radius: 10px;
+    color: #D1D0C5;
+    font-size: 1.8vh;
+    font-family: 'Roboto Mono', monospace;
+    font-weight: 700;
+
 }
 
 
 .default_button:focus {
     border: 2px solid #E2B714;
-    
+
 }
 
 .disabled_default_button {
@@ -87,6 +103,10 @@ body {
     cursor: not-allowed;
 }
 
+
+.noSizeChange{
+    resize: none;
+}
 
 .default_button:hover {
     color: #2C2E31;

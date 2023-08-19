@@ -307,10 +307,10 @@ function TextPage() {
       <div className="TP-textType-buttons TP-Whole-div">
         <div className="TP-Options-div">
           <p className="TP-A-words HFont wgt"><i class="fa-solid fas fa-font"></i> Options: </p>
-          <button className="default_button" onClick={(e) => { handleLengthChange(e, 20, "select") }}><span className={option ===20 ? `yt`:` `}>   20 </span></button>
-          <button className="default_button" onClick={(e) => { handleLengthChange(e, 50, "select") }}><span className={option ===50 ? 'yt': ''}>   50</span> </button>
-          <button className="default_button" onClick={(e) => { handleLengthChange(e, 100, "select") }}><span className={option ===100 ? 'yt': ''}>  100 </span> </button>
-          <button className="default_button" onClick={(e) => { handleLengthChange(e, -1, "select") }}><span className={option ===-1 ? 'yt': ''}>  Random </span> </button>
+          <button className="default_button_noBorder" onClick={(e) => { handleLengthChange(e, 20, "select") }}><span className={option ===20 ? `yt`:` `}>   20 </span></button>
+          <button className="default_button_noBorder" onClick={(e) => { handleLengthChange(e, 50, "select") }}><span className={option ===50 ? 'yt': ''}>   50</span> </button>
+          <button className="default_button_noBorder" onClick={(e) => { handleLengthChange(e, 100, "select") }}><span className={option ===100 ? 'yt': ''}>  100 </span> </button>
+          <button className="default_button_noBorder" onClick={(e) => { handleLengthChange(e, -1, "select") }}><span className={option ===-1 ? 'yt': ''}>  Random </span> </button>
 
 
           {/* <button className="default_button" onClick={showChange}>Custom</button> */}

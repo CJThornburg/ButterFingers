@@ -161,7 +161,7 @@ function PlayerText({ text, username, owner }) {
                     <textarea
                         value={userText}
                         onChange={(e) => userInputChange(e)}
-                        className=" placeholder-Text "
+                        className=" placeholder-Text noSizeChange"
                         autoFocus
                         id="PP-textAreas"
                         onPaste={(e) => disablePaste(e)}
