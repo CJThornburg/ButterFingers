@@ -197,7 +197,7 @@ function TextPage() {
   // buttons on "stats" page
   const handleNext = async () => {
 
-    let kpm = (((textObj.characterCount * 60)/ (ms /1000)).toFixed(2))
+    let kpm = (((textObj.characterCount * 60)/ (ms /1000)))
     let res = await dispatch(thunkCreateScore(textObj.id, ms, mistakes, kpm, textObj.textExp, user))
     if (res) {
       console.log("error", res)
