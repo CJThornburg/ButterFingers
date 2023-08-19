@@ -1,6 +1,4 @@
 from __future__ import with_statement
-
-from __future__ import with_statement
 import logging
 from logging.config import fileConfig
 from sqlalchemy import engine_from_config
@@ -85,3 +83,4 @@ if context.is_offline_mode():
     run_migrations_offline()
 else:
     run_migrations_online()
+
