@@ -43,11 +43,39 @@ function TextFormModal({ from, textObj, setCopyText, setTextObj, setShowTextArea
     if (!name.replace(/\s/g, '').length) {
       err["Name"] = 'Name can not contain only whitespace (ie. spaces, tabs or line breaks)'
       }
-      
+
     if (!text.replace(/\s/g, '').length) {
-      err["Text"] = 'Name can not contain only whitespace (ie. spaces, tabs or line breaks)'
+      err["Text"] = 'Name can not start with whitespace (ie. spaces, tabs or line breaks)'
     }
 
+    if(name) {
+      if (!name[0].replace(/\s/g, '').length) {
+        err["Name"] = 'Name can not start with whitespace (ie. spaces, tabs or line breaks)'
+        }
+    }
+    if(name) {
+      if (!name[name.length-1].replace(/\s/g, '').length) {
+        err["Name"] = 'Name can not end with whitespace (ie. spaces, tabs or line breaks)'
+        }
+    }
+
+
+
+    if(text) {
+      if (!text[0].replace(/\s/g, '').length) {
+        err["Text"] = 'Text can not start with whitespace (ie. spaces, tabs or line breaks)'
+      }
+    }
+
+
+    if(text) {
+      if (!text[text.length-1].replace(/\s/g, '').length) {
+        err["Text"] = 'Text can not end with whitespace (ie. spaces, tabs or line breaks)'
+      }
+    }
+    // if(!name[0].replace(/\s/g, '').length) {
+    //   err["Name"] = 'Name can not start with a whitespace (ie. spaces, tabs or line breaks)'
+    // }
     // if (name.trim().length > 0) {
     //   console.log("in trim error")
     //   err["Name"] = "Name can not just be a bunch of spaces"

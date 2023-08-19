@@ -19,7 +19,8 @@ body {
 
 
 .error-text {
-    color: red;
+    color: #E2B714;
+    font-family: 'Lexend Deca', sans-serif;
 }
 
 
@@ -62,7 +63,7 @@ body {
     font-size: 1.8vh;
     font-family: 'Roboto Mono', monospace;
     font-weight: 700;
-    border: 1px solid #d1d0c54f;
+    border: 1px solid #d1d0c518;
 }
 
 
@@ -117,6 +118,18 @@ body {
         color: #2C2E31;
     }
 }
+
+
+.default_button_noBorder:hover {
+    color: #2C2E31;
+    background-color: #D1D0C5;
+    cursor: pointer;
+
+    .buttonIcon {
+        color: #2C2E31;
+    }
+}
+
 
 
 .pointer:hover {
