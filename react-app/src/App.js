@@ -57,7 +57,7 @@ function App() {
 
           <Route path="*">
             <ProtectedRoute>
-              <h1>hi</h1>
+              <Page404></Page404>
             </ProtectedRoute>
           </Route>
 

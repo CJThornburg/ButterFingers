@@ -60,8 +60,8 @@ function PlayerText({ text, username, owner }) {
     }
 
     const handleNext = async () => {
+        let kpm = (((text.characterCount * 60)/ (ms /1000)))
 
-        let kpm = (text.characterCount / (ms / 1000))
         let res = await dispatch(thunkCreateScore(text.id, ms, mistakes, kpm, text.textExp, username.id))
         if (res?.error) {
             console.log("error", res)
@@ -75,7 +75,10 @@ function PlayerText({ text, username, owner }) {
 
     const handleClose = async () => {
 
-        let kpm = (text.characterCount / (ms / 1000))
+        let kpm = (((text.characterCount * 60)/ (ms /1000)))
+        console.log("text.characterCount", text.characterCount)
+        console.log("ms", ms)
+        console.log(kpm)
         let res = await dispatch(thunkCreateScore(text.id, ms, mistakes, kpm, text.textExp, username.id))
         if (res?.error) {
             console.log("error", res)
