@@ -12,7 +12,8 @@ import { thunkGetAllScores } from './store/scores'
 import { thunkGetAllProfiles } from './store/users'
 import { thunkGetAllFriends } from './store/friends'
 import ProtectedRoute from "./components/auth/ProtectedRoute";
-import Splash from './components/Splash'
+import Splash from './components/Splash';
+import Page404 from './components/Page404'
 
 function App() {
   const dispatch = useDispatch();
@@ -35,15 +36,15 @@ function App() {
         <Switch>
           <Route path="/login" >
             <LoginFormPage />
-              <SignupFormPage />
+            <SignupFormPage />
           </Route>
           <Route path="/signup">
             <SignupFormPage />
           </Route>
           <Route exact path='/test'>
-          <ProtectedRoute>
-            <TextPage></TextPage>
-          </ProtectedRoute>
+            <ProtectedRoute>
+              <TextPage></TextPage>
+            </ProtectedRoute>
           </Route>
           <Route path='/users/:username'>
 
@@ -51,7 +52,13 @@ function App() {
 
           </Route>
           <Route exact path="/">
-              <Splash></Splash>
+            <Splash></Splash>
+          </Route>
+
+          <Route path="*">
+            <ProtectedRoute>
+              <h1>hi</h1>
+            </ProtectedRoute>
           </Route>
 
         </Switch>

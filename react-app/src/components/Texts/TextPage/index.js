@@ -346,7 +346,7 @@ function TextPage() {
         <textarea
           value={userText}
           onChange={(e) => userInputChange(e)}
-          className="TP-textarea textarea-Text"
+          className="TP-textarea textarea-Text noSizeChange"
           autoFocus
           onPaste={(e)=> disablePaste(e)}
         >
