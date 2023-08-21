@@ -19,7 +19,7 @@ def seed_scores():
             "userId": 1,
             "time":10000,
             "mistakes": 3,
-            "kpm": 250,
+            "kpm": 278,
             "runExp":85
         },
        {
@@ -27,7 +27,7 @@ def seed_scores():
             "userId": 1,
             "time":10000,
             "mistakes": 3,
-            "kpm": 250,
+            "kpm": 230,
             "runExp":85
         },
        {
@@ -35,7 +35,7 @@ def seed_scores():
             "userId": 1,
             "time":10000,
             "mistakes": 3,
-            "kpm": 250,
+            "kpm": 244,
             "runExp":85
         },
        {
@@ -43,7 +43,7 @@ def seed_scores():
             "userId": 1,
             "time":10000,
             "mistakes": 3,
-            "kpm": 250,
+            "kpm": 267,
             "runExp":85
         },
        {
@@ -51,12 +51,12 @@ def seed_scores():
             "userId": 1,
             "time":10000,
             "mistakes": 3,
-            "kpm": 250,
+            "kpm": 200,
             "runExp":85
         },
           {
             "textId": 7,
-            "userId": 1,
+            "userId": 3,
             "time":10000,
             "mistakes": 3,
             "kpm": 250,
