@@ -87,7 +87,7 @@ function TextFormModal({ from, textObj, setCopyText, setTextObj, setShowTextArea
     if (text.length < 10)
       err["Text"] = "Typing text needs 10 or more characters";
     if (text.length > 1000)
-      err["Text"] = " Tying text needs to be less than 225 or more characters";
+      err["Text"] = " Tying text needs to be less than 1000 or more characters";
 
     if (name.length < 4) {
       err["Name"] = "Name  needs 4 or more characters";
