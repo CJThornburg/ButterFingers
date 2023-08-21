@@ -60,6 +60,9 @@ function SignupFormPage() {
     if (!password.replace(/\s/g, '').length) {
       err["Password"] = 'Password can not contain only whitespace (ie. spaces, tabs or line breaks)'
     }
+    if (email.length > 25)
+    err["Email"] = "Email needs to be less than 25 or more characters";
+
 
     // if (name.trim().length > 0) {
     //   console.log("in trim error")
