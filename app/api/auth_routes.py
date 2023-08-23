@@ -3,6 +3,7 @@ from app.models import User, db
 from app.forms import LoginForm
 from app.forms import SignUpForm
 from flask_login import current_user, login_user, logout_user, login_required
+from awsHelpers import (upload_file_to_s3, get_unique_filename)
 
 auth_routes = Blueprint('auth', __name__)
 
@@ -60,13 +61,47 @@ def sign_up():
     Creates a new user and logs them in
     """
     form = SignUpForm()
-    form['csrf_token'].data = request.cookies['csrf_token']
+    # form['csrf_token'].data = request.cookies['csrf_token']
     if form.validate_on_submit():
+
+        profile_imageURL = form.data["profile_imageURL"]
+        profile_imageURL.filename = get_unique_filename(profile_imageURL.filename)
+        upload = upload_file_to_s3(profile_imageURL)
+        print(upload)
+
+        if "url" not in upload:
+        # if the dictionary doesn't have a url key
+        # it means that there was an error when you tried to upload
+        # so you send back that error message (and you printed it above)
+          return {"errors": "profile pic failed to upload"}
+
+
+
+
+
+        coverPhoto = form.data["coverPhoto"]
+        coverPhoto.filename = get_unique_filename(coverPhoto.filename)
+        upload2 = upload_file_to_s3(coverPhoto)
+        print(upload2)
+
+        if "url" not in upload2:
+        # if the dictionary doesn't have a url key
+        # it means that there was an error when you tried to upload
+        # so you send back that error message (and you printed it above)
+            return {"errors": "cover failed to upload"}
+
+
+        url=upload["url"]
+        url2=upload2["url"]
+
         user = User(
             username=form.data['username'].lower(),
             email=form.data['email'],
-            password=form.data['password']
+            password=form.data['password'],
+            profile_imageURL=url,
+            coverPhoto=url2
         )
+        
         db.session.add(user)
         db.session.commit()
         login_user(user)
