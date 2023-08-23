@@ -11,7 +11,7 @@ function SignupFormPage() {
   const [email, setEmail] = useState("");
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
-  const [profilePic, setProfilePic] = useState("");
+  const [profile_imageURL, setProfile_imageURL] = useState("");
   const [coverPhoto, setCoverPhoto] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
   const [errors, setErrors] = useState([]);
@@ -20,7 +20,8 @@ function SignupFormPage() {
   const [submitted, setSubmitted] = useState(false);
 
 
-
+  const [ppLoading, setImageLoading] = useState(false);
+  const [coverPhotoLoading, setCoverPhotoLoading] = useState(false);
 
 
 
@@ -32,19 +33,19 @@ function SignupFormPage() {
     const err = {};
 
 
-    console.log(profilePic.length)
 
-    if (profilePic.length !== 0) {
-        if (
-          !(
-            profilePic.endsWith(".png") ||
-            profilePic.endsWith(".jpg") ||
-            profilePic.endsWith(".jpeg")
-          )
-        ) {
-          err["ProfilePicture"] = "If including image url, it must be a valid format '.png, .jpg, or .jpeg' "
-        }
-    }
+
+    // if (profilePic.length !== 0) {
+    //   if (
+    //     !(
+    //       profilePic.endsWith(".png") ||
+    //       profilePic.endsWith(".jpg") ||
+    //       profilePic.endsWith(".jpeg")
+    //     )
+    //   ) {
+    //     err["ProfilePicture"] = "If including image url, it must be a valid format '.png, .jpg, or .jpeg' "
+    //   }
+    // }
 
     if (!email.replace(/\s/g, '').length) {
       err["Email"] = 'Name can not contain only whitespace (ie. spaces, tabs or line breaks)'
@@ -61,7 +62,7 @@ function SignupFormPage() {
       err["Password"] = 'Password can not contain only whitespace (ie. spaces, tabs or line breaks)'
     }
     if (email.length > 25)
-    err["Email"] = "Email needs to be less than 25 or more characters";
+      err["Email"] = "Email needs to be less than 25 or more characters";
 
 
     // if (name.trim().length > 0) {
@@ -81,7 +82,7 @@ function SignupFormPage() {
       err["Password"] = "Password needs to be less than 100 characters";
     }
 
-    if (password.toLocaleLowerCase() === "password" || password.toLocaleLowerCase() === "qwerty" || password === "123456" || password === "123456789" ||  password.toLocaleLowerCase() === "asdfg") {
+    if (password.toLocaleLowerCase() === "password" || password.toLocaleLowerCase() === "qwerty" || password === "123456" || password === "123456789" || password.toLocaleLowerCase() === "asdfg") {
       err["Password"] = "Password too weak";
     }
 
@@ -90,7 +91,7 @@ function SignupFormPage() {
 
     // console.log(err)
     setVaErrors(err);
-  }, [email, username, password, confirmPassword, coverPhoto, profilePic]);
+  }, [email, username, password, confirmPassword, coverPhoto, profile_imageURL]);
 
 
 
@@ -141,8 +142,8 @@ function SignupFormPage() {
   return (
     <>
       <h1 className="yt SP-title pFont">register</h1>
-      <form onSubmit={handleSubmit} className="SFP-div">
-        {errors.length > 0 &&<ul>
+      <form onSubmit={handleSubmit} encType="multipart/form-data" className="SFP-div">
+        {errors.length > 0 && <ul>
           {errors.map((error, idx) => <li className="error-text" key={idx}>{error}</li>)}
         </ul>}
 
@@ -201,7 +202,7 @@ function SignupFormPage() {
         {vaErrors.ProfilePicture && submitted && (
           <p className="error-text">*{vaErrors.ProfilePicture}</p>
         )}
-        <label>
+        {/* <label>
 
           <input
             type="text"
@@ -210,8 +211,18 @@ function SignupFormPage() {
             placeholder=" Profile Picture (not required)"
             className="placeholder-Text"
           />
-        </label>
+        </label> */}
         <label>
+
+          <input
+            type="file"
+            accept="image/*"
+            onChange={(e) => setProfile_imageURL(e.target.files[0])}
+            placeholder=" Profile Picture (not required)"
+            className="placeholder-Text"
+          />
+        </label>
+        {/* <label>
           <input
             type="text"
             value={coverPhoto}
@@ -219,8 +230,19 @@ function SignupFormPage() {
             placeholder=" Cover Photo (not required)"
             className="placeholder-Text"
           />
+        </label> */}
+        <label>
+
+          <input
+            type="file"
+            accept="image/*"
+            onChange={(e) => setCoverPhoto(e.target.files[0])}
+            placeholder=" Cover Photo (not required)"
+            className="placeholder-Text"
+          />
         </label>
         <button type="submit" className="default_button pointer"> <i class="buttonIcon fa-solid fas fa-user-plus wgt "></i>   <span className="">Sign Up!</span> </button>
+        {(ppLoading || coverPhotoLoading)&& <p>Loading...</p>}
       </form>
 
     </>
