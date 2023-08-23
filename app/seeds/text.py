@@ -1184,6 +1184,156 @@ def seed_texts():
     "characterCount": 712,
     "public": True,
     "textExp": 500
+  },
+   {
+    "name": "quote1",
+    "userId": 1,
+    "typingText": "‘When I give food to the poor, they call me a saint. When I ask why the poor have no food, they call me a Communist.’. -Helder Camara",
+    "wordCount": 28,
+    "noSpaceCharacterCount": 106,
+    "characterCount": 133,
+    "public": True,
+    "textExp": 140
+  },
+  {
+    "name": "quote2",
+    "userId": 2,
+    "typingText": "'The right man in the wrong place can make all the difference in the world.'",
+    "wordCount": 15,
+    "noSpaceCharacterCount": 62,
+    "characterCount": 76,
+    "public": True,
+    "textExp": 75
+  },
+  {
+    "name": "quote3",
+    "userId": 3,
+    "typingText": "'A hero need not speak. When he is gone, the world will speak for him.'",
+    "wordCount": 15,
+    "noSpaceCharacterCount": 57,
+    "characterCount": 71,
+    "public": True,
+    "textExp": 75
+  },
+  {
+    "name": "quote4",
+    "userId": 4,
+    "typingText": "'....' -Link",
+    "wordCount": 2,
+    "noSpaceCharacterCount": 11,
+    "characterCount": 12,
+    "public": True,
+    "textExp": 10
+  },
+  {
+    "name": "quote5",
+    "userId": 5,
+    "typingText": "'It’s dangerous to go alone, take this!'",
+    "wordCount": 7,
+    "noSpaceCharacterCount": 34,
+    "characterCount": 40,
+    "public": True,
+    "textExp": 35
+  },
+  {
+    "name": "quote6",
+    "userId": 6,
+    "typingText": "'War. War never changes.'",
+    "wordCount": 4,
+    "noSpaceCharacterCount": 22,
+    "characterCount": 25,
+    "public": True,
+    "textExp": 20
+  },
+  {
+    "name": "quote7",
+    "userId": 7,
+    "typingText": "'Thank you Mario! But our Princess is in another castle!'",
+    "wordCount":  10,
+    "noSpaceCharacterCount": 48,
+    "characterCount": 57,
+    "public": True,
+    "textExp": 50
+  },
+  {
+    "name": "quote8",
+    "userId": 8,
+    "typingText": "'Snake? Snake? SNAAAAAAAAKE!!!'",
+    "wordCount": 3,
+    "noSpaceCharacterCount": 29,
+    "characterCount": 31,
+    "public": True,
+    "textExp":15
+  },
+  {
+    "name": "quote9",
+    "userId": 9,
+    "typingText": "'Do a barrel roll!'",
+    "wordCount": 4,
+    "noSpaceCharacterCount": 16,
+    "characterCount": 19,
+    "public": True,
+    "textExp": 20
+  },
+  {
+    "name": "quote10",
+    "userId": 10,
+    "typingText": "'You have died of dysentery.'",
+    "wordCount": 5,
+    "noSpaceCharacterCount": 25,
+    "characterCount": 29,
+    "public": True,
+    "textExp":25
+  },
+  {
+    "name": "quote11",
+    "userId": 11,
+    "typingText": "'Praise the sun!'",
+    "wordCount": 3,
+    "noSpaceCharacterCount": 15,
+    "characterCount": 17,
+    "public": True,
+    "textExp": 15
+  },
+  {
+    "name": "quote12",
+    "userId": 12,
+    "typingText": "'When life gives you lemons, don't make lemonade. Make life take the lemons back! Get mad! I don't want your damn lemons! What am I supposed to do with these?! Demand to see life's manager! Make life rue the day it thought it could give Cave Johnson lemons! Do you know who I am?! I'm the man who's gonna burn your house down! With the lemons! I'm gonna get my engineers to invent a combustible lemon that burns your house down!'",
+    "wordCount": 81,
+    "noSpaceCharacterCount": 349,
+    "characterCount": 429,
+    "public": True,
+    "textExp":405
+  },
+  {
+    "name": "quote13",
+    "userId": 13,
+    "typingText": "'War is where the young and stupid are tricked by the old and bitter into killing each other.'",
+    "wordCount": 18,
+    "noSpaceCharacterCount": 77,
+    "characterCount": 94,
+    "public": True,
+    "textExp": 90
+  },
+  {
+    "name": "quote14",
+    "userId": 14,
+    "typingText": "'It's super effective!'",
+    "wordCount": 3,
+    "noSpaceCharacterCount": 21,
+    "characterCount": 23,
+    "public": True,
+    "textExp": 15
+  },
+  {
+    "name": "quote15",
+    "userId": 15,
+    "typingText": "'Hey! Listen!'",
+    "wordCount": 2,
+    "noSpaceCharacterCount": 13,
+    "characterCount": 14,
+    "public": True,
+    "textExp":10
   }
 
     ]
