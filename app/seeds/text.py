@@ -739,7 +739,7 @@ def seed_texts():
     "name": "random50.13",
     "userId": 13,
     "typingText": "anger light mess front relieve case crusade date brother grand highlight lodge test route permission breed context contraction folk blade guideline hold disaster tooth criminal pillow socialist grandfather paradox vat skeleton assertive gradient shoulder seminar parade impact terminal band toll football fame compartment meat myth immune finished series translate restrict",
-    "wordCount ": 50,
+    "wordCount": 50,
     "noSpaceCharacterCount": 324,
     "characterCount": 373,
     "public": True,
