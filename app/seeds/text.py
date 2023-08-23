@@ -515,11 +515,6 @@ def seed_texts():
     "public": True,
     "textExp": 100
   },
-
-
-
-
-
   {
     "name": "random20.11",
     "userId": 6,
@@ -530,9 +525,6 @@ def seed_texts():
     "public": True,
     "textExp": 100
   },
-
-
-
   {
     "name": "random20.12",
     "userId": 7,
@@ -543,10 +535,6 @@ def seed_texts():
     "public": True,
     "textExp": 100
   },
-
-
-
-
   {
     "name": "random20.13",
     "userId": 8,
@@ -557,11 +545,6 @@ def seed_texts():
     "public": True,
     "textExp": 100
   },
-
-
-
-
-
   {
     "name": "random20.14",
     "userId": 9,
@@ -572,12 +555,6 @@ def seed_texts():
     "public": True,
     "textExp": 100
   },
-
-
-
-
-
-
   {
     "name": "random20.15",
     "userId": 10,
@@ -588,12 +565,6 @@ def seed_texts():
     "public": True,
     "textExp": 100
   },
-
-
-
-
-
-
   {
     "name": "random20.16",
     "userId": 11,
@@ -604,11 +575,6 @@ def seed_texts():
     "public": True,
     "textExp": 100
   },
-
-
-
-
-
   {
     "name": "random20.17",
     "userId": 12,
@@ -619,15 +585,6 @@ def seed_texts():
     "public": True,
     "textExp": 100
   },
-
-
-
-
-
-
-
-
-
   {
     "name": "random20.18",
     "userId": 13,
@@ -638,12 +595,6 @@ def seed_texts():
     "public": True,
     "textExp": 100
   },
-
-
-
-
-
-
   {
     "name": "random20.19",
     "userId": 14,
@@ -664,10 +615,6 @@ def seed_texts():
     "public": True,
     "textExp": 100
   },
-
-
-
-
 {
     "name": "random50.1",
     "userId": 1,
@@ -688,10 +635,6 @@ def seed_texts():
     "public": True,
     "textExp": 250
   },
-
-
-
-
   {
     "name": "random50.3",
     "userId": 3,
@@ -702,9 +645,6 @@ def seed_texts():
     "public": True,
     "textExp": 250
   },
-
-
-
   {
     "name": "random50.4",
     "userId": 4,
@@ -715,12 +655,6 @@ def seed_texts():
     "public": True,
     "textExp": 250
   },
-
-
-
-
-
-
   {
     "name": "random50.5",
     "userId": 5,
@@ -731,17 +665,6 @@ def seed_texts():
     "public": True,
     "textExp": 250
   },
-
-
-
-
-
-
-
-
-
-
-
   {
     "name": "random50.6",
     "userId": 6,
@@ -752,16 +675,6 @@ def seed_texts():
     "public": True,
     "textExp": 250
   },
-
-
-
-
-
-
-
-
-
-
   {
     "name": "random50.7",
     "userId": 7,
@@ -772,10 +685,6 @@ def seed_texts():
     "public": True,
     "textExp": 250
   },
-
-
-
-
   {
     "name": "random50.8",
     "userId": 8,
@@ -786,20 +695,6 @@ def seed_texts():
     "public": True,
     "textExp": 250
   },
-
-
-
-
-
-
-
-
-
-
-
-
-
-
   {
     "name": "random50.9",
     "userId": 9,
@@ -810,25 +705,6 @@ def seed_texts():
     "public": True,
     "textExp": 250
   },
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
   {
     "name": "random50.10",
     "userId": 10,
@@ -839,24 +715,6 @@ def seed_texts():
     "public": True,
     "textExp": 250
   },
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
   {
     "name": "random50.11",
     "userId": 11,
@@ -867,20 +725,6 @@ def seed_texts():
     "public": True,
     "textExp": 250
   },
-
-
-
-
-
-
-
-
-
-
-
-
-
-
   {
     "name": "random50.12",
     "userId": 12,
@@ -891,31 +735,6 @@ def seed_texts():
     "public": True,
     "textExp": 250
   },
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
   {
     "name": "random50.13",
     "userId": 13,
@@ -926,27 +745,6 @@ def seed_texts():
     "public": True,
     "textExp": 250
   },
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
   {
     "name": "random50.14",
     "userId": 14,
@@ -957,31 +755,6 @@ def seed_texts():
     "public": True,
     "textExp": 250
   },
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
   {
     "name": "random50.15",
     "userId": 15,
@@ -992,25 +765,6 @@ def seed_texts():
     "public": True,
     "textExp": 250
   },
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
   {
     "name": "random50.16",
     "userId": 1,
@@ -1021,19 +775,6 @@ def seed_texts():
     "public": True,
     "textExp": 250
   },
-
-
-
-
-
-
-
-
-
-
-
-
-
   {
     "name": "random50.17",
     "userId": 2,
@@ -1044,18 +785,6 @@ def seed_texts():
     "public": True,
     "textExp": 250
   },
-
-
-
-
-
-
-
-
-
-
-
-
   {
     "name": "random50.18",
     "userId": 3,
@@ -1066,22 +795,6 @@ def seed_texts():
     "public": True,
     "textExp": 250
   },
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
   {
     "name": "random50.19",
     "userId": 4,
@@ -1092,23 +805,6 @@ def seed_texts():
     "public": True,
     "textExp": 250
   },
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
   {
     "name": "random50.20",
     "userId": 5,
@@ -1119,30 +815,6 @@ def seed_texts():
     "public": True,
     "textExp": 250
   },
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
   {
     "name": "random50.21",
     "userId": 6,
@@ -1153,19 +825,6 @@ def seed_texts():
     "public": True,
     "textExp": 250
   },
-
-
-
-
-
-
-
-
-
-
-
-
-
   {
     "name": "random50.22",
     "userId": 7,
@@ -1176,27 +835,6 @@ def seed_texts():
     "public": True,
     "textExp": 250
   },
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
   {
     "name": "random50.23",
     "userId": 8,
@@ -1207,24 +845,6 @@ def seed_texts():
     "public": True,
     "textExp": 250
   },
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
   {
     "name": "random50.24",
     "userId": 9,
@@ -1235,17 +855,6 @@ def seed_texts():
     "public": True,
     "textExp": 250
   },
-
-
-
-
-
-
-
-
-
-
-
   {
     "name": "random50.25",
     "userId": 10,
@@ -1256,32 +865,6 @@ def seed_texts():
     "public": True,
     "textExp": 250
   },
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
   {
     "name": "random50.26",
     "userId": 11,
@@ -1292,26 +875,6 @@ def seed_texts():
     "public": True,
     "textExp": 250
   },
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
   {
     "name": "random50.27",
     "userId": 12,
@@ -1322,15 +885,6 @@ def seed_texts():
     "public": True,
     "textExp": 250
   },
-
-
-
-
-
-
-
-
-
   {
     "name": "random50.28",
     "userId": 13,
@@ -1341,30 +895,6 @@ def seed_texts():
     "public": True,
     "textExp": 250
   },
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
   {
     "name": "random50.29",
     "userId": 14,
@@ -1375,21 +905,6 @@ def seed_texts():
     "public": True,
     "textExp": 250
   },
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
   {
     "name": "random50.30",
     "userId": 15,
@@ -1400,14 +915,6 @@ def seed_texts():
     "public": True,
     "textExp": 250
   }
-
-
-
-
-
-
-
-
 
     ]
 
