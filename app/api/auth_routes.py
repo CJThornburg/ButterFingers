@@ -70,10 +70,11 @@ def sign_up():
         print(upload)
 
         if "url" not in upload:
+            print("failed to upload profile pic")
+            upload.url = "https://img.freepik.com/free-icon/user_318-826358.jpg"
         # if the dictionary doesn't have a url key
         # it means that there was an error when you tried to upload
         # so you send back that error message (and you printed it above)
-          return {"errors": "profile pic failed to upload"}
 
 
 
@@ -85,10 +86,12 @@ def sign_up():
         print(upload2)
 
         if "url" not in upload2:
+            print("failed to upload profile pic")
+            upload2.url = "https://mechanicalkeyboards.com/shop/images/products/large_9315_large_DKON2161ST-USPHSFTPGC1U2Z_main.png"
         # if the dictionary doesn't have a url key
         # it means that there was an error when you tried to upload
         # so you send back that error message (and you printed it above)
-            return {"errors": "cover failed to upload"}
+            # return {"errors": "cover failed to upload"}
 
 
         url=upload["url"]
@@ -101,7 +104,7 @@ def sign_up():
             profile_imageURL=url,
             coverPhoto=url2
         )
-        
+
         db.session.add(user)
         db.session.commit()
         login_user(user)
