@@ -98,16 +98,14 @@ export const logout = () => async (dispatch) => {
 
 export const signUp = (newUser) => async (dispatch) => {
 	console.log("newUser in thunk", newUser)
+	console.log("form data! new user", newUser.entries())
 	const response = await fetch("/api/auth/signup", {
 		method: "POST",
-		headers: {
-			"Content-Type": "application/json",
-		},
 		body: newUser
 	});
 
 	if (response.ok) {
-		const {data }= await response.json();
+		const data = await response.json();
 		dispatch(setUser(data));
 		return null;
 	} else if (response.status < 500) {
@@ -119,6 +117,9 @@ export const signUp = (newUser) => async (dispatch) => {
 		return ["An error occurred. Please try again."];
 	}
 };
+
+
+
 export default function reducer(state = initialState, action) {
 
 	switch (action.type) {
@@ -126,7 +127,7 @@ export default function reducer(state = initialState, action) {
 			return { user: action.payload };
 
 		case REMOVE_USER:
-				return { user: null };
+			return { user: null };
 		default:
 			return state;
 	}

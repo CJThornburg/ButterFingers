@@ -1,12 +1,14 @@
 import React, { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { Redirect } from "react-router-dom";
+import { Redirect, useHistory } from "react-router-dom";
 import { signUp } from "../../store/session";
 import { thunkGetAllProfiles } from '../../store/users'
 import './SignupForm.css';
 
+
 function SignupFormPage() {
   const dispatch = useDispatch();
+  const history = useHistory();
   const sessionUser = useSelector((state) => state.session.user);
   const [email, setEmail] = useState("");
   const [username, setUsername] = useState("");
@@ -122,22 +124,29 @@ function SignupFormPage() {
 
     if (password === confirmPassword) {
       const formData = new FormData();
-      console.log(formData)
+
       // !append the rest, this print is printing an empty object D:
       console.log(username)
       formData.append("username", username)
+      console.log(email)
       formData.append("email", email)
+      console.log(password)
       formData.append("password", password)
+      console.log(profile_imageURL)
       formData.append("profile_imageURL", profile_imageURL);
       setPPLoading(true)
+      console.log(coverPhoto)
       formData.append("coverPhoto", coverPhoto);
       setCoverPhotoLoading(true)
-      console.log("form data!", formData)
+      console.log("form data!", formData.entries())
       const data = await dispatch(signUp(formData));
       if (data) {
         setErrors(data)
       } else {
+        console.log("in history push else before dispatch")
         const users = await dispatch(thunkGetAllProfiles())
+        console.log("in history push else after dispatch")
+        // history.push("/test")
       }
 
 
