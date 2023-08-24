@@ -349,6 +349,7 @@ function TextPage() {
           className="TP-textarea textarea-Text noSizeChange"
           autoFocus
           onPaste={(e)=> disablePaste(e)}
+          spellcheck="false"
         >
         </textarea>
       </form>
