@@ -20,7 +20,7 @@ function SignupFormPage() {
   const [submitted, setSubmitted] = useState(false);
 
 
-  const [ppLoading, setImageLoading] = useState(false);
+  const [ppLoading, setPPLoading] = useState(false);
   const [coverPhotoLoading, setCoverPhotoLoading] = useState(false);
 
 
@@ -61,8 +61,8 @@ function SignupFormPage() {
     if (!password.replace(/\s/g, '').length) {
       err["Password"] = 'Password can not contain only whitespace (ie. spaces, tabs or line breaks)'
     }
-    if (email.length > 25)
-      err["Email"] = "Email needs to be less than 25 or more characters";
+    if (email.length > 35)
+      err["Email"] = "Email needs to be less than 35 or more characters";
 
 
     // if (name.trim().length > 0) {
@@ -121,7 +121,19 @@ function SignupFormPage() {
     }
 
     if (password === confirmPassword) {
-      const data = await dispatch(signUp(username, email, password));
+      const formData = new FormData();
+      console.log(formData)
+      // !append the rest, this print is printing an empty object D:
+      console.log(username)
+      formData.append("username", username)
+      formData.append("email", email)
+      formData.append("password", password)
+      formData.append("profile_imageURL", profile_imageURL);
+      setPPLoading(true)
+      formData.append("coverPhoto", coverPhoto);
+      setCoverPhotoLoading(true)
+      console.log("form data!", formData)
+      const data = await dispatch(signUp(formData));
       if (data) {
         setErrors(data)
       } else {
@@ -242,7 +254,7 @@ function SignupFormPage() {
           />
         </label>
         <button type="submit" className="default_button pointer"> <i class="buttonIcon fa-solid fas fa-user-plus wgt "></i>   <span className="">Sign Up!</span> </button>
-        {(ppLoading || coverPhotoLoading)&& <p>Loading...</p>}
+        {(ppLoading || coverPhotoLoading) && <p>Loading...</p>}
       </form>
 
     </>

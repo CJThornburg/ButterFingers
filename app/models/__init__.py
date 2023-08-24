@@ -4,3 +4,4 @@ from .user import User
 from .text import Text
 from .score import Score
 from .friend import Friend
+
