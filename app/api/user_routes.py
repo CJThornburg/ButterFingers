@@ -14,7 +14,7 @@ def users():
     users = User.query.all()
 
     users = [user.to_dict_min() for user in users]
-    pprint(users)
+    # pprint(users)
     return {'Users': {user["username"]: user for user in users}}
 
 
@@ -36,10 +36,10 @@ def userByUsername(username):
     """
     Query for a user by id and returns that user in a dictionary
     """
-    print(username)
+    # print(username)
 
     user = User.query.filter(User.username == username).first()
-    pprint(user)
+    # pprint(user)
     return {"msg" : "hi"}
     # user = User.query.get(id)
     # return user.to_dict()

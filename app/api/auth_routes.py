@@ -3,6 +3,8 @@ from app.models import User, db
 from app.forms import LoginForm
 from app.forms import SignUpForm
 from flask_login import current_user, login_user, logout_user, login_required
+from app.api.awsHelpers import (upload_file_to_s3, get_unique_filename)
+from pprint import pprint
 
 auth_routes = Blueprint('auth', __name__)
 
@@ -62,15 +64,55 @@ def sign_up():
     form = SignUpForm()
     form['csrf_token'].data = request.cookies['csrf_token']
     if form.validate_on_submit():
+
+        profile_imageURL = form.data["profile_imageURL"]
+        profile_imageURL.filename = get_unique_filename(profile_imageURL.filename)
+        upload = upload_file_to_s3(profile_imageURL)
+        # print(upload)
+
+        if "url" not in upload:
+            # print("failed to upload profile pic")
+            upload.url = "https://img.freepik.com/free-icon/user_318-826358.jpg"
+        # if the dictionary doesn't have a url key
+        # it means that there was an error when you tried to upload
+        # so you send back that error message (and you printed it above)
+
+
+
+
+
+        coverPhoto = form.data["coverPhoto"]
+        coverPhoto.filename = get_unique_filename(coverPhoto.filename)
+        upload2 = upload_file_to_s3(coverPhoto)
+        # print(upload2)
+
+        if "url" not in upload2:
+            # print("failed to upload profile pic")
+            upload2.url = "https://mechanicalkeyboards.com/shop/images/products/large_9315_large_DKON2161ST-USPHSFTPGC1U2Z_main.png"
+        # if the dictionary doesn't have a url key
+        # it means that there was an error when you tried to upload
+        # so you send back that error message (and you printed it above)
+            # return {"errors": "cover failed to upload"}
+
+
+        url=upload["url"]
+        url2=upload2["url"]
+
+
         user = User(
             username=form.data['username'].lower(),
             email=form.data['email'],
-            password=form.data['password']
+            password=form.data['password'],
+            profile_imageURL=url,
+            coverPhoto=url2
         )
+        print("before user print!!!!!")
         db.session.add(user)
         db.session.commit()
+        pprint(user.to_dict())
         login_user(user)
-        return user.to_dict()
+        userReturn = user.to_dict()
+        return userReturn
     return {'errors': validation_errors_to_error_messages(form.errors)}, 401
 
 

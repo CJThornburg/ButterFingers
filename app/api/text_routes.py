@@ -27,7 +27,7 @@ def getTexts():
     Query for all users and returns them in a list of user dictionaries
     """
     texts = Text.query.all()
-    pprint( {'texts': [text.to_dict() for text in texts]})
+    # pprint( {'texts': [text.to_dict() for text in texts]})
     texts = [text.to_dict() for text in texts]
     return {
             "texts": {text["id"]: text for text in texts}
@@ -77,7 +77,7 @@ def postText():
     """
     try:
         cur_user = current_user.to_dict()
-        pprint(cur_user)
+        # pprint(cur_user)
         userId = cur_user["id"]
         form = TextForm()
 
@@ -107,9 +107,9 @@ def postText():
     except Exception as e:
         error_message = str(e)
         traceback_str = traceback.format_exc()
-        print("THIS IS THE FORM ERRORS", form.errors)
-        print("Error:", error_message)
-        print("Traceback:", traceback_str)
+        # print("THIS IS THE FORM ERRORS", form.errors)
+        # print("Error:", error_message)
+        # print("Traceback:", traceback_str)
         return jsonify(error=error_message, traceback=traceback_str), 500
 
 
@@ -121,7 +121,7 @@ def updateText(id):
     """
     Query for a text by id and update, return updated object or error
     """
-    print("hi!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!")
+    # print("hi!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!")
     text = Text.query.get(id)
 
 

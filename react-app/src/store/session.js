@@ -67,17 +67,41 @@ export const logout = () => async (dispatch) => {
 	}
 };
 
-export const signUp = (username, email, password) => async (dispatch) => {
+// export const signUp = (username, email, password) => async (dispatch) => {
+// 	const response = await fetch("/api/auth/signup", {
+// 		method: "POST",
+// 		headers: {
+// 			"Content-Type": "application/json",
+// 		},
+// 		body: JSON.stringify({
+// 			username,
+// 			email,
+// 			password,
+// 		}),
+// 	});
+
+// 	if (response.ok) {
+// 		const data = await response.json();
+// 		dispatch(setUser(data));
+// 		return null;
+// 	} else if (response.status < 500) {
+// 		const data = await response.json();
+// 		if (data.errors) {
+// 			return data.errors;
+// 		}
+// 	} else {
+// 		return ["An error occurred. Please try again."];
+// 	}
+// };
+
+
+
+export const signUp = (newUser) => async (dispatch) => {
+	console.log("newUser in thunk", newUser)
+	console.log("form data! new user", newUser.entries())
 	const response = await fetch("/api/auth/signup", {
 		method: "POST",
-		headers: {
-			"Content-Type": "application/json",
-		},
-		body: JSON.stringify({
-			username,
-			email,
-			password,
-		}),
+		body: newUser
 	});
 
 	if (response.ok) {
@@ -93,6 +117,9 @@ export const signUp = (username, email, password) => async (dispatch) => {
 		return ["An error occurred. Please try again."];
 	}
 };
+
+
+
 export default function reducer(state = initialState, action) {
 
 	switch (action.type) {
@@ -100,9 +127,8 @@ export default function reducer(state = initialState, action) {
 			return { user: action.payload };
 
 		case REMOVE_USER:
-				return { user: null };
+			return { user: null };
 		default:
 			return state;
 	}
 }
-
