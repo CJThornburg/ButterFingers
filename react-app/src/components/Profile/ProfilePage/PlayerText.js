@@ -168,6 +168,7 @@ function PlayerText({ text, username, owner }) {
                         autoFocus
                         id="PP-textAreas"
                         onPaste={(e) => disablePaste(e)}
+                        spellcheck="false"
                     >
                     </textarea>
 
