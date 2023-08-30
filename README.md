@@ -3,151 +3,164 @@
 
 
 
-# Flask React Project
+# ButterFingers
 
-This is the starter for the Flask React project.
-
-## Getting started
-1. Clone this repository (only this branch)
-
-2. Install dependencies
-
-      ```bash
-      pipenv install -r requirements.txt
-      ```
-
-3. Create a **.env** file based on the example with proper settings for your
-   development environment
-
-4. Make sure the SQLite3 database connection URL is in the **.env** file
-
-5. This starter organizes all tables inside the `flask_schema` schema, defined
-   by the `SCHEMA` environment variable.  Replace the value for
-   `SCHEMA` with a unique name, **making sure you use the snake_case
-   convention**.
-
-6. Get into your pipenv, migrate your database, seed your database, and run your Flask app
-
-   ```bash
-   pipenv shell
-   ```
-
-   ```bash
-   flask db upgrade
-   ```
-
-   ```bash
-   flask seed all
-   ```
-
-   ```bash
-   flask run
-   ```
-
-7. To run the React App in development, checkout the [README](./react-app/README.md) inside the `react-app` directory.
+Engage in a dynamic typing game website that not only meticulously tracks your statistics but also offers the exciting feature of connecting with friends for added interactive enjoyment!
 
 
-## Deployment through Render.com
 
-First, refer to your Render.com deployment articles for more detailed
-instructions about getting started with [Render.com], creating a production
-database, and deployment debugging tips.
+## Tech Stack
 
-From the [Dashboard], click on the "New +" button in the navigation bar, and
-click on "Web Service" to create the application that will be deployed.
+**Client:** React, Redux, CSS, Node
 
-Look for the name of the application you want to deploy, and click the "Connect"
-button to the right of the name.
+**Server:** Flask, SQLAlcemy, Alembic, postgreSQL
 
-Now, fill out the form to configure the build and start commands, as well as add
-the environment variables to properly deploy the application.
 
-### Part A: Configure the Start and Build Commands
+## Live Link
 
-Start by giving your application a name.
+https://butterfingers.onrender.com/
+## Demos
 
-Leave the root directory field blank. By default, Render will run commands from
-the root directory.
+#### Typing Test
+![Typing Test](https://via.placeholder.com/468x300?text=App+Screenshot+Here)
 
-Make sure the Environment field is set set to "Python 3", the Region is set to
-the location closest to you, and the Branch is set to "main".
+#### User Profile/ Friends with user
+![User/Friends Profile](https://via.placeholder.com/468x300?text=App+Screenshot+Here)
 
-Next, add your Build command. This is a script that should include everything
-that needs to happen _before_ starting the server.
+#### Non-Friend Profile
+![Not Friends Profile](https://via.placeholder.com/468x300?text=App+Screenshot+Here)
+## Features
 
-For your Flask project, enter the following command into the Build field, all in
-one line:
+### Custom Texts
+* Users can create a custom text to run 
+* Users can read/view and run other users texts
+* Users can update their texts
+* Users can delete their texts
 
-```shell
-# build command - enter all in one line
-npm install --prefix react-app &&
-npm run build --prefix react-app &&
-pip install -r requirements.txt &&
-pip install psycopg2 &&
-flask db upgrade &&
-flask seed all
+### User Profiles
+* Users can upload a profile picture
+* Users can upload a cover picture
+* Users can recieve and send friend request
+* Users can view penning friend requests, either sent or recieving
+* Users can view full profile of another user if they are friends
+* Users can view part of other users profiles if the two users are not friends
+* Users can delete friend connection
+* Users can delete request or undo a decline
+
+### Scores
+* Create a score card, by running typing tests
+* Read score card after completing a test
+* Cancel the score card from being sumbitted
+## Run Locally
+
+Clone the project
+
+```bash
+    git clone https://github.com/CJThornburg/ButterFingers.git
 ```
 
-This script will install dependencies for the frontend, and run the build
-command in the __package.json__ file for the frontend, which builds the React
-application. Then, it will install the dependencies needed for the Python
-backend, and run the migration and seed files.
+Go to the project directory
 
-Now, add your start command in the Start field:
-
-```shell
-# start script
-gunicorn app:app
+```bash
+    cd butterFingers
 ```
 
-_If you are using websockets, use the following start command instead for increased performance:_
+Install dependencies
 
-`gunicorn --worker-class eventlet -w 1 app:app`
+```bash
+    pipenv install -r requirements.txt
+    pipenv run flask db init
+    pipenv run flask db migrate
+    pipenv run flask db upgrade
+    pipenv run flask seed all 
+  
+```
 
-### Part B: Add the Environment Variables
+In seprate terminal
+```bash
+    cd react-frontend
+    npm install
+```
 
-Click on the "Advanced" button at the bottom of the form to configure the
-environment variables your application needs to access to run properly. In the
-development environment, you have been securing these variables in the __.env__
-file, which has been removed from source control. In this step, you will need to
-input the keys and values for the environment variables you need for production
-into the Render GUI.
 
-Click on "Add Environment Variable" to start adding all of the variables you
-need for the production environment.
 
-Add the following keys and values in the Render GUI form:
+Start the servers
 
-- SECRET_KEY (click "Generate" to generate a secure secret for production)
-- FLASK_ENV production
-- FLASK_APP app
-- SCHEMA (your unique schema name, in snake_case)
-- REACT_APP_BASE_URL (use render.com url, located at top of page, similar to
-  https://this-application-name.onrender.com)
 
-In a new tab, navigate to your dashboard and click on your Postgres database
-instance.
+In root/ terminal
+```bash
+pipenv run flask run
+```
 
-Add the following keys and values:
+In react-frontend/ terminal
+```bash
+    npm run start
+```
 
-- DATABASE_URL (copy value from Internal Database URL field)
+## Environment Variables
 
-_Note: Add any other keys and values that may be present in your local __.env__
-file. As you work to further develop your project, you may need to add more
-environment variables to your local __.env__ file. Make sure you add these
-environment variables to the Render GUI as well for the next deployment._
+To run this project locally, you will need to add the following environment variables to your .env file
 
-Next, choose "Yes" for the Auto-Deploy field. This will re-deploy your
-application every time you push to main.
+`SECRET_KEY`
 
-Now, you are finally ready to deploy! Click "Create Web Service" to deploy your
-project. The deployment process will likely take about 10-15 minutes if
-everything works as expected. You can monitor the logs to see your build and
-start commands being executed, and see any errors in the build process.
+`DATABASE_URL`
 
-When deployment is complete, open your deployed site and check to see if you
-successfully deployed your Flask application to Render! You can find the URL for
-your site just below the name of the Web Service at the top of the page.
+`S3_BUCKET`
 
-[Render.com]: https://render.com/
-[Dashboard]: https://dashboard.render.com/
+`S3_KEY`
+
+`S3_SECRET`
+
+
+
+
+## API Reference
+
+#### Get all items
+
+```http
+  GET /api/items
+```
+
+| Parameter | Type     | Description                |
+| :-------- | :------- | :------------------------- |
+| `api_key` | `string` | **Required**. Your API key |
+
+#### Get item
+
+```http
+  GET /api/items/${id}
+```
+
+| Parameter | Type     | Description                       |
+| :-------- | :------- | :-------------------------------- |
+| `id`      | `string` | **Required**. Id of item to fetch |
+
+#### add(num1, num2)
+
+Takes two numbers and returns the sum.
+
+## Color Reference
+
+| Color             | Hex                                                                |
+| ----------------- | ------------------------------------------------------------------ |
+| Main | ![#323437](https://via.placeholder.com/10/323437?text=+) #323437 |
+| Secondary | ![#2C2E31](https://via.placeholder.com/10/2C2E31?text=+) #f8f8f8 |
+| Tertiary | ![#E2B714](https://via.placeholder.com/10/E2B714?text=+) #E2B714 |
+
+
+
+## Roadmap
+
+- Integrate More AWS capabilites
+    - Update
+    - Delete
+
+- Add Web Sockets to allow to race friends
+
+
+## Connect
+
+- [Linkdin](https://www.linkedin.com/in/chris-thornburg-swe/)
+
+- [Email Me](mailto:cjthronburg@thornburgsfamily.com)
