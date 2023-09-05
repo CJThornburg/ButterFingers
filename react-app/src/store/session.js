@@ -26,7 +26,15 @@ export const authenticate = () => async (dispatch) => {
 		}
 
 		dispatch(setUser(data));
+	}  else if (response.status < 500) {
+		const data = await response.json();
+		if (data.errors) {
+			return data.errors;
+		}
+	} else {
+		return ["An error occurred. Please try again."];
 	}
+
 };
 
 export const login = (email, password) => async (dispatch) => {
