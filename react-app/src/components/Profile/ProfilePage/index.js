@@ -9,7 +9,7 @@ import { getLevel } from "../../../utils";
 import PlayerText from "./PlayerText";
 import ResultsGraph from "../../ResultsGraph";
 import { jsDMYDateFormatter } from "../../../utils";
-
+import Footer from "../../Foooter";
 
 
 function ProfilePage() {
@@ -137,8 +137,6 @@ function ProfilePage() {
     friend.fromUser.toLowerCase() === currentUsername.toLowerCase() && friend.status === "active"));
 
   // grab toUser userName
-  console.log("current friends TO current user", currentFriendsTo)
-  console.log("current friend FRom current user", currentFriendsFrom)
   // checks i need
   // current profile page is owned by current user
   // if so render whole page + delete profile button
@@ -288,6 +286,11 @@ function ProfilePage() {
 
           </div>
         </div>
+
+
+<Footer></Footer>
+
+
       </>
     )
   }
@@ -350,7 +353,10 @@ function ProfilePage() {
 
         </div>
       </div>
+      <div className="text-footer">
 
+<Footer></Footer>
+</div>
     </>)
 
   }
@@ -416,10 +422,16 @@ function ProfilePage() {
 
         </div>
       </div>
+
+
+      <div className="text-footer">
+
+     <Footer></Footer>
+     </div>
     </>)
   }
 
-  // current user rejected, but can cancel and send request
+  //! current user rejected, but can cancel and send request
   if (relevantFriends.toUser === currentUsername && relevantFriends.status === "rejected") {
     return (<>
       <div className="PP-columnHolder">
@@ -455,6 +467,10 @@ function ProfilePage() {
 
         </div>
       </div>
+      <div className="text-footer">
+
+<Footer></Footer>
+</div>
     </>)
   }
 
@@ -494,6 +510,12 @@ function ProfilePage() {
           </div>
         </div>
       </div>
+
+
+      <div className="text-footer">
+
+     <Footer></Footer>
+     </div>
     </>)
   }
 
@@ -503,7 +525,7 @@ function ProfilePage() {
   // ! current user is friends with the user of this page
   if (relevantFriends.status === "active")
 
-  console.log(userScores)
+
     return (
       <>
         <div className="PP-columnHolder">
@@ -573,6 +595,10 @@ function ProfilePage() {
 
           </div>
         </div>
+
+
+<Footer></Footer>
+
       </>
     );
 

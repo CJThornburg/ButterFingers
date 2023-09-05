@@ -72,3 +72,18 @@
 .TP-current-stat {
 font-size: 3vh;
 }
+
+.footer-space {
+    height: 12vh;
+}
+
+
+.text-footer {
+    position: fixed;
+    bottom: 0;
+    left: 0; /* You can adjust the left or right property as needed */
+    width: 100%; /* To make the div span the full width of the viewport */
+   
+    padding: 10px;
+    text-align: center;
+}

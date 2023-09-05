@@ -1,0 +1,11 @@
+.footerLink {
+    font-size: 3vh;
+    margin: 15px;
+}
+
+
+.footer-div{
+ display: flex;
+ justify-content: center;
+ /* align-items: center; */
+}

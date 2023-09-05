@@ -6,6 +6,7 @@ import OpenModalButton from "../../OpenModalButton";
 import TextFormModal from "../TextFormModal"
 import './TextPage.css'
 import {jsTimeFormatter, disablePaste} from "../../../utils"
+import Footer from "../../Foooter";
 
 
 
@@ -293,6 +294,8 @@ function TextPage() {
         </div>
       </div>
       {/* if redo, load current text object again */}
+      <div className="footer-space"></div>
+      <Footer></Footer>
     </>)
   }
 
@@ -327,7 +330,7 @@ function TextPage() {
           </span>
         </div>
         </div>
-          <div></div>
+
       </div>
         {/* if clicked, render change button, and a default text and clicking that one that will open modal. The default is there to prevent errors if its a new user and they have no texts to render without having to give everyone a default card*/}
         {/* const [showTextArea, setShowTextArea] = useState(false) */}
@@ -372,7 +375,10 @@ function TextPage() {
       </div>
       </div>
       {/* </div> */}
+      <div className="text-footer">
 
+      <Footer></Footer>
+      </div>
     </>
   )
 }
