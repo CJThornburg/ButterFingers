@@ -165,6 +165,34 @@ Takes two numbers and returns the sum.
 - [Email Me](mailto:cjthronburg@thornburgsfamily.com)
 
 
+## API Reference
+
+#### Get all items
+
+```http
+  GET /api/items
+```
+
+| Parameter | Type     | Description                |
+| :-------- | :------- | :------------------------- |
+| `api_key` | `string` | **Required**. Your API key |
+
+#### Get item
+
+```http
+  GET /api/items/${id}
+```
+
+| Parameter | Type     | Description                       | Return Value |
+| :-------- | :------- | :-------------------------------- | :------------|
+| `id`      | `string` | **Required**. Id of item to fetch |
+
+#### add(num1, num2)
+
+Takes two numbers and returns the sum.
+
+
+
 ## API Documentation
 
 ## USER AUTHENTICATION/AUTHORIZATION
@@ -194,7 +222,7 @@ Returns the information about the current user that is logged in.
 * Require Authentication: true
 * Request
   * Method: GET
-  * URL: /api/session
+  * URL: /api/auth
   * Body: none
 
 * Successful Response when there is a logged in user
@@ -207,11 +235,9 @@ Returns the information about the current user that is logged in.
     {
       "user": {
         "id": 1,
-        "coverPhoto": "https://mechanicalkeyboards.com/shop/images/products/large_9315_large_DKON2161ST-USPHSFTPGC1U2Z_main.png",
-        "profile_imageURL": "https://img.freepik.com/free-icon/user_318-826358.jpg"
         "email": "demo@aa.io",
         "username": "Demo",
-
+        "TotalExp": 100,
       }
     }
     ```
@@ -235,10 +261,8 @@ information.
 
 * Require Authentication: false
 * Request
-
   * Method: POST
-  * URL: /api/session
- 
+  * URL: /api/auth/login
   * Headers:
     * Content-Type: application/json
   * Body:
@@ -258,12 +282,11 @@ information.
 
     ```json
     {
-      "user": {
+     "user": {
         "id": 1,
-        "firstName": "demo1",
-        "lastName": "work1",
         "email": "demo@aa.io",
-        "username": "Demo"
+        "username": "Demo",
+        "TotalExp": 100,
       }
     }
     ```
@@ -290,8 +313,8 @@ information.
     {
       "message": "Bad Request",
       "errors": {
-        "credential": "Email or username is required",
-        "password": "Password is required"
+        "credential": "email : Email provided not found.",
+        "password": "password : No such user exists."
       }
     }
     ```
@@ -303,25 +326,20 @@ user's information.
 
 * Require Authentication: false
 * Request
-  <!--!!START SILENT -->
   * Method: POST
-  * URL: /api/users
-  <!--!!END -->
-  <!--!!ADD -->
-  <!-- * Method: ? -->
-  <!-- * URL: ? -->
-  <!--!!END_ADD -->
+  * URL: /api/auth/signup
   * Headers:
     * Content-Type: application/json
   * Body:
 
     ```json
     {
-      "firstName": "demo2",
-      "lastName": "work2",
+      "username": "demo2",
       "email": "marnie@aa.io",
       "username": "marnie",
-      "password": "secret password"
+      "password": "secret password",
+      "converPhoto: "https://mechanicalkeyboards.com/shop/images/products/large_9315_large_DKON2161ST-USPHSFTPGC1U2Z_main.png",
+      "profile_imageUR": "https://img.freepik.com/free-icon/user_318-826358.jpg"
     }
     ```
 
@@ -334,11 +352,13 @@ user's information.
     ```json
     {
       "user": {
-        "id": 1,
-        "firstName": "demo2",
-        "lastName": "work2",
-        "email": "marnie@aa.io",
-        "username": "marnie"
+      "id":1
+      "username": "demo2",
+      "email": "marnie@aa.io",
+      "username": "marnie",
+      "converPhoto: "https://mechanicalkeyboards.com/shop/images/products/large_9315_large_DKON2161ST-USPHSFTPGC1U2Z_main.png",
+      "profile_imageUR": "https://img.freepik.com/free-icon/user_318-826358.jpg"
+      "createdAt": "Sat, 19 Aug 2023 21:09:03 GMT"
       }
     }
     ```
