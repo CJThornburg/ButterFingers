@@ -5,7 +5,7 @@ import ResultsGraph from '../../ResultsGraph'
 import OpenModalButton from "../../OpenModalButton";
 import TextFormModal from "../TextFormModal"
 import './TextPage.css'
-import {jsTimeFormatter, disablePaste} from "../../../utils"
+import { jsTimeFormatter, disablePaste } from "../../../utils"
 import Footer from "../../Foooter";
 
 
@@ -158,14 +158,15 @@ function TextPage() {
 
   }
 
-  const clearOption = ()=>{
+  const clearOption = () => {
     setShowStartButton(false)
     setOption("")
     setCustomYellow(true)
   }
 
   const closeMenu = () => {
-    setShowMenu(false)};
+    setShowMenu(false)
+  };
 
   let currentIndex
   const userInputChange = (e) => {
@@ -198,7 +199,7 @@ function TextPage() {
   // buttons on "stats" page
   const handleNext = async () => {
 
-    let kpm = (((textObj.characterCount * 60)/ (ms /1000)))
+    let kpm = (((textObj.characterCount * 60) / (ms / 1000)))
     let res = await dispatch(thunkCreateScore(textObj.id, ms, mistakes, kpm, textObj.textExp, user))
     if (res) {
       console.log("error", res)
@@ -230,7 +231,7 @@ function TextPage() {
     // TODO if characters less than ~20, for KPM just say "too short of text sample to calculate kpm"
 
 
-    let relevantScores = scores.filter((score)=> score.userId=== user )
+    let relevantScores = scores.filter((score) => score.userId === user)
     // let now = new Date();
     // // let formNow = now.toISOString()
     // // console.log(formNow)
@@ -247,7 +248,7 @@ function TextPage() {
 
 
     const currentScore = {
-      "kpm": ((textObj.characterCount * 60)/ (ms /1000)).toFixed(2),
+      "kpm": ((textObj.characterCount * 60) / (ms / 1000)).toFixed(2),
       "createdAt": formattedDate
     }
 
@@ -260,9 +261,9 @@ function TextPage() {
         <div className="column ">
 
           <div className="spacer"></div>
-        {relevantScores.length >= 3 &&  <ResultsGraph relevantScores={relevantScores}></ResultsGraph>}
-{relevantScores.length < 3 && <div className="PP-noGraph-div HFont"> <h1 className="st">User has not run enough tests to generate a graph. :( </h1></div> }
-          <h3 className="pFont wgt">Key Strokes Per Minute: <span className="yt"> {((textObj.characterCount * 60)/ (ms /1000)).toFixed(2)} </span></h3>
+          {relevantScores.length >= 3 && <ResultsGraph relevantScores={relevantScores}></ResultsGraph>}
+          {relevantScores.length < 3 && <div className="PP-noGraph-div HFont"> <h1 className="st">User has not run enough tests to generate a graph. :( </h1></div>}
+          <h3 className="pFont wgt">Key Strokes Per Minute: <span className="yt"> {((textObj.characterCount * 60) / (ms / 1000)).toFixed(2)} </span></h3>
           <h3 className="pFont wgt">Time: <span className="yt">{(ms / 1000).toFixed(2)}</span></h3>
           <h3 className="pFont wgt">Accuracy: <span className="yt">{(((textObj.characterCount) / (textObj.characterCount + mistakes)) * 100).toFixed(2)}% </span></h3>
           <h4 className="pFont wgt">Word Count: <span className="yt"> {textObj.wordCount}</span></h4>
@@ -278,10 +279,10 @@ function TextPage() {
 
       <h2>Text card history</h2> */}
 
-{/* {ms:  , date:} of scores with the same userId*/}
+          {/* {ms:  , date:} of scores with the same userId*/}
 
 
-        {/* <ResultsGraph relevantScores={relevantScores}></ResultsGraph> */}
+          {/* <ResultsGraph relevantScores={relevantScores}></ResultsGraph> */}
 
 
           <div className="TP-next-delete-div">
@@ -307,31 +308,31 @@ function TextPage() {
       <div className="column-holder">
         <div className="column">
 
-      <div className="TP-textType-buttons TP-Whole-div">
-        <div className="TP-Options-div">
-          <p className="TP-A-words HFont wgt"><i class="fa-solid fas fa-font"></i> Options: </p>
-          <button className="default_button_noBorder" onClick={(e) => { handleLengthChange(e, 20, "select") }}><span className={option ===20 ? `yt`:` `}>   20 </span></button>
-          <button className="default_button_noBorder" onClick={(e) => { handleLengthChange(e, 50, "select") }}><span className={option ===50 ? 'yt': ''}>   50</span> </button>
-          <button className="default_button_noBorder" onClick={(e) => { handleLengthChange(e, 100, "select") }}><span className={option ===100 ? 'yt': ''}>  100 </span> </button>
-          <button className="default_button_noBorder" onClick={(e) => { handleLengthChange(e, -1, "select") }}><span className={option ===-1 ? 'yt': ''}>  Random </span> </button>
+          <div className="TP-textType-buttons TP-Whole-div">
+            <div className="TP-Options-div">
+              <p className="TP-A-words HFont wgt"><i class="fa-solid fas fa-font"></i> Options: </p>
+              <button className="default_button_noBorder" onClick={(e) => { handleLengthChange(e, 20, "select") }}><span className={option === 20 ? `yt` : ` `}>   20 </span></button>
+              <button className="default_button_noBorder" onClick={(e) => { handleLengthChange(e, 50, "select") }}><span className={option === 50 ? 'yt' : ''}>   50</span> </button>
+              <button className="default_button_noBorder" onClick={(e) => { handleLengthChange(e, 100, "select") }}><span className={option === 100 ? 'yt' : ''}>  100 </span> </button>
+              <button className="default_button_noBorder" onClick={(e) => { handleLengthChange(e, -1, "select") }}><span className={option === -1 ? 'yt' : ''}>  Random </span> </button>
 
 
-          {/* <button className="default_button" onClick={showChange}>Custom</button> */}
-          <span className="yt">
-          <OpenModalButton
-            customYellow={customYellow}
-            buttonText="Custom"
-            onButtonClick={clearOption}
-            onItemClick={closeMenu}
-            modalComponent={<TextFormModal from="Post" setTextObj={setTextObj} setCopyText={setCopyText} setShowTextArea={setShowTextArea} setMistakes={setMistakes} setMs={setMs} setStart={setStart} setUserText={setUserText} startTest={startTest} />}
+              {/* <button className="default_button" onClick={showChange}>Custom</button> */}
+              <span className="yt">
+                <OpenModalButton
+                  customYellow={customYellow}
+                  buttonText="Custom"
+                  onButtonClick={clearOption}
+                  onItemClick={closeMenu}
+                  modalComponent={<TextFormModal from="Post" setTextObj={setTextObj} setCopyText={setCopyText} setShowTextArea={setShowTextArea} setMistakes={setMistakes} setMs={setMs} setStart={setStart} setUserText={setUserText} startTest={startTest} />}
 
 
-          />
-          </span>
+                />
+              </span>
+            </div>
+          </div>
+
         </div>
-        </div>
-
-      </div>
         {/* if clicked, render change button, and a default text and clicking that one that will open modal. The default is there to prevent errors if its a new user and they have no texts to render without having to give everyone a default card*/}
         {/* const [showTextArea, setShowTextArea] = useState(false) */}
 
@@ -340,45 +341,55 @@ function TextPage() {
       <div className="column-holder">
         <div className="column">
 
-      {showTextArea &&
-        <>
-       <form className="TP-form">
+          {showTextArea &&
+            <>
+              <form className="TP-form">
 
-        <p className="wgt TP-copyText pFont">{copyText}</p>
+                <p className="wgt TP-copyText pFont">{copyText}</p>
 
-        <textarea
-          value={userText}
-          onChange={(e) => userInputChange(e)}
-          className="TP-textarea textarea-Text noSizeChange"
-          autoFocus
-          onPaste={(e)=> disablePaste(e)}
-          spellcheck="false"
-        >
-        </textarea>
-      </form>
-        <div className="TP-current-stats">
+                <textarea
+                  value={userText}
+                  onChange={(e) => userInputChange(e)}
+                  className="TP-textarea textarea-Text noSizeChange"
+                  autoFocus
+                  onPaste={(e) => disablePaste(e)}
+                  spellcheck="false"
+                >
+                </textarea>
+              </form>
+              <div className="TP-current-stats">
 
 
-      <div ><p className="TP-current-stat HFont wgt">Characters left: <span className="pFont yt">{` ${userText.length}/${copyText.length}`}</span></p>  </div>
-      <div ><p className="TP-current-stat HFont wgt">Mistakes: <span className="pFont yt">{mistakes}</span></p></div>
+                <div ><p className="TP-current-stat HFont wgt">Characters left: <span className="pFont yt">{` ${userText.length}/${copyText.length}`}</span></p>  </div>
+                <div ><p className="TP-current-stat HFont wgt">Mistakes: <span className="pFont yt">{mistakes}</span></p></div>
 
+              </div>
+            </>
+          }
         </div>
-</>
-      }
-      </div>
       </div>
       <div className="column-holder">
         <div className="column click-toStart">
-      {showStartButton && <button className="default_button" onClick={startTest}>
-        Click to start!
-      </button>}
+          {showStartButton && <button className="default_button" onClick={startTest}>
+            Click to start!
+          </button>}
+        </div>
       </div>
-      </div>
-      {/* </div> */}
-      <div className="text-footer">
+
+      {/* if not started bottom text-footer */}
+      {!showTextArea &&
+        <div className="text-footer">
+
+          <Footer></Footer>
+        </div>
+      }
+
+
+      {showTextArea &&
 
       <Footer></Footer>
-      </div>
+      }
+
     </>
   )
 }
