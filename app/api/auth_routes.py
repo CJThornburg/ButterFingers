@@ -106,9 +106,7 @@ def sign_up():
         url2=upload2["url"]
         pprint(url2)
         user = User.query.filter(User.email == form.data['email']).first()
-        # if user is not None:
-        #     print(user)
-        #     return {'errors': "Email already in use, please try another email"}, 401
+    
 
         user = User(
             username=form.data['username'].lower(),

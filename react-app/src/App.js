@@ -14,7 +14,7 @@ import { thunkGetAllFriends } from './store/friends'
 import ProtectedRoute from "./components/auth/ProtectedRoute";
 import Splash from './components/Splash';
 import Page404 from './components/Page404'
-import Footer from "./components/Foooter";
+import Footer from "./components/Footer";
 
 function App() {
   const dispatch = useDispatch();
@@ -65,7 +65,7 @@ function App() {
         </Switch>
 
       )}
-      
+
     </>
   );
 }

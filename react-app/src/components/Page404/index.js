@@ -1,6 +1,6 @@
 import React from 'react';
 import './Page404.css'
-import Footer from '../Foooter';
+import Footer from '../Footer';
 
 const Page404 = () => {
   return (

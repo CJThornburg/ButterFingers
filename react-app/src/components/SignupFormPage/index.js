@@ -37,18 +37,6 @@ function SignupFormPage() {
 
 
 
-    // if (profilePic.length !== 0) {
-    //   if (
-    //     !(
-    //       profilePic.endsWith(".png") ||
-    //       profilePic.endsWith(".jpg") ||
-    //       profilePic.endsWith(".jpeg")
-    //     )
-    //   ) {
-    //     err["ProfilePicture"] = "If including image url, it must be a valid format '.png, .jpg, or .jpeg' "
-    //   }
-    // }
-
     if (!email.replace(/\s/g, '').length) {
       err["Email"] = 'Name can not contain only whitespace (ie. spaces, tabs or line breaks)'
     }

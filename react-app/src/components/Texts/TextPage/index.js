@@ -6,9 +6,7 @@ import OpenModalButton from "../../OpenModalButton";
 import TextFormModal from "../TextFormModal"
 import './TextPage.css'
 import { jsTimeFormatter, disablePaste } from "../../../utils"
-import Footer from "../../Foooter";
-
-
+import Footer from "../../Footer";
 
 /*
 on first load want to just load text options
@@ -56,59 +54,40 @@ function TextPage() {
   const [ms, setMs] = useState()
   const [end, setEnd] = useState()
   const [customYellow, setCustomYellow] = useState(false)
-
   const user = useSelector(state => state.session.user.id)
   const texts = useSelector(state => Object.values(state.texts))
   const scores = useSelector(state => Object.values(state.scores))
   const resultsObj = {}
 
-
-  // have it staged, makes it way easier for me
-  // only render buttons to choice type
-  // after choosing that render start button
-  // after click that start test and render text and textarea
-
   if (texts.length === 0) return null
-
   function getRandomInt(max) {
     return Math.floor(Math.random() * max);
   }
 
   const getRandom = () => {
     let randomInt = getRandomInt(texts.length - 1)
-
   }
 
   const showChange = (e) => {
     setChange(true)
   }
 
-
-
-
   const handleLengthChange = (e, num, from) => {
     let matchingLengthTexts
     let randomInt
     setCustomYellow(false)
     if (num !== -1) {
-
       matchingLengthTexts = texts.filter((text) => text.wordCount === num)
       randomInt = getRandomInt(matchingLengthTexts.length - 1)
     }
 
-
-
     switch (num) {
-      // TODO can be reduced down to simple if else, if num=== -1 random, else do the same in case or
-
       case 20:
         setTextObj(matchingLengthTexts[randomInt])
         setCopyText(matchingLengthTexts[randomInt].typingText)
         setUserText("")
-
         setOption(num)
         break;
-
       case 50:
         setTextObj(matchingLengthTexts[randomInt])
         setCopyText(matchingLengthTexts[randomInt].typingText)
@@ -121,7 +100,6 @@ function TextPage() {
         setUserText("")
         setOption(num)
         break;
-
       case -1:
         let textCount = texts.length
         randomInt = getRandomInt(textCount - 1)
@@ -130,11 +108,7 @@ function TextPage() {
         setUserText("")
         setOption(num)
         break;
-
-
-
     }
-
     if (from === "select") {
       setShowStartButton(true)
       setShowTextArea(false)
@@ -142,20 +116,11 @@ function TextPage() {
     setChange(false)
   }
 
-
-
-
-
-
-
-
   const startTest = () => {
     setShowTextArea(true)
     setShowStartButton(false)
     let startTime = new Date().getTime()
-
     setStart(startTime)
-
   }
 
   const clearOption = () => {
@@ -179,7 +144,6 @@ function TextPage() {
 
     if (userText.length === copyText.length - 1) {
       let endTime = new Date().getTime()
-
       setEnd(endTime)
       let timing = endTime - start
       resultsObj.time = timing
@@ -191,31 +155,21 @@ function TextPage() {
   }
 
 
-  // const disablePaste = (e) => {
-  //   // !!!! cheat cheating anti-cheat
-  //   e.preventDefault(); // no cheating >:(
-  // };
-
-  // buttons on "stats" page
   const handleNext = async () => {
-
     let kpm = (((textObj.characterCount * 60) / (ms / 1000)))
     let res = await dispatch(thunkCreateScore(textObj.id, ms, mistakes, kpm, textObj.textExp, user))
     if (res) {
       console.log("error", res)
     }
     setUserText("")
-
     setMistakes(0)
     setMs()
     setDone(false)
     startTest()
     handleLengthChange("e", option, "next")
-
   }
 
   const handleDelete = async () => {
-
     setUserText("")
     setMistakes(0)
     setMs()
@@ -223,29 +177,10 @@ function TextPage() {
     handleLengthChange("e", option)
   }
 
-
-
   if (done) {
 
-    // TODO add data showing users overall stats for this text
-    // TODO if characters less than ~20, for KPM just say "too short of text sample to calculate kpm"
-
-
     let relevantScores = scores.filter((score) => score.userId === user)
-    // let now = new Date();
-    // // let formNow = now.toISOString()
-    // // console.log(formNow)
-    // console.log("python notation ", relevantScores[0].createdAt)
-    // const currentDate = new Date();
-
-
-
-    // const daysOfWeek = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
-    // const monthsOfYear = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
-
-    // const formattedDate = `${daysOfWeek[currentDate.getUTCDay()]}, ${currentDate.getUTCDate()} ${monthsOfYear[currentDate.getUTCMonth()]} ${currentDate.getUTCFullYear()} ${currentDate.getUTCHours()}:${currentDate.getUTCMinutes()}:${currentDate.getUTCSeconds()} GMT`;
     let formattedDate = jsTimeFormatter()
-
 
     const currentScore = {
       "kpm": ((textObj.characterCount * 60) / (ms / 1000)).toFixed(2),
@@ -254,15 +189,13 @@ function TextPage() {
 
     relevantScores.push(currentScore)
     return (<>
-
-
       <div className="column-holder-stats ">
-
         <div className="column ">
-
           <div className="spacer"></div>
+
           {relevantScores.length >= 3 && <ResultsGraph relevantScores={relevantScores}></ResultsGraph>}
           {relevantScores.length < 3 && <div className="PP-noGraph-div HFont"> <h1 className="st">User has not run enough tests to generate a graph. :( </h1></div>}
+
           <h3 className="pFont wgt">Key Strokes Per Minute: <span className="yt"> {((textObj.characterCount * 60) / (ms / 1000)).toFixed(2)} </span></h3>
           <h3 className="pFont wgt">Time: <span className="yt">{(ms / 1000).toFixed(2)}</span></h3>
           <h3 className="pFont wgt">Accuracy: <span className="yt">{(((textObj.characterCount) / (textObj.characterCount + mistakes)) * 100).toFixed(2)}% </span></h3>
@@ -271,19 +204,6 @@ function TextPage() {
           <h4 className="pFont wgt">Characters: <span className="yt"> {textObj.characterCount} </span></h4>
           <h4 className="pFont wgt">non space Characters: <span className="yt">{textObj.noSpaceCharacterCount}</span></h4>
           <h4 className="pFont wgt">exp: <span className="yt">{textObj.textExp}</span> </h4>
-          {/*
-      <h1>vs</h1>
-
-
-
-
-      <h2>Text card history</h2> */}
-
-          {/* {ms:  , date:} of scores with the same userId*/}
-
-
-          {/* <ResultsGraph relevantScores={relevantScores}></ResultsGraph> */}
-
 
           <div className="TP-next-delete-div">
 

@@ -14,26 +14,16 @@ import SearchResultsModal from './SearchResultsModal'
 
 function Navigation({ isLoaded }) {
 	const sessionUser = useSelector(state => state.session.user);
-	// const [signedIn, setSignedIn] = useState(false)
 	let users = useSelector(state => state.users)
-
 	const { setModalContent, setOnModalClose } = useModal();
-	console.log(users)
 	const [userNameSearch, setUserNameSearch] = useState("")
-	// const [similarUsers, setSimilarUsers] = useState([])
-
 
 	const history = useHistory();
-	// if (sessionUser?.username) {
-	//  setSignedIn(true)
-	// }
 	const dispatch = useDispatch();
 	if (Object.values(users).length === 0) return null
 	const handleLogout = (e) => {
 		e.preventDefault();
 		dispatch(logout());
-		// closeMenu();
-
 		history.push('/')
 	};
 
@@ -41,40 +31,13 @@ function Navigation({ isLoaded }) {
 		e.preventDefault();
 		let exactMatch = false
 		if (users[userNameSearch]) {
-
-			exactMatch=true
-
-			// history.push(`/users/${userNameSearch}`)
+			exactMatch = true
 			setUserNameSearch("")
 		}
 
-			const similarUsers1 = Object.values(users).filter(user => user.username.includes(userNameSearch))
-			console.log("similar users ", similarUsers1 )
+		const similarUsers1 = Object.values(users).filter(user => user.username.includes(userNameSearch))
 
-			// if (onModalClose) setOnModalClose(onModalClose);
-    setModalContent(<SearchResultsModal exactMatch={exactMatch} exactUserName={userNameSearch} results={similarUsers1} />);
-
-
-
-
-
-
-			// setSimilarUsers(similarUsers1)
-			//TODO    open module with similar users mapped out to links to them
-			// TODO    "No exact matches were found did you mean one of these players? "
-			// console.log(similarUsers)
-
-
-
-
-// 			alert(`User with that username does not exist.
-// Please check spelling and try again`)
-
-
-
-
-
-		
+		setModalContent(<SearchResultsModal exactMatch={exactMatch} exactUserName={userNameSearch} results={similarUsers1} />);
 	}
 
 
@@ -82,63 +45,45 @@ function Navigation({ isLoaded }) {
 
 	return (
 		<ul className='noPoint Nav-nav-div'>
-			{sessionUser ? (<>
-				{/* <li>
-					<NavLink exact to="/">Home</NavLink>
-				</li> */}
+			{sessionUser ? (
+				<>
+
 				<li><NavLink className="anti-link yt HFont" exact to="/test"><h1 className='BF'>ButterFingers</h1></NavLink></li>
 				<li className='Nav-test'>
 					<NavLink className="anti-link N-navLink wgt HFont" exact to="/test">Test</NavLink>
 				</li>
 
 				<li className='Nav-test'>
-				<form className='form-div'>
+					<form className='form-div'>
 
 
-					<label className='wgt HFont'>
+						<label className='wgt HFont'>
 
-						<input
-							type="text"
-							value={userNameSearch.toLocaleLowerCase()}
-							onChange={(e) => setUserNameSearch(e.target.value.toLocaleLowerCase())}
-							placeholder=" Username search"
-							className='placeholder-Text'
-						/>
-					</label>
-					<button className='default_button' onClick={handleSearch}>Search</button>
-					{/* <OpenModalButton
-          buttonText="Search"
-          className="TF-input"
-		  onClick={handleSearch}
-          modalComponent={<SearchResultsModal  results={similarUsers } />} */}
-        {/* /> */}
-				</form>
-
+							<input
+								type="text"
+								value={userNameSearch.toLocaleLowerCase()}
+								onChange={(e) => setUserNameSearch(e.target.value.toLocaleLowerCase())}
+								placeholder=" Username search"
+								className='placeholder-Text'
+							/>
+						</label>
+						<button className='default_button' onClick={handleSearch}>Search</button>
+					</form>
 
 				</li>
+
 				<li className='Nav-test'>
 					<div className='Nav-profile-logout-div'>
 						<NavLink className="anti-link N-navLink wgt HFont" exact to={`/users/${sessionUser.username}`}>{sessionUser.username}</NavLink>
 						{isLoaded && <button className="default_button" onClick={handleLogout}><i class="fa-solid fas fa-door-open"></i></button>}
 					</div>
-
 				</li>
-
-
-				{/* {isLoaded && (
-					<li>
-						<ProfileButton user={sessionUser} />
-					</li>
-				)} */}
-
-			</>) : (<>	</>)}
-
+			</>
+			)
+			:
+			(<>	</>)}
 		</ul>
 	);
-
-
-
-
 }
 
 export default Navigation;

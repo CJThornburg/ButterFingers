@@ -1,15 +1,13 @@
 import React, { useState, useEffect } from "react";
 import "./ProfilePage.css";
 import { useDispatch, useSelector } from "react-redux";
-// import { thunkGetAllTexts } from "../../../store/texts"
-
 import { thunkCreateFriendRelationship, thunkAcceptFriend, thunkRejectFriend, thunkUndoRejectFriend, thunkDeleteFriend, thunkGetAllFriends } from "../../../store/friends"
 import { useParams, useHistory, Link } from "react-router-dom";
 import { getLevel } from "../../../utils";
 import PlayerText from "./PlayerText";
 import ResultsGraph from "../../ResultsGraph";
 import { jsDMYDateFormatter } from "../../../utils";
-import Footer from "../../Foooter";
+import Footer from "../../Footer";
 
 
 function ProfilePage() {
@@ -32,8 +30,6 @@ function ProfilePage() {
     return null
   }
 
-
-  // onClicks
   const handleFriendRequest = async () => {
     const data = await dispatch(thunkCreateFriendRelationship(username));
   }
@@ -47,13 +43,10 @@ function ProfilePage() {
 
   const handleReject = async () => {
     const data = await dispatch(thunkRejectFriend(username))
-    console.log(data)
   }
   const handleRejectFromOwn = async (username) => {
     const data = await dispatch(thunkRejectFriend(username))
-    console.log(data)
   }
-
 
   const handleUndoReject = async () => {
     const data = await dispatch(thunkUndoRejectFriend(username))
@@ -73,12 +66,9 @@ function ProfilePage() {
   }
 
   // ! why do i have to do ?, conditional short circuit for it is breaking code :(
-
   const userScores = scores.filter((score => score.userId === userObj?.id))
-
   const totalExp = userScores.reduce((accumulator, currentValue) => accumulator + currentValue.runExp, 0);
   const totalMistakes = userScores.reduce((accumulator, currentValue) => accumulator + currentValue.mistakes, 0)
-
   const totalTime = userScores.reduce((accumulator, currentValue) => accumulator + currentValue.time, 0)
   const totalKpm = userScores.reduce((accumulator, currentValue) => accumulator + currentValue.kpm, 0);
 
@@ -86,47 +76,27 @@ function ProfilePage() {
   if (totalKpm === 0) {
     averageKpm = 0
   } else {
-
     averageKpm = totalKpm / userScores.length;
   }
-
-  // Below:for each score, search text and sum all the characterCount noSpaceCharacterCount wordCount
 
   let totalChars = 0
   let totalCharsNospace = 0
   let totalWords = 0
   for (const score of userScores) {
     let currentTextId = score.textId
-
     totalChars += textObjs[currentTextId].characterCount
     totalCharsNospace += textObjs[currentTextId].noSpaceCharacterCount
     totalWords += textObjs[currentTextId].wordCount
   }
 
-
-
-
   const userTexts = texts.filter((score => score.userId === userObj?.id))
-
   const level = getLevel(totalExp)
-
-
-
-
   let totalTimeMin = (totalTime / 60000)
-
-
-  // currentUsername === logged in user
-
-  // Filterers for current user friends list, request lists
 
   const currentSentFriendRequests = friends.filter(friend => (friend.fromUser.toLowerCase() === currentUsername.toLowerCase() && friend.status === "pending"));
   console.log("sent friend request", currentSentFriendRequests)
-  // number of cards
 
   const currentReceivedFriendRequests = friends.filter(friend => (friend.toUser.toLowerCase() === currentUsername.toLowerCase() && friend.status === "pending"));
-  console.log("received friend request", currentReceivedFriendRequests)
-
 
   const currentFriendsTo = friends.filter(friend => (
     (friend.toUser.toLowerCase() === currentUsername.toLowerCase()) && friend.status === "active"));
