@@ -14,7 +14,7 @@ import { thunkGetAllFriends } from './store/friends'
 import ProtectedRoute from "./components/auth/ProtectedRoute";
 import Splash from './components/Splash';
 import Page404 from './components/Page404'
-import Footer from "./components/Footer";
+import LeaderBoards from "./components/LeaderBoards"
 
 function App() {
   const dispatch = useDispatch();
@@ -47,11 +47,18 @@ function App() {
               <TextPage></TextPage>
             </ProtectedRoute>
           </Route>
-          <Route path='/users/:username'>
-
-            <ProfilePage></ProfilePage>
-
+          <Route exact path='/Leaderboards'>
+          <ProtectedRoute>
+              <LeaderBoards></LeaderBoards>
+            </ProtectedRoute>
           </Route>
+
+          <Route path='/users/:username'>
+          <ProtectedRoute>
+            <ProfilePage></ProfilePage>
+            </ProtectedRoute>
+          </Route>
+
           <Route exact path="/">
             <Splash></Splash>
           </Route>
