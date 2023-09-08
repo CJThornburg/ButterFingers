@@ -1,7 +1,7 @@
 import {ResponsiveContainer, AreaChart, XAxis, YAxis, Area, Tooltip, CartesianGrid} from "recharts"
 
 
-// todo 
+// todo
 
 function ResultsGraph({relevantScores}) {
 
@@ -29,6 +29,8 @@ function ResultsGraph({relevantScores}) {
             />
             <YAxis dataKey="kpm" axisLine={false} tickLine={false}  label={{ value: "KSPM", position: "insideLeft", angle: -90,  style: axisLabelStyle, }}/>
             <Tooltip   contentStyle={{ backgroundColor: "#323437", color: "#D1D0C5", "borderColor": "#E2B714", "border-radius": "10px" }}/>
+
+
             <CartesianGrid opacity={0.1} vertical={false}/>
         </AreaChart>
        </ResponsiveContainer>
