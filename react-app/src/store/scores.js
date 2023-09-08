@@ -17,8 +17,6 @@ export const thunkDeleteText = (scoreId) => async (dispatch) => {
 
 
 export const thunkCreateScore = (textId, time, mistakes, kpm, runExp, userId) => async (dispatch) => {
-    console.log("runEXP", runExp)
-    console.log("kspm", kpm)
     const response = await fetch(`/api/scores/new`, {
         method: "POST",
         headers: {
@@ -35,8 +33,16 @@ export const thunkCreateScore = (textId, time, mistakes, kpm, runExp, userId) =>
     });
 
 
+    // const response2 = await fetch(`/api/KSPMupdate`, {
+    //     method: "PUT",
+    //     headers: {
+    //         "Content-Type": "application/json",
+    //     },
+    // });
 
-    if (response.ok) {
+
+
+    if (response.ok ) {
         const data = await response.json();
         dispatch(postScore(data))
         return data
@@ -74,16 +80,13 @@ export const thunkGetAllScores = () => async (dispatch) => {
 
 
 
-// export const thunkEditText = (name, typingText, textId) => async (dispatch) => {
-//     const response = await fetch(`api/texts/${textId}`, {
+// happens after score was submitted
+// export const thunkUpdateKSPM = () => async (dispatch) => {
+//     const response = await fetch(`/api/KSPMupdate`, {
 //         method: "PUT",
 //         headers: {
 //             "Content-Type": "application/json",
 //         },
-//         body: JSON.stringify({
-//             name,
-//             typingText,
-//         }),
 //     });
 //     if (response.ok) {
 //         const data = await response.json();

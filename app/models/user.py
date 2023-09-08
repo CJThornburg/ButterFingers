@@ -19,6 +19,7 @@ class User(db.Model, UserMixin):
     profile_imageURL = db.Column(db.Text, nullable=True, default="https://img.freepik.com/free-icon/user_318-826358.jpg")
     coverPhoto = db.Column(db.String(255), nullable=True, default="https://mechanicalkeyboards.com/shop/images/products/large_9315_large_DKON2161ST-USPHSFTPGC1U2Z_main.png")
     createdAt = db.Column(db.DateTime, default=db.func.now())
+    averageKSPM = db.Column(db.Integer, default=0)
 
     # one user to many text
     totalExp = db.Column(db.Integer, default=0, nullable=False)
@@ -58,5 +59,6 @@ class User(db.Model, UserMixin):
             'username': self.username,
             "profile_imageURL": self.profile_imageURL,
             "coverPhoto": self.coverPhoto,
-            "createdAt": self.createdAt
+            "createdAt": self.createdAt,
+            "averageKSPM": self.averageKSPM
         }

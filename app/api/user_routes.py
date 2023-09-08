@@ -1,6 +1,6 @@
-from flask import Blueprint, jsonify
-from flask_login import login_required
-from app.models import User
+from flask import Blueprint, jsonify, request
+from flask_login import login_required, current_user
+from app.models import User, Score, db
 from pprint import pprint
 
 user_routes = Blueprint('users', __name__)
@@ -43,3 +43,32 @@ def userByUsername(username):
     return {"msg" : "hi"}
     # user = User.query.get(id)
     # return user.to_dict()
+
+
+# @user_routes.route('/KSPMupdate', methods=["PUT"])
+# @login_required
+# def updateKSPM():
+#     """
+#     Query for KSPM update after a score has been submitted
+#     """
+
+#     cur_user = current_user.to_dict()
+
+#     userId = cur_user["id"]
+
+#     # have all the scores
+#     scores = Score.query.filter(Score.userId == userId)
+
+#     total_KSPM = 0
+#     for score in scores:
+#         total_KSPM+= score['kpm']
+
+#     average_KSPM = total_KSPM / len(scores)
+
+
+#     # get user info so can update
+#     user = User.query.get(id)
+
+#     user.averageKSPM=average_KSPM
+#     db.session.commit()
+#     return user.to_dict()
