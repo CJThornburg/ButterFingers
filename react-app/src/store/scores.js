@@ -33,12 +33,12 @@ export const thunkCreateScore = (textId, time, mistakes, kpm, runExp, userId) =>
     });
 
 
-    // const response2 = await fetch(`/api/KSPMupdate`, {
-    //     method: "PUT",
-    //     headers: {
-    //         "Content-Type": "application/json",
-    //     },
-    // });
+    const response2 = await fetch(`/api/users/kspmupdate`, {
+        method: "PUT",
+        headers: {
+            "Content-Type": "application/json",
+        },
+    });
 
 
 
