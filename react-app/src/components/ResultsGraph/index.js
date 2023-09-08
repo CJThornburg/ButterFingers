@@ -44,6 +44,7 @@ function ResultsGraph({relevantScores}) {
 
             <Tooltip   contentStyle={{ backgroundColor: "#323437", color: "#D1D0C5", "borderColor": "#E2B714", "border-radius": "10px" }}/>
 
+ 
             <CartesianGrid opacity={0.1} vertical={false}/>
         </AreaChart>
        </ResponsiveContainer>
