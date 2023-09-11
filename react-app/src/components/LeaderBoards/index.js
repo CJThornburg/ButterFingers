@@ -25,7 +25,7 @@ function LeaderBoards() {
   if (!render) {
     setRender(true)
   }
-  
+
   const acdKSPM = users.toSorted((a, b) => a.averageKSPM - b.averageKSPM)
   const desKSPM = users.toSorted((a, b) => b.averageKSPM - a.averageKSPM)
 
@@ -40,12 +40,13 @@ function LeaderBoards() {
 
   return (
     <>
-      <div className="listHolder">
+      <div className="listHolder wgt">
 
         {displayList.map((user) => (
           <div>
 
-            <p>{user.username}</p>
+            <p>{user.username} || {user.totalExp} || </p>
+
           </div>
         ))}
 
