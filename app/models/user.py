@@ -60,5 +60,6 @@ class User(db.Model, UserMixin):
             "profile_imageURL": self.profile_imageURL,
             "coverPhoto": self.coverPhoto,
             "createdAt": self.createdAt,
-            "averageKSPM": self.averageKSPM
+            "averageKSPM": self.averageKSPM,
+            "totalExp": self.totalExp
         }

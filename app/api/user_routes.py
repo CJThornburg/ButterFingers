@@ -72,9 +72,7 @@ def updateKSPM():
         count = count + 1
 
     average_KSPM = total_KSPM / count
-    print("!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!")
-    print(round(average_KSPM))
-    print("!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!")
+ 
 
     # get user info so can update
     user = User.query.get(userId)

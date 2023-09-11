@@ -26,8 +26,6 @@ function App() {
       .then(() => dispatch(thunkGetAllScores()))
       .then(() => dispatch(thunkGetAllProfiles()))
       .then(() => dispatch(thunkGetAllFriends()))
-
-
   }, [dispatch]);
 
   return (
@@ -47,7 +45,7 @@ function App() {
               <TextPage></TextPage>
             </ProtectedRoute>
           </Route>
-          <Route exact path='/Leaderboards'>
+          <Route exact path='/leaderboards'>
           <ProtectedRoute>
               <LeaderBoards></LeaderBoards>
             </ProtectedRoute>
