@@ -48,40 +48,42 @@ function Navigation({ isLoaded }) {
 			{sessionUser ? (
 				<>
 
-				<li><NavLink className="anti-link yt HFont" exact to="/test"><h1 className='BF'>ButterFingers</h1></NavLink></li>
-				<li className='Nav-test'>
-					<NavLink className="anti-link N-navLink wgt HFont" exact to="/test">Test</NavLink>
-				</li>
+					<li><NavLink className="anti-link yt HFont" exact to="/test"><h1 className='BF'>ButterFingers</h1></NavLink></li>
 
-				<li className='Nav-test'>
-					<form className='form-div'>
+					<li className='Nav-test'>
+						<NavLink className="anti-link N-navLink wgt HFont" exact to="/test">Test</NavLink>
+					</li>
+					<li className='Nav-test'>
+						<NavLink className="anti-link N-navLink wgt HFont" exact to="/leaderboards">Leader Boards</NavLink>
+					</li>
 
+					<li className='Nav-test'>
+						<form className='form-div'>
+							<label className='wgt HFont'>
 
-						<label className='wgt HFont'>
+								<input
+									type="text"
+									value={userNameSearch.toLocaleLowerCase()}
+									onChange={(e) => setUserNameSearch(e.target.value.toLocaleLowerCase())}
+									placeholder=" Username search"
+									className='placeholder-Text'
+								/>
+							</label>
+							<button className='default_button' onClick={handleSearch}>Search</button>
+						</form>
 
-							<input
-								type="text"
-								value={userNameSearch.toLocaleLowerCase()}
-								onChange={(e) => setUserNameSearch(e.target.value.toLocaleLowerCase())}
-								placeholder=" Username search"
-								className='placeholder-Text'
-							/>
-						</label>
-						<button className='default_button' onClick={handleSearch}>Search</button>
-					</form>
+					</li>
 
-				</li>
-
-				<li className='Nav-test'>
-					<div className='Nav-profile-logout-div'>
-						<NavLink className="anti-link N-navLink wgt HFont" exact to={`/users/${sessionUser.username}`}>{sessionUser.username}</NavLink>
-						{isLoaded && <button className="default_button" onClick={handleLogout}><i class="fa-solid fas fa-door-open"></i></button>}
-					</div>
-				</li>
-			</>
+					<li className='Nav-test'>
+						<div className='Nav-profile-logout-div'>
+							<NavLink className="anti-link N-navLink wgt HFont" exact to={`/users/${sessionUser.username}`}>{sessionUser.username}</NavLink>
+							{isLoaded && <button className="default_button" onClick={handleLogout}><i class="fa-solid fas fa-door-open"></i></button>}
+						</div>
+					</li>
+				</>
 			)
-			:
-			(<>	</>)}
+				:
+				(<>	</>)}
 		</ul>
 	);
 }

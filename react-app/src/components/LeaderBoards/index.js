@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 import { useSelector } from "react-redux";
 import './LeaderBoards.css';
+import { Link } from "react-router-dom";
 
 
 function LeaderBoards() {
@@ -25,7 +26,7 @@ function LeaderBoards() {
   if (!render) {
     setRender(true)
   }
-  
+
   const acdKSPM = users.toSorted((a, b) => a.averageKSPM - b.averageKSPM)
   const desKSPM = users.toSorted((a, b) => b.averageKSPM - a.averageKSPM)
 
@@ -40,15 +41,37 @@ function LeaderBoards() {
 
   return (
     <>
-      <div className="listHolder">
+      <div className="listHolderHolder">
+        <div className="listHolder">
+          <div className="yt recordHolderPre">
 
-        {displayList.map((user) => (
-          <div>
+            <p>Username</p>
+            <p>average KSPM</p>
+            <p>Total Experience</p>
 
-            <p>{user.username}</p>
           </div>
-        ))}
+          {/* <div> */}
 
+
+          {displayList.map((user) => (
+
+            <Link
+
+              className="anti-link recordLink"
+              to={`/users/${user.username}`}
+            >
+              <div className="wgt recordHolder">
+
+                <p className="recordText">{user.username}</p>
+                <p className="recordText">{user.averageKSPM}</p>
+                <p className="recordText">{user.totalExp}</p>
+
+              </div>
+            </Link>
+          ))}
+          {/* </div> */}
+
+        </div>
       </div>
 
     </>

@@ -1,0 +1,46 @@
+.listHolderHolder {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+
+.listHolder {
+    background-color: #2C2E31;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    height: 95vh;
+    margin-top: 30px;
+    overflow: auto;
+    width: 50%;
+    border-radius: 20px;
+}
+
+.recordLink {
+    width: 100%;
+    color: #E2B714;
+}
+
+.recordLink:hover {
+    cursor: pointer;
+
+    .recordText {
+        color: #E2B714
+    }
+}
+
+.recordHolder {
+    display: flex;
+    justify-content: space-around;
+    width: 100%;
+}
+
+.recordHolderPre {
+    display: flex;
+    justify-content: space-around;
+    width: 100%;
+    margin-top: 50px;
+    margin-bottom: 20px;
+}
