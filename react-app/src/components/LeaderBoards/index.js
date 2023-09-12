@@ -11,15 +11,18 @@ function LeaderBoards() {
   const [render, setRender] = useState(false)
   const usersObj = useSelector(state => state.users)
 
-
+  const [settingKSPM, setSettingKSPM] = useState(true)
+  const [settingEXP, setSettingEXP] = useState(true)
   console.log("usrs", users)
   console.log(displayList)
+  const acdKSPM = users.toSorted((a, b) => a.averageKSPM - b.averageKSPM)
+  const desKSPM = users.toSorted((a, b) => b.averageKSPM - a.averageKSPM)
 
   useEffect(() => {
-    setDisplayList(users)
-  }, [render])
+  setDisplayList(desKSPM)
+}, [render])
 
-  if (users.length === 0) {
+if (users.length === 0) {
     return null
   }
 
@@ -27,27 +30,51 @@ function LeaderBoards() {
     setRender(true)
   }
 
-  const acdKSPM = users.toSorted((a, b) => a.averageKSPM - b.averageKSPM)
-  const desKSPM = users.toSorted((a, b) => b.averageKSPM - a.averageKSPM)
 
   const acdTotalExp = users.toSorted((a, b) => a.totalExp - b.totalExp)
   const desTotalExp = users.toSorted((a, b) => b.totalExp - a.totalExp)
 
 
+  const handleKSPM = (e) => {
+    if (settingKSPM) {
+      setDisplayList(acdKSPM)
+      setSettingEXP(true)
+      setSettingKSPM(false)
+    } else {
+      setDisplayList(desKSPM)
+      setSettingEXP(true)
+      setSettingKSPM(true)
+    }
 
+  }
+  const handleEXP = (e) => {
+    if (settingEXP) {
+      setDisplayList(acdTotalExp)
+      setSettingEXP(false)
+      setSettingKSPM(true)
 
+    } else {
+      setDisplayList(desTotalExp)
+      setSettingEXP(true)
+      setSettingKSPM(true)
+    }
+  }
 
 
 
   return (
     <>
+      <div className="LB-buttonHolder">
+        <button className="default_button" onClick={handleKSPM}>KSPM</button>
+        <button className="default_button" onClick={handleEXP}>Total Exp</button>
+      </div>
       <div className="listHolderHolder">
         <div className="listHolder">
           <div className="yt recordHolderPre">
 
-            <p>Username</p>
-            <p>average KSPM</p>
-            <p>Total Experience</p>
+            <p> Username</p>
+            <p> average KSPM</p>
+            <p> Total Experience</p>
 
           </div>
           {/* <div> */}

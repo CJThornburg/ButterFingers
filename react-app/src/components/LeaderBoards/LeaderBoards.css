@@ -1,3 +1,15 @@
+.LB-buttonHolder{
+    display: flex;
+    justify-content: center;
+    gap: 150px;
+    /* width: 25%; */
+    /* margin-left: 20px;
+    margin-right: 20px; */
+}
+
+
+
+
 .listHolderHolder {
     display: flex;
     justify-content: center;
