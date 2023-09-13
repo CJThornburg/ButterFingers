@@ -27,6 +27,6 @@ function SearchResultsModal({ exactMatch, exactUserName, results }) {
             </div>
         </div>
     )
-    
+
 }
 export default SearchResultsModal;
