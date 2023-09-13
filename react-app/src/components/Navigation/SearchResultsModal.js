@@ -4,11 +4,6 @@ import { useModal } from "../../context/Modal";
 function SearchResultsModal({ exactMatch, exactUserName, results }) {
     const { closeModal } = useModal();
 
-
-
-
-    console.log(results, "results in modal")
-
     return (
         <div className="SR-div">
             <h1 className="wgt HFont">Search results</h1>
@@ -32,14 +27,6 @@ function SearchResultsModal({ exactMatch, exactUserName, results }) {
             </div>
         </div>
     )
-
-
-
-
-
-
-
-
 
 }
 export default SearchResultsModal;

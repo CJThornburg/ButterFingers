@@ -61,14 +61,19 @@ def sign_up():
     """
     Creates a new user and logs them in
     """
+
+    # !aws account is being wonky again
     form = SignUpForm()
     form['csrf_token'].data = request.cookies['csrf_token']
     if form.validate_on_submit():
 
+
         profile_imageURL = form.data["profile_imageURL"]
+
         profile_imageURL.filename = get_unique_filename(profile_imageURL.filename)
+
         upload = upload_file_to_s3(profile_imageURL)
-        # print(upload)
+
 
         if "url" not in upload:
             # print("failed to upload profile pic")
@@ -95,9 +100,13 @@ def sign_up():
             # return {"errors": "cover failed to upload"}
 
 
+        pprint(upload)
+
         url=upload["url"]
         url2=upload2["url"]
-
+        pprint(url2)
+        user = User.query.filter(User.email == form.data['email']).first()
+    
 
         user = User(
             username=form.data['username'].lower(),
@@ -106,7 +115,7 @@ def sign_up():
             profile_imageURL=url,
             coverPhoto=url2
         )
-        print("before user print!!!!!")
+
         db.session.add(user)
         db.session.commit()
         pprint(user.to_dict())

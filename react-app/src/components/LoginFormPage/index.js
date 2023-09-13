@@ -18,20 +18,15 @@ function LoginFormPage({ from }) {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    // setErrors([])
+
     const data = await dispatch(login(email, password));
-    console.log(data)
     if (data) {
-      console.log("in errors")
       setErrors(data);
     }else {
-
       if (from === "splash") {
         history.push("/test")
       }
-
     }
-
   };
 
 
@@ -44,7 +39,6 @@ function LoginFormPage({ from }) {
       if (from === "splash") {
         history.push("/test")
       }
-
     }
   };
 
@@ -57,7 +51,6 @@ function LoginFormPage({ from }) {
       if (from === "splash") {
         history.push("/test")
       }
-
     }
   };
 
@@ -69,7 +62,6 @@ function LoginFormPage({ from }) {
           {errors.map((error, idx) => <li className="error-text" key={idx}>{error}</li>)}
         </ul>}
         <label>
-
           <input
             type="email"
             value={email}
@@ -80,7 +72,6 @@ function LoginFormPage({ from }) {
           />
         </label>
         <label>
-
           <input
             type="password"
             value={password}

@@ -31,7 +31,7 @@ https://butterfingers.onrender.com/
 ## Features
 
 ### Custom Texts
-* Users can create a custom text to run 
+* Users can create a custom text to run
 * Users can read/view and run other users texts
 * Users can update their texts
 * Users can delete their texts
@@ -71,8 +71,8 @@ Install dependencies
     pipenv run flask db init
     pipenv run flask db migrate
     pipenv run flask db upgrade
-    pipenv run flask seed all 
-  
+    pipenv run flask seed all
+
 ```
 
 In seprate terminal
@@ -112,33 +112,6 @@ To run this project locally, you will need to add the following environment vari
 
 
 
-
-## API Reference
-
-#### Get all items
-
-```http
-  GET /api/items
-```
-
-| Parameter | Type     | Description                |
-| :-------- | :------- | :------------------------- |
-| `api_key` | `string` | **Required**. Your API key |
-
-#### Get item
-
-```http
-  GET /api/items/${id}
-```
-
-| Parameter | Type     | Description                       |
-| :-------- | :------- | :-------------------------------- |
-| `id`      | `string` | **Required**. Id of item to fetch |
-
-#### add(num1, num2)
-
-Takes two numbers and returns the sum.
-
 ## Color Reference
 
 | Color             | Hex                                                                |
@@ -151,11 +124,12 @@ Takes two numbers and returns the sum.
 
 ## Roadmap
 
+- Site wide Highscores for featured texts will be displayed and searchable for your placement.
+
 - Integrate More AWS capabilites
     - Update
     - Delete
 
-- Add Web Sockets to allow to race friends
 
 
 ## Connect
@@ -163,4 +137,3 @@ Takes two numbers and returns the sum.
 - [Linkdin](https://www.linkedin.com/in/chris-thornburg-swe/)
 
 - [Email Me](mailto:cjthronburg@thornburgsfamily.com)
-

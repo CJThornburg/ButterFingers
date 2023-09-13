@@ -61,6 +61,174 @@ def seed_scores():
             "mistakes": 3,
             "kpm": 250,
             "runExp":85
+        },
+          {
+            "textId": 1,
+            "userId": 8,
+            "time":10000,
+            "mistakes": 3,
+            "kpm": 250,
+            "runExp":85
+        },
+        {
+            "textId": 12,
+            "userId": 4,
+            "time":10000,
+            "mistakes": 3,
+            "kpm": 278,
+            "runExp":85
+        },
+       {
+            "textId": 22,
+            "userId": 13,
+            "time":10000,
+            "mistakes": 3,
+            "kpm": 230,
+            "runExp":85
+        },
+       {
+            "textId": 4,
+            "userId": 5,
+            "time":10000,
+            "mistakes": 3,
+            "kpm": 244,
+            "runExp":85
+        },
+       {
+            "textId": 5,
+            "userId": 8,
+            "time":10000,
+            "mistakes": 3,
+            "kpm": 267,
+            "runExp":85
+        },
+       {
+            "textId": 6,
+            "userId": 3,
+            "time":10000,
+            "mistakes": 3,
+            "kpm": 200,
+            "runExp":85
+        },
+          {
+            "textId": 7,
+            "userId": 6,
+            "time":10000,
+            "mistakes": 3,
+            "kpm": 250,
+            "runExp":85
+        },
+           {
+            "textId": 1,
+            "userId": 4,
+            "time":10000,
+            "mistakes": 3,
+            "kpm": 250,
+            "runExp":85
+        },
+        {
+            "textId": 2,
+            "userId": 8,
+            "time":10000,
+            "mistakes": 3,
+            "kpm": 278,
+            "runExp":85
+        },
+       {
+            "textId": 3,
+            "userId": 9,
+            "time":10000,
+            "mistakes": 3,
+            "kpm": 230,
+            "runExp":85
+        },
+       {
+            "textId": 4,
+            "userId": 13,
+            "time":10000,
+            "mistakes": 3,
+            "kpm": 244,
+            "runExp":85
+        },
+       {
+            "textId": 5,
+            "userId": 4,
+            "time":10000,
+            "mistakes": 3,
+            "kpm": 267,
+            "runExp":85
+        },
+       {
+            "textId": 6,
+            "userId": 5,
+            "time":10000,
+            "mistakes": 3,
+            "kpm": 200,
+            "runExp":85
+        },
+          {
+            "textId": 7,
+            "userId": 8,
+            "time":10000,
+            "mistakes": 3,
+            "kpm": 250,
+            "runExp":85
+        },
+          {
+            "textId": 1,
+            "userId": 2,
+            "time":10000,
+            "mistakes": 3,
+            "kpm": 250,
+            "runExp":85
+        },
+        {
+            "textId": 2,
+            "userId": 7,
+            "time":10000,
+            "mistakes": 3,
+            "kpm": 278,
+            "runExp":85
+        },
+       {
+            "textId": 3,
+            "userId": 6,
+            "time":10000,
+            "mistakes": 3,
+            "kpm": 230,
+            "runExp":85
+        },
+       {
+            "textId": 4,
+            "userId": 11,
+            "time":10000,
+            "mistakes": 3,
+            "kpm": 244,
+            "runExp":85
+        },
+       {
+            "textId": 5,
+            "userId": 12,
+            "time":10000,
+            "mistakes": 3,
+            "kpm": 267,
+            "runExp":85
+        },
+       {
+            "textId": 6,
+            "userId": 10,
+            "time":10000,
+            "mistakes": 3,
+            "kpm": 200,
+            "runExp":85
+        },
+          {
+            "textId": 7,
+            "userId": 9,
+            "time":10000,
+            "mistakes": 3,
+            "kpm": 250,
+            "runExp":85
         }
 
     ]
