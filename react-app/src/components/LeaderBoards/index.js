@@ -2,26 +2,25 @@ import { useState, useEffect } from "react";
 import { useSelector } from "react-redux";
 import './LeaderBoards.css';
 import { Link } from "react-router-dom";
-
+import Record from "./Record";
 
 function LeaderBoards() {
 
   const users = useSelector(state => Object.values(state.users))
   const [displayList, setDisplayList] = useState(users)
   const [render, setRender] = useState(false)
-  const usersObj = useSelector(state => state.users)
+  const curUser = useSelector((state) => state.session.user);
 
   const [settingKSPM, setSettingKSPM] = useState(true)
   const [settingEXP, setSettingEXP] = useState(true)
-  console.log("usrs", users)
-  console.log(displayList)
+
   const acdKSPM = users.toSorted((a, b) => a.averageKSPM - b.averageKSPM)
   const desKSPM = users.toSorted((a, b) => b.averageKSPM - a.averageKSPM)
 
   useEffect(() => {
     setDisplayList(desKSPM)
   }, [render])
-
+//
   if (users.length === 0) {
     return null
   }
@@ -63,6 +62,9 @@ function LeaderBoards() {
 
 
 
+
+
+
   return (
     <>
       <div className="LB-buttonHolder">
@@ -83,19 +85,8 @@ function LeaderBoards() {
 
           {displayList.map((user, i) => (
 
-            <Link
-              target="_blank"
-              className="anti-link recordLink"
-              to={`/users/${user.username}`}
-            >
-              <div className="wgt recordHolder">
-                <p>{i+1}</p>
-                <p className="recordText">{user.username}</p>
-                <p className="recordText">{user.averageKSPM}</p>
-                <p className="recordText">{user.totalExp}</p>
 
-              </div>
-            </Link>
+            <Record user={user} i={i} curUser={curUser}> </Record>
           ))}
           {/* </div> */}
 
