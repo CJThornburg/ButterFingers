@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import "./ProfilePage.css";
 import { useDispatch, useSelector } from "react-redux";
 import { thunkCreateFriendRelationship, thunkAcceptFriend, thunkRejectFriend, thunkUndoRejectFriend, thunkDeleteFriend, thunkGetAllFriends } from "../../../store/friends"
-import { useParams, useHistory, Link } from "react-router-dom";
+import { useParams, useHistory, Link, redirect } from "react-router-dom";
 import { getLevel } from "../../../utils";
 import PlayerText from "./PlayerText";
 import ResultsGraph from "../../ResultsGraph";
@@ -10,9 +10,11 @@ import { jsDMYDateFormatter } from "../../../utils";
 import Footer from "../../Footer";
 
 
+
 function ProfilePage() {
   const { username } = useParams();
   const dispatch = useDispatch();
+  const history = useHistory();
 
 
 
@@ -24,7 +26,9 @@ function ProfilePage() {
   const friends = useSelector(state => Object.values(state.friends))
 
 
-
+  if (!userObj?.id) {
+    history.goBack();
+  }
 
   if (texts.length === 0) {
     return null
