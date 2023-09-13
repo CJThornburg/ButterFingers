@@ -36,7 +36,9 @@ function ResultsGraph({ relevantScores }) {
 
           <Area dataKey="kpm" stroke="#E2B714" fill="url(#color)" />
 
-          <XAxis dataKey="createdAt" axisLine={false} tickLine={false} tick={{ fontSize: "1.2vh", fontFamily: customFontFamily }} tickFormatter={(num => num.substr(0, 11))} label={{ value: "Test Date", position: "insideBottom", offset: -5, style: axisLabelStyle }}
+
+          <XAxis dataKey="createdAt" axisLine={false} tickLine={false} tick={{ fontSize: "1.2vh", fontFamily: customFontFamily }} tickFormatter={(num => num.substr(0, 11))} label={{ value: "Test Time", position: "insideBottom", offset: -5, style: axisLabelStyle }}
+
             interval={Math.ceil(relevantScores.length / 10)}
           />
 
