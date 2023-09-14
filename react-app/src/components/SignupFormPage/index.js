@@ -221,16 +221,19 @@ function SignupFormPage() {
             className="placeholder-Text"
           />
         </label> */}
-        <label>
+        <div className="SF-upload-div">
 
+        <label className=" upload-text ">
+          Profile Picture
+          </label>
           <input
             type="file"
             accept="image/*"
             onChange={(e) => setProfile_imageURL(e.target.files[0])}
-            placeholder=" Profile Picture (not required)"
+            placeholder=" Profile Picture"
             className="placeholder-Text"
           />
-        </label>
+        </div>
         {/* <label>
           <input
             type="text"
@@ -240,8 +243,10 @@ function SignupFormPage() {
             className="placeholder-Text"
           />
         </label> */}
-        <label>
-
+        <div className="SF-upload-div">
+        <label className=" upload-text">
+          Keyboard/Cover Photo
+          </label>
           <input
             type="file"
             accept="image/*"
@@ -249,7 +254,8 @@ function SignupFormPage() {
             placeholder=" Cover Photo (not required)"
             className="placeholder-Text"
           />
-        </label>
+
+        </div>
         <button type="submit" className="default_button pointer"> <i class="buttonIcon fa-solid fas fa-user-plus wgt "></i>   <span className="">Sign Up!</span> </button>
         {(ppLoading || coverPhotoLoading) && <p>Loading...</p>}
       </form>

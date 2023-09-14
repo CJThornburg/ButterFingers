@@ -36,7 +36,7 @@ function Splash() {
         Welcome to ButterFingers, let those fingers rip!
       </h1>
        <h2 className="yt HFont">
-       Connect and speed run your friends!
+       Connect and speedrun your friends!
        </h2>
       </div>
       <div>
