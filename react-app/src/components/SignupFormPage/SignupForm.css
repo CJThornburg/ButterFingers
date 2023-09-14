@@ -8,3 +8,20 @@
     margin-top: 0;
     margin-bottom: 10px;
 }
+
+.SF-upload-div{
+    display: flex;
+    flex-direction: column;
+    gap:10px;
+    background-color: #2C2E31;
+    padding-top: 5px;
+    padding-bottom: 5px;
+    border-radius: 10px;
+}
+
+.upload-text{
+    margin-left: 12px;
+    color: #646669;
+    font-size: 1.8vh;
+    font-family: 'Roboto Mono', monospace;
+}
