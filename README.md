@@ -1,5 +1,6 @@
 ![image](https://github.com/CJThornburg/ButterFingers/assets/59716885/82015fc1-fbe5-45a3-a818-59262d5bac7c)
 
+<img width="758" alt="butterFingersSQL" src="https://github.com/CJThornburg/ButterFingers/assets/59716885/9cd190f4-fb5c-45d3-ac8e-dea1320e489b">
 
 
 # ButterFingers
