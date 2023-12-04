@@ -21,13 +21,16 @@ https://butterfingers.onrender.com/
 ## Demos
 
 #### Typing Test
-![Typing Test](https://via.placeholder.com/468x300?text=App+Screenshot+Here)
+![Typing Test](./images/butterFingersDemoLarge.gif)
 
-#### User Profile/ Friends with user
-![User/Friends Profile](https://via.placeholder.com/468x300?text=App+Screenshot+Here)
+#### Results
+![Results](./images/results.png)
+
+#### User Profile
+![UserProfile](./images/userProfile.PNG)
 
 #### Non-Friend Profile
-![Not Friends Profile](https://via.placeholder.com/468x300?text=App+Screenshot+Here)
+![Not Friends Profile](./images/NonFriends.PNG)
 ## Features
 
 ### Custom Texts
