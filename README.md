@@ -80,7 +80,7 @@ Install dependencies
 
 In seprate terminal
 ```bash
-    cd react-frontend
+    cd react-app
     npm install
 ```
 
