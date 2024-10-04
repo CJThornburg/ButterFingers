@@ -2,6 +2,7 @@
 
 
 
+
 # ButterFingers
 
 Engage in a dynamic typing game website that not only meticulously tracks your statistics but also offers the exciting feature of connecting with friends for added interactive enjoyment!
