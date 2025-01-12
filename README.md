@@ -1,7 +1,6 @@
 ![image](https://github.com/CJThornburg/ButterFingers/assets/59716885/82015fc1-fbe5-45a3-a818-59262d5bac7c)
 
 
-
 # ButterFingers
 
 Engage in a dynamic typing game website that not only meticulously tracks your statistics but also offers the exciting feature of connecting with friends for added interactive enjoyment!
